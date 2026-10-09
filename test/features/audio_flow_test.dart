@@ -108,7 +108,8 @@ void main() {
     final app = await pumpApp(tester, location: '/audio/album/3');
     await tester.tap(find.text('Download all'));
     await tester.pumpAndSettle();
-    expect(find.text('Premium'), findsWidgets);
+    expect(find.text('Go Premium'), findsOneWidget);
+    expect(find.text('Give £1.99'), findsOneWidget);
     expect(app.downloads.enqueued, isEmpty);
   });
 

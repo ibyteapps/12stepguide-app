@@ -36,7 +36,15 @@ ANDROID_MIN_SDK = "24"
 ANDROID_TARGET_SDK = "36"
 IOS_MIN_OS = "15.0"
 
-ANDROID_LABEL = {"dev": "12SG Dev", "staging": "12SG Staging", "prod": "12 Step Guide - AA"}
+ANDROID_LABEL = {"dev": "12SG Dev", "staging": "12SG Staging", "prod": "12 Step Guide"}
+ADMOB_APP_ID = {
+    "android": {"dev": "ca-app-pub-3940256099942544~3347511713",
+                "staging": "ca-app-pub-3935706727993760~6070100472",
+                "prod": "ca-app-pub-3935706727993760~6070100472"},
+    "ios": {"dev": "ca-app-pub-3940256099942544~1458002511",
+            "staging": "ca-app-pub-3935706727993760~5296879139",
+            "prod": "ca-app-pub-3935706727993760~5296879139"},
+}
 IOS_NAME = {"dev": "12SG Dev", "staging": "12SG Staging", "prod": "12 Step Guide"}
 IOS_ICON = {"dev": "AppIcon-dev", "staging": "AppIcon-staging", "prod": "AppIcon"}
 ANDROID_NS = "{http://schemas.android.com/apk/res/android}"
@@ -158,6 +166,12 @@ def android_aab(path: str, flavor: str) -> int:
     c.eq("media service", media_type in {"mediaPlayback", "0x00000002", "2"}, True)
     receivers = {e.get(ANDROID_NS + "name") for e in (app.findall("receiver") if app is not None else [])}
     c.eq("media button receiver", "com.ryanheise.audioservice.MediaButtonReceiver" in receivers, True)
+    meta = {
+        e.get(ANDROID_NS + "name"): e.get(ANDROID_NS + "value")
+        for e in (app.findall("meta-data") if app is not None else [])
+    }
+    c.eq("AdMob app id", meta.get("com.google.android.gms.ads.APPLICATION_ID"),
+         ADMOB_APP_ID["android"][flavor])
     return c.done()
 
 
@@ -176,6 +190,9 @@ def ios_app(path: str, flavor: str) -> int:
     c.eq("app icon set", icon, IOS_ICON[flavor])
     c.eq("compiled asset catalog", (Path(path) / "Assets.car").exists(), True)
     c.eq("background audio", "audio" in info.get("UIBackgroundModes", []), True)
+    c.eq("AdMob app id", info.get("GADApplicationIdentifier"), ADMOB_APP_ID["ios"][flavor])
+    c.eq("SKAdNetwork ids", len(info.get("SKAdNetworkItems", [])) > 0, True)
+    c.eq("no tracking prompt (A-11)", "NSUserTrackingUsageDescription" in info, False)
     return c.done()
 
 

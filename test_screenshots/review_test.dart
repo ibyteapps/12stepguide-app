@@ -105,6 +105,9 @@ final scenarios = <Scenario>[
     prefs: {},
     act: (tester, app) => play(app, 9, 1, seconds: 1622),
   ),
+  (name: 'premium', location: '/premium', prefs: {}, act: null),
+  (name: 'premium-lifetime', location: '/premium', prefs: _premium, act: null),
+  (name: 'paywall', location: '/paywall', prefs: {}, act: null),
   (
     name: 'downloads',
     location: '/downloads',

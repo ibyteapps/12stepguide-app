@@ -17,6 +17,7 @@ import 'package:twelve_step_guide/features/audio/application/player_controller.d
 import 'package:twelve_step_guide/features/audio/data/download_gateway.dart';
 import 'package:twelve_step_guide/features/audio/domain/catalogue.dart';
 import 'package:twelve_step_guide/features/content/domain/content_index.dart';
+import 'package:twelve_step_guide/features/premium/purchase_service.dart';
 import 'package:twelve_step_guide/features/shell/shell_scaffold_key.dart';
 import 'package:twelve_step_guide/features/sobriety/cheer.dart';
 
@@ -84,6 +85,7 @@ typedef TestApp = ({
   FakeAudioEngine audio,
   FakeDownloadGateway downloads,
   String audioDir,
+  FakePurchaseGateway purchases,
 });
 
 /// Pumps the whole app at [location] with in-memory storage and fakes.
@@ -102,6 +104,8 @@ Future<TestApp> pumpApp(
   FakeAudioEngine? audio,
   FakeDownloadGateway? downloads,
   String? audioDir,
+  FakePurchaseGateway? purchases,
+  int launchCount = 5,
 }) async {
   tester.view.physicalSize = size * ratio;
   tester.view.devicePixelRatio = ratio;
@@ -118,6 +122,7 @@ Future<TestApp> pumpApp(
   final engine = audio ?? FakeAudioEngine();
   final gateway = downloads ?? FakeDownloadGateway();
   final dir = audioDir ?? tempAudioDir();
+  final shop = purchases ?? FakePurchaseGateway();
   final container = ProviderContainer(
     overrides: [
       appConfigProvider.overrideWithValue(AppConfig(env: env)),
@@ -132,10 +137,12 @@ Future<TestApp> pumpApp(
       audioEngineProvider.overrideWithValue(engine),
       downloadGatewayProvider.overrideWithValue(gateway),
       audioFilesProvider.overrideWithValue(AudioFiles(dir)),
+      purchaseGatewayProvider.overrideWithValue(shop),
+      purchaseSettleDelayProvider.overrideWithValue(Duration.zero),
       launchInfoProvider.overrideWithValue(
-        const LaunchInfo(
-          launchCount: 5,
-          isFirstLaunch: false,
+        LaunchInfo(
+          launchCount: launchCount,
+          isFirstLaunch: launchCount == 1,
           isUpgrade: false,
           version: '2.0.0',
           buildNumber: '100',
@@ -164,6 +171,7 @@ Future<TestApp> pumpApp(
     audio: engine,
     downloads: gateway,
     audioDir: dir,
+    purchases: shop,
   );
 }
 

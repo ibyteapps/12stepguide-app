@@ -7,10 +7,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../core/config/ad_units.dart';
 import '../core/config/app_config.dart';
+import '../core/config/app_env.dart';
 import '../core/logging/log.dart';
 import '../core/platform/legacy_bridge.dart';
 import '../core/prefs/key_value_store.dart';
+import '../features/ads/ad_coordinator.dart';
+import '../features/ads/ad_gateway.dart';
+import '../features/ads/consent_controller.dart';
 import '../features/audio/application/artwork.dart';
 import '../features/audio/application/downloads_controller.dart';
 import '../features/audio/application/player_controller.dart';
@@ -20,6 +25,9 @@ import '../features/audio/data/just_audio_handler.dart';
 import '../features/audio/domain/catalogue.dart';
 import '../features/content/domain/content_index.dart';
 import '../features/migration/migration.dart';
+import '../features/premium/entitlement_controller.dart';
+import '../features/premium/purchase_gateway.dart';
+import '../features/premium/purchase_service.dart';
 import 'app.dart';
 import 'providers.dart';
 import 'router.dart';
@@ -72,31 +80,60 @@ Future<void> bootstrap() async {
   final audio = await startAudio();
   final router = buildRouter(initialLocation: initialLocation(store));
 
-  runApp(
-    ProviderScope(
-      overrides: [
-        appConfigProvider.overrideWithValue(config),
-        kvStoreProvider.overrideWithValue(store),
-        contentIndexProvider.overrideWithValue(index),
-        catalogueProvider.overrideWithValue(catalogue),
-        quotesProvider.overrideWithValue(quotes),
-        audioEngineProvider.overrideWithValue(audio.engine),
-        audioFilesProvider.overrideWithValue(audio.files),
-        downloadGatewayProvider.overrideWithValue(audio.downloads),
-        artworkProvider.overrideWithValue(audio.artwork),
-        launchInfoProvider.overrideWithValue(
-          LaunchInfo(
-            launchCount: launch.launchCount,
-            isFirstLaunch: launch.launchCount == 1,
-            isUpgrade: launch.isUpgrade,
-            version: package.version,
-            buildNumber: package.buildNumber,
-          ),
+  final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
+  final units = AdUnits.forBuild(config.env, isIOS: isIOS);
+  if (config.env == AppEnv.prod && !units.isComplete) {
+    Log.w('Some AdMob units are missing from config/prod.json; those formats stay off.');
+  }
+
+  final container = ProviderContainer(
+    overrides: [
+      appConfigProvider.overrideWithValue(config),
+      kvStoreProvider.overrideWithValue(store),
+      contentIndexProvider.overrideWithValue(index),
+      catalogueProvider.overrideWithValue(catalogue),
+      quotesProvider.overrideWithValue(quotes),
+      audioEngineProvider.overrideWithValue(audio.engine),
+      audioFilesProvider.overrideWithValue(audio.files),
+      downloadGatewayProvider.overrideWithValue(audio.downloads),
+      artworkProvider.overrideWithValue(audio.artwork),
+      purchaseGatewayProvider.overrideWithValue(InAppPurchaseGateway(isIOS: isIOS)),
+      consentGatewayProvider.overrideWithValue(const UmpConsentGateway()),
+      adUnitsProvider.overrideWithValue(units),
+      adGatewayProvider.overrideWithValue(GoogleAdGateway(units)),
+      currentLocationProvider.overrideWithValue(
+        () => router.routerDelegate.currentConfiguration.uri.path,
+      ),
+      launchInfoProvider.overrideWithValue(
+        LaunchInfo(
+          launchCount: launch.launchCount,
+          isFirstLaunch: launch.launchCount == 1,
+          isUpgrade: launch.isUpgrade,
+          version: package.version,
+          buildNumber: package.buildNumber,
         ),
-      ],
+      ),
+    ],
+  );
+
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
       child: TwelveStepGuideApp(router: router),
     ),
   );
+
+  // After the first frame: the store check (Premium may change), then consent, then adverts.
+  container.listen(purchaseServiceProvider, (_, _) {});
+  unawaited(startAds(container));
+}
+
+/// Consent first (A-11), and the advert SDK only for free users who may see adverts.
+Future<void> startAds(ProviderContainer container) async {
+  await container.read(consentProvider.notifier).gather();
+  if (container.read(consentProvider).canRequestAds && !container.read(isPremiumProvider)) {
+    await container.read(adCoordinatorProvider).start();
+  }
 }
 
 /// Background audio and downloads (FLUTTER_ARCHITECTURE §10.1, §10.2). Downloads live where the

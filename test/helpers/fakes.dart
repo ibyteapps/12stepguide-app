@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:twelve_step_guide/features/ads/ad_gateway.dart';
 import 'package:twelve_step_guide/features/audio/data/audio_engine.dart';
 import 'package:twelve_step_guide/features/audio/data/download_gateway.dart';
 import 'package:twelve_step_guide/features/audio/domain/catalogue.dart';
+import 'package:twelve_step_guide/features/premium/purchase_gateway.dart';
 
 /// An audio engine that plays nothing and records what it was asked to do.
 class FakeAudioEngine implements AudioEngine {
@@ -135,4 +137,93 @@ class FakeDownloadGateway implements DownloadGateway {
 
   @override
   Future<Set<int>> active() async => running;
+}
+
+/// A store that sells the Android tiers (or the iOS annual) and records purchases.
+class FakePurchaseGateway implements PurchaseGateway {
+  FakePurchaseGateway({this.available = true, List<StoreProduct>? products, this.owned = const []})
+    : catalogue =
+          products ??
+          const [
+            StoreProduct(id: 'donatetier1', title: 'Tier 1', price: '£1.99', rawPrice: 1.99),
+            StoreProduct(id: 'donatetier2', title: 'Tier 2', price: '£4.99', rawPrice: 4.99),
+            StoreProduct(id: 'donatetier3', title: 'Tier 3', price: '£9.99', rawPrice: 9.99),
+            StoreProduct(id: 'annual', title: 'Annual', price: '£16.99', rawPrice: 16.99),
+          ];
+
+  bool available;
+  final List<StoreProduct> catalogue;
+
+  /// What the store says the user owns (sent as `restored` on refresh).
+  List<PurchaseEvent> owned;
+  bool trialEligible = true;
+  bool failRefresh = false;
+  final bought = <String>[];
+  final completed = <String>[];
+  int restores = 0;
+  final _events = StreamController<List<PurchaseEvent>>.broadcast(sync: true);
+
+  void emit(List<PurchaseEvent> events) => _events.add(events);
+
+  @override
+  Stream<List<PurchaseEvent>> get events => _events.stream;
+
+  @override
+  Future<bool> isAvailable() async => available;
+
+  @override
+  Future<List<StoreProduct>> products(Set<String> ids) async => [
+    for (final p in catalogue)
+      if (ids.contains(p.id)) p,
+  ];
+
+  @override
+  Future<void> buy(StoreProduct product) async => bought.add(product.id);
+
+  @override
+  Future<void> refreshOwned() async {
+    if (failRefresh) throw StateError('store unreachable');
+    if (owned.isNotEmpty) emit(owned);
+  }
+
+  @override
+  Future<void> restore() async {
+    restores++;
+    await refreshOwned();
+  }
+
+  @override
+  Future<void> complete(PurchaseEvent event) async => completed.add(event.productId);
+
+  @override
+  Future<bool> isTrialEligible(String productId) async => trialEligible;
+}
+
+/// Adverts that are always "loaded" and record what was shown.
+class FakeAdGateway implements AdGateway {
+  final shown = <String>[];
+  bool interstitialLoaded = true;
+  DateTime? appOpenLoaded;
+  bool started = false;
+
+  @override
+  Future<void> start() async => started = true;
+  @override
+  bool get interstitialReady => interstitialLoaded;
+  @override
+  Future<bool> showInterstitial() async {
+    shown.add('interstitial');
+    return true;
+  }
+
+  @override
+  DateTime? get appOpenLoadedAt => appOpenLoaded;
+  @override
+  Future<bool> showAppOpen() async {
+    shown.add('appOpen');
+    return true;
+  }
+
+  @override
+  void dropStaleAppOpen(Duration maxAge) {}
 }

@@ -10,6 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../app/providers.dart';
 import '../../core/links/links.dart';
 import '../../core/logging/log.dart';
+import '../../design/components/dialogs.dart';
 import '../../design/components/states.dart';
 import '../premium/entitlement_controller.dart';
 
@@ -20,21 +21,26 @@ class SupportActions {
   final Ref _ref;
 
   /// Opens the email app addressed to support, with the details support needs to help.
-  /// If no email app is set up, offers to copy the address instead.
-  Future<void> contact(BuildContext context) async {
+  /// If no email app is set up, offers to copy the address instead. [intro] starts the message
+  /// (the "Lost your supporter status?" link asks for the Google Play order number).
+  Future<void> contact(
+    BuildContext context, {
+    String subject = '12 Step Guide support',
+    String intro = '',
+  }) async {
     final info = _ref.read(launchInfoProvider);
     final entitlement = _ref.read(entitlementProvider);
     final platform = kIsWeb
         ? 'web'
         : '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
     final body =
-        '\n\n\n— Please keep the details below; they help us help you —\n'
+        '$intro\n\n\n— Please keep the details below; they help us help you —\n'
         'App: 12 Step Guide ${info.version} (${info.buildNumber})\n'
         'Device: $platform\n'
         'Premium: ${entitlement.analyticsType}\n';
     final opened = await _ref
         .read(linkOpenerProvider)
-        .email(to: AppLinks.supportEmail, subject: '12 Step Guide support', body: body);
+        .email(to: AppLinks.supportEmail, subject: subject, body: body);
     if (!opened && context.mounted) {
       await showAdaptiveDialog<void>(
         context: context,
@@ -42,15 +48,12 @@ class SupportActions {
           title: const Text('No email app found'),
           content: const Text('Write to us at ${AppLinks.supportEmail} from any email account.'),
           actions: [
-            TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Close')),
-            TextButton(
-              onPressed: () {
-                Clipboard.setData(const ClipboardData(text: AppLinks.supportEmail));
-                Navigator.of(context).pop();
-                showMessage(context, 'Email address copied');
-              },
-              child: const Text('Copy address'),
-            ),
+            adaptiveAction(context, 'Close', () => Navigator.of(context).pop()),
+            adaptiveAction(context, 'Copy address', () {
+              Clipboard.setData(const ClipboardData(text: AppLinks.supportEmail));
+              Navigator.of(context).pop();
+              showMessage(context, 'Email address copied');
+            }),
           ],
         ),
       );

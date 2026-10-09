@@ -61,3 +61,10 @@ class LaunchInfo {
 final launchInfoProvider = Provider<LaunchInfo>(
   (ref) => throw UnimplementedError('overridden in bootstrap'),
 );
+
+/// The current route path (e.g. `/player`), for rules that depend on the screen in front, such
+/// as where an app-open advert may not appear. Bootstrap reads it from the router.
+final currentLocationProvider = Provider<String Function()>(
+  (ref) =>
+      () => '',
+);

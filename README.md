@@ -36,7 +36,7 @@ flutter test
 |---|---|---|---|---|
 | `dev` | `com.ibyteapps.aa12stepguide.dev` (installs beside the store app) | 12SG Dev | Google test ads | Your devices, CI |
 | `staging` | `com.ibyteapps.aa12stepguide` | 12SG Staging | Google test ads | TestFlight internal, Play internal testing |
-| `prod` | `com.ibyteapps.aa12stepguide` | iOS "12 Step Guide", Android "12 Step Guide - AA" (A-02) | Live | The stores |
+| `prod` | `com.ibyteapps.aa12stepguide` | "12 Step Guide" on both (A-02, provisional D-008) | Live | The stores |
 
 CI (GitHub Actions, free on this public repository) runs on every push to `main`: format,
 analyze, tests and the literature check (`ci.yml`); Android dev APK and prod bundle (`android.yml`);

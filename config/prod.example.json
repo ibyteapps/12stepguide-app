@@ -1,4 +1,10 @@
 {
-  "_comment": "Copy to config/prod.json (gitignored) and fill in. Build with --flavor prod --dart-define-from-file=config/prod.json. The AdMob unit ids and other live values are added here in the phase that uses them; they stay out of git because a value baked into a release cannot be changed without another release.",
-  "ENV": "prod"
+  "_comment": "Copy to config/prod.json (gitignored) and fill in. Build with --flavor prod --dart-define-from-file=config/prod.json. The ADMOB_* values are the existing live AdMob ad unit ids (AdMob console, app 12 Step Guide; the native apps had them in _Constants.swift / _Constants.java and strings.xml). Leave a value empty and that advert format stays off. They stay out of git because a value baked into a release cannot be changed without another release. Dev and staging always use Google's test units.",
+  "ENV": "prod",
+  "ADMOB_ANDROID_BANNER": "",
+  "ADMOB_ANDROID_INTERSTITIAL": "",
+  "ADMOB_ANDROID_APP_OPEN": "",
+  "ADMOB_IOS_BANNER": "",
+  "ADMOB_IOS_INTERSTITIAL": "",
+  "ADMOB_IOS_APP_OPEN": ""
 }
