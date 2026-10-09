@@ -23,68 +23,68 @@ has the detail.
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
 | F-001 | Launch screen | Launch image storyboard | `BrandedLaunch` theme on `First` | DIFF · NATIVE | Different artwork | Native splash (flutter_native_splash) in brand colours, light and dark, then straight to the shell. No artificial delay. Uses the new icon mark | D-007 | ☐ |
-| F-002 | First-run onboarding | 6 pages: Welcome, Audiobooks ×2, Big Book, Ad-supported, All set | 3 pages: Hey there, Support us, Ad-supported | DIFF | Content and length | One 4-page flow on both: Welcome → What's inside (steps, Big Book, audio) → Reminders (primes notification permission, F-064) → Ad-supported/Premium note. Skippable; shown once | — | ☐ |
-| F-003 | "App updated" onboarding for upgraders | 5 pages when `FLAG_ONBOARDING_UPDATE_SHOWN` is false | — | iOS | | One "Welcome to the new 12 Step Guide" screen for **every** upgrading user on both platforms, saying their date, reminders, downloads and purchases came across. Shown once after migration | — | ☐ |
-| F-004 | Launch counter | `launchcount` (counts the first launch twice) | `…launchCount…` key | DIFF | Keys differ; iOS value is launches + 1 | One counter, seeded from the legacy value so prompt cadences continue | — | ☐ |
-| F-005 | Primary navigation | 5 tabs: The Steps, Literature, Big Book, Audio Books, Settings | 5 tabs: Steps, Traditions, Readings, Big Book, Settings | DIFF | Different sets | 4 tabs: **Steps** (Steps \| Traditions), **Readings**, **Big Book**, **Audio**. Settings and secondary items move to the drawer (F-080) | D-001 | ☐ |
+| F-002 | First-run onboarding | 6 pages: Welcome, Audiobooks ×2, Big Book, Ad-supported, All set | 3 pages: Hey there, Support us, Ad-supported | DIFF | Content and length | One 4-page flow on both: Welcome → What's inside (steps, Big Book, audio) → Reminders (primes notification permission, F-064) → Ad-supported/Premium note. Skippable; shown once | — | ◐ |
+| F-003 | "App updated" onboarding for upgraders | 5 pages when `FLAG_ONBOARDING_UPDATE_SHOWN` is false | — | iOS | | One "Welcome to the new 12 Step Guide" screen for **every** upgrading user on both platforms, saying their date, reminders, downloads and purchases came across. Shown once after migration | — | ◐ |
+| F-004 | Launch counter | `launchcount` (counts the first launch twice) | `…launchCount…` key | DIFF | Keys differ; iOS value is launches + 1 | One counter, seeded from the legacy value so prompt cadences continue | — | ◐ |
+| F-005 | Primary navigation | 5 tabs: The Steps, Literature, Big Book, Audio Books, Settings | 5 tabs: Steps, Traditions, Readings, Big Book, Settings | DIFF | Different sets | 4 tabs: **Steps** (Steps \| Traditions), **Readings**, **Big Book**, **Audio**. Settings and secondary items move to the drawer (F-080) | D-001 | ◐ |
 | F-006 | Now-playing indicator | Animated icon in the nav bar opens the player | — | iOS | | Mini-player docked above the tab bar on every tab while a track is loaded; tap → full player | — | ☐ |
-| F-007 | Tab transition | Crossfade | Fragment swap; per-tab back stacks | DIFF · NATIVE | | Per-tab back stacks (StatefulShellRoute); platform default transitions | — | ☐ |
-| F-008 | Bottom bar hidden on detail screens | — | Hidden on reader, calculator, store | AND | | Hidden in the reader and full player (immersive reading); shown elsewhere | — | ☐ |
-| F-015 | Free/Pro header on Steps and Traditions | — | "12 Step Guide - AA Free" / "… Pro" above the list | AND | | Status lives in the drawer header and Premium page; lists carry no header | D-001 | ☐ |
-| F-009 | Double-tap guard | — | 300 ms | AND | | Navigation is debounced so one tap opens one screen | — | ☐ |
+| F-007 | Tab transition | Crossfade | Fragment swap; per-tab back stacks | DIFF · NATIVE | | Per-tab back stacks (StatefulShellRoute); platform default transitions | — | ◐ |
+| F-008 | Bottom bar hidden on detail screens | — | Hidden on reader, calculator, store | AND | | Hidden in the reader and full player (immersive reading); shown elsewhere | — | ◐ |
+| F-015 | Free/Pro header on Steps and Traditions | — | "12 Step Guide - AA Free" / "… Pro" above the list | AND | | Status lives in the drawer header and Premium page; lists carry no header | D-001 | ◐ |
+| F-009 | Double-tap guard | — | 300 ms | AND | | Navigation is debounced so one tap opens one screen | — | ◐ |
 
 ## 2. Steps and Traditions
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-010 | Steps list (Intro + 12) | Number icons, step text subtitle | Number icons, step text subtitle | BOTH | Icon art differs; iOS Intro uses the AA circle-triangle symbol | Same list, new number badges; no AA symbol | D-005 | ☐ |
-| F-011 | Step guide text | Original text (`guide/gtape1–13`) | Expanded 2024 text (`guide/tape1–13`) | DIFF | Different text and length | Android's 2024 text on both platforms; the iOS original kept in `content/archive/` | D-002 | ☐ |
-| F-012 | Conclusion chapter | `gtape14`, unlinked | `tape14`, unlinked | BROKEN | Hidden on both | Listed as the last row under Steps ("Conclusion") | A-07 | ☐ |
-| F-013 | Traditions list + 12 guides | — | Tab with full tradition text as subtitles; `guide/tradition1–12` | AND | | "Traditions" segment inside the Steps tab, on both platforms | D-001 | ☐ |
+| F-010 | Steps list (Intro + 12) | Number icons, step text subtitle | Number icons, step text subtitle | BOTH | Icon art differs; iOS Intro uses the AA circle-triangle symbol | Same list, new number badges; no AA symbol | D-005 | ◐ |
+| F-011 | Step guide text | Original text (`guide/gtape1–13`) | Expanded 2024 text (`guide/tape1–13`) | DIFF | Different text and length | Android's 2024 text on both platforms; the iOS original kept in `content/archive/` | D-002 | ◐ |
+| F-012 | Conclusion chapter | `gtape14`, unlinked | `tape14`, unlinked | BROKEN | Hidden on both | Listed as the last row under Steps ("Conclusion") | A-07 | ◐ |
+| F-013 | Traditions list + 12 guides | — | Tab with full tradition text as subtitles; `guide/tradition1–12` | AND | | "Traditions" segment inside the Steps tab, on both platforms | D-001 | ◐ |
 | F-014 | Interstitial before a guide | Every 2nd content tap | Every 3rd open | DIFF | Pacing | Unified ad pacing (F-073) | A-10 | ☐ |
 
 ## 3. Readings (prayers, readings, tips)
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-020 | Daily Reflections link | Top of Literature, "Link – Opens Official AA Website" | Readings row "Today's AA Daily Reflection ↗" | DIFF | Placement, title | Row near the top of Readings: "Daily Reflections ↗ Opens aa.org". Opens the system browser (in-app browser tab), no ad before it | D-005 | ☐ |
-| F-021 | Prayers (6) | Serenity, Serenity Extended Version, 3rd Step, 7th Step, 11th Step, Lord's Prayer | Serenity, Serenity Plus, Third Step, Seventh Step, Eleventh Step, The Lord's Prayer | DIFF | Titles | Same 6 documents; titles from one content index (iOS wording, "Serenity Prayer (Extended)") | — | ☐ |
-| F-022 | Readings (8) | Preamble, How It Works, 12 Traditions, Promises, Just For Today, On Awakening, On Retiring, A Vision For You | How It Works, 12 Traditions, Promises (9th Step), Preamble, Just For Today, On Awakening, When We Retire, A Vision For You | DIFF | Order, titles | One order and one set of titles; "When We Retire" (the Big Book phrase) with "On Retiring" as a search alias | D-005 | ☐ |
-| F-023 | Sobriety Tips (4) | — | How to use the Big Book, How to find a sponsor, Sobriety & Recovery, 12 Years On | AND | | Section "Sobriety tips" in Readings on both. Fixes BUG-11 (wrong titles) | — | ☐ |
-| F-024 | Promote our other apps | Literature section, 5 App Store apps | Settings section, 5 Play apps incl. Meeting Finder | DIFF | Lists differ | "Our other apps" page from the drawer; one list per platform, from config; no ads before opening a store link | Q-P4 | ☐ |
+| F-020 | Daily Reflections link | Top of Literature, "Link – Opens Official AA Website" | Readings row "Today's AA Daily Reflection ↗" | DIFF | Placement, title | Row near the top of Readings: "Daily Reflections ↗ Opens aa.org". Opens the system browser (in-app browser tab), no ad before it | D-005 | ◐ |
+| F-021 | Prayers (6) | Serenity, Serenity Extended Version, 3rd Step, 7th Step, 11th Step, Lord's Prayer | Serenity, Serenity Plus, Third Step, Seventh Step, Eleventh Step, The Lord's Prayer | DIFF | Titles | Same 6 documents; titles from one content index (iOS wording, "Serenity Prayer (Extended)") | — | ◐ |
+| F-022 | Readings (8) | Preamble, How It Works, 12 Traditions, Promises, Just For Today, On Awakening, On Retiring, A Vision For You | How It Works, 12 Traditions, Promises (9th Step), Preamble, Just For Today, On Awakening, When We Retire, A Vision For You | DIFF | Order, titles | One order and one set of titles; "When We Retire" (the Big Book phrase) with "On Retiring" as a search alias | D-005 | ◐ |
+| F-023 | Sobriety Tips (4) | — | How to use the Big Book, How to find a sponsor, Sobriety & Recovery, 12 Years On | AND | | Section "Sobriety tips" in Readings on both. Fixes BUG-11 (wrong titles) | — | ◐ |
+| F-024 | Promote our other apps | Literature section, 5 App Store apps | Settings section, 5 Play apps incl. Meeting Finder | DIFF | Lists differ | "Our other apps" page from the drawer; one list per platform, from config; no ads before opening a store link | Q-P4 | ◐ |
 
 ## 4. Big Book
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-030 | Big Book chapters (14) | `aa/tape1–14` | `aa/tape1–14` | DIFF | Android Bill's Story has the restored p.15 paragraph | Android text (the corrected one) on both | — | ☐ |
-| F-031 | Personal Stories, 1st edition (29) | ✓ | ✓ | BOTH | `stories1_30` unreachable on both | Same 29 (`stories1_30` was listed in Android's array but never existed — Q-C3 resolved) | — | ☐ |
-| F-032 | Personal Stories, 2nd edition (40) | ✓ | ✓ | BOTH | | Same | — | ☐ |
-| F-033 | Segment switcher | Segmented control + swipe; labels shrink on narrow screens | Swipeable tabs | DIFF · NATIVE | | Segmented control (Big Book · 1st ed. · 2nd ed.) with swipe between pages | — | ☐ |
-| F-034 | Card grid with `#n`, title, page range | Gradient-coloured borders | Gradient-coloured borders | BOTH | | Same information; tokenised colours; adaptive column count (2 phone, 3–4 tablet) | — | ☐ |
-| F-035 | "Pioneers" / "Pages –––" placeholders | Shown | Shown | BOTH | | Page range hidden when unknown (no "Pages –––") | — | ☐ |
+| F-030 | Big Book chapters (14) | `aa/tape1–14` | `aa/tape1–14` | DIFF | Android Bill's Story has the restored p.15 paragraph | Android text (the corrected one) on both | — | ◐ |
+| F-031 | Personal Stories, 1st edition (29) | ✓ | ✓ | BOTH | `stories1_30` unreachable on both | Same 29 (`stories1_30` was listed in Android's array but never existed — Q-C3 resolved) | — | ◐ |
+| F-032 | Personal Stories, 2nd edition (40) | ✓ | ✓ | BOTH | | Same | — | ◐ |
+| F-033 | Segment switcher | Segmented control + swipe; labels shrink on narrow screens | Swipeable tabs | DIFF · NATIVE | | Segmented control (Big Book · 1st ed. · 2nd ed.) with swipe between pages | — | ◐ |
+| F-034 | Card grid with `#n`, title, page range | Gradient-coloured borders | Gradient-coloured borders | BOTH | | Same information; tokenised colours; adaptive column count (2 phone, 3–4 tablet) | — | ◐ |
+| F-035 | "Pioneers" / "Pages –––" placeholders | Shown | Shown | BOTH | | Page range hidden when unknown (no "Pages –––") | — | ◐ |
 
 ## 5. Reader
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-040 | Render literature | WKWebView, HTML + injected CSS | WebView from assets | DIFF · NATIVE | | Native Flutter text rendered from the Markdown files in `content/`: selectable, screen-reader friendly, themed | D-003 | ☐ |
-| F-041 | Text size | Small/Medium/Large = 18/24/30 px | Normal/Larger/Largest = 100/130/160 % | DIFF | Scales differ | One "Aa" sheet: 8-step size slider whose steps include both old scales; legacy choice migrated; also respects system text size | A-19 | ☐ |
-| F-042 | Dark mode in reader | White text injected | — | iOS | | Full light/dark reader surfaces from tokens | — | ☐ |
-| F-043 | Font-size tooltip | — | "Change font size from here", max 2 times | AND | | One-time coach mark on the Aa button the first time a reader opens | — | ☐ |
-| F-044 | Links inside content | Open inside the reader (BUG-12) | Open in the browser | DIFF | | External → in-app browser tab; `mailto:` → mail; `#anchor` → scroll; store links → store | — | ☐ |
+| F-040 | Render literature | WKWebView, HTML + injected CSS | WebView from assets | DIFF · NATIVE | | Native Flutter text rendered from the Markdown files in `content/`: selectable, screen-reader friendly, themed | D-003 | ◐ |
+| F-041 | Text size | Small/Medium/Large = 18/24/30 px | Normal/Larger/Largest = 100/130/160 % | DIFF | Scales differ | One "Aa" sheet: 8-step size slider whose steps include both old scales; legacy choice migrated; also respects system text size | A-19 | ◐ |
+| F-042 | Dark mode in reader | White text injected | — | iOS | | Full light/dark reader surfaces from tokens | — | ◐ |
+| F-043 | Font-size tooltip | — | "Change font size from here", max 2 times | AND | | One-time coach mark on the Aa button the first time a reader opens | — | ◐ |
+| F-044 | Links inside content | Open inside the reader (BUG-12) | Open in the browser | DIFF | | External → in-app browser tab; `mailto:` → mail; `#anchor` → scroll; store links → store | — | ◐ |
 | F-045 | Banner ad in reader | Bottom | Bottom | BOTH | | Adaptive banner at the bottom, never covering text; free users only | A-10 | ☐ |
-| F-046 | Reading position | — | — | — | | Remembers the scroll position per document; "Continue reading" chip at the top of Big Book | A-19 | ☐ |
+| F-046 | Reading position | — | — | — | | Remembers the scroll position per document; "Continue reading" chip at the top of Big Book | A-19 | ◐ |
 
 ## 6. Sobriety
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-050 | Sobriety date | — | `myAppDay/Month/Year` | AND | | "Your recovery" card at the top of Readings on both. Migrated from Android | — | ☐ |
-| F-051 | Calculator screen | — | Recovering since + days; date picker max today; "Change recovery date" | AND | | Recovery date screen: since date, total days (plus years/months/days breakdown as secondary text), change date, clear date. Calendar-date maths (fixes BUG-10) | — | ☐ |
-| F-052 | "Scroll back years" hint | — | Material dialog with "Don't show again" | AND | | Not needed: the date picker has a year selector | — | ☐ |
-| F-053 | Cheer sound on "Sober for" | — | Plays `notification_4.mp3` | AND | | Kept: tapping the day count plays the cheer (respects silent mode) | — | ☐ |
-| F-054 | Sober Today promotion | — | Banner + Play link in the calculator | AND | | Small "Get Sober Today for detailed stats" link on the recovery date screen (store link per platform) | — | ☐ |
+| F-050 | Sobriety date | — | `myAppDay/Month/Year` | AND | | "Your recovery" card at the top of Readings on both. Migrated from Android | — | ◐ |
+| F-051 | Calculator screen | — | Recovering since + days; date picker max today; "Change recovery date" | AND | | Recovery date screen: since date, total days (plus years/months/days breakdown as secondary text), change date, clear date. Calendar-date maths (fixes BUG-10) | — | ◐ |
+| F-052 | "Scroll back years" hint | — | Material dialog with "Don't show again" | AND | | Not needed: the date picker has a year selector | — | ◐ |
+| F-053 | Cheer sound on "Sober for" | — | Plays `notification_4.mp3` | AND | | Kept: tapping the day count plays the cheer (respects silent mode) | — | ◐ |
+| F-054 | Sober Today promotion | — | Banner + Play link in the calculator | AND | | Small "Get Sober Today for detailed stats" link on the recovery date screen (store link per platform) | — | ◐ |
 
 ## 7. Audio
 
@@ -122,15 +122,15 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-080 | Settings location | Tab | Tab | BOTH | | Drawer (all tabs); opens full pages | D-001 | ☐ |
+| F-080 | Settings location | Tab | Tab | BOTH | | Drawer (all tabs); opens full pages | D-001 | ◐ |
 | F-081 | Rate the app | Row + auto prompt at launch 7/15/30 | Row + custom dialog at launch 5/11/30/40… | DIFF | | Drawer row opens the store page. Auto prompt uses the system review API on iOS cadence, never over content | A-26 | ☐ |
-| F-082 | More apps from developer | App Store developer page | Play developer search | BOTH | | Inside "Our other apps" | — | ☐ |
-| F-083 | Facebook page | Row | — | iOS | | "Follow us on Facebook" in Help & support | — | ☐ |
+| F-082 | More apps from developer | App Store developer page | Play developer search | BOTH | | Inside "Our other apps" | — | ◐ |
+| F-083 | Facebook page | Row | — | iOS | | "Follow us on Facebook" in Help & support | — | ◐ |
 | F-084 | Contact developers | In-app form → Toolkit `mail.php` | Email app → `ibyteappsuk@gmail.com` | DIFF | Mechanism and address | See A-14 | **A-14** | ☐ |
-| F-085 | Tell a friend | Share text with both store links | Share text with Play link | DIFF | | Share sheet with both store links | — | ☐ |
-| F-086 | Privacy policy | `…/privacy-policy-ibyte/` | `…/privacy` | DIFF | URL | One URL (iOS one) | Q-P5 | ☐ |
-| F-087 | Terms of use | Settings + paywall | — | iOS | | Drawer + paywall, both | — | ☐ |
-| F-088 | App version | Contact footer | Settings footer | DIFF | | About page + drawer footer | — | ☐ |
+| F-085 | Tell a friend | Share text with both store links | Share text with Play link | DIFF | | Share sheet with both store links | — | ◐ |
+| F-086 | Privacy policy | `…/privacy-policy-ibyte/` | `…/privacy` | DIFF | URL | One URL (iOS one) | Q-P5 | ◐ |
+| F-087 | Terms of use | Settings + paywall | — | iOS | | Drawer + paywall, both | — | ◐ |
+| F-088 | App version | Contact footer | Settings footer | DIFF | | About page + drawer footer | — | ◐ |
 | F-089 | Hidden "My Account / Sign out" | Hidden row | — | BROKEN | | Not built (no accounts) | D-006 | ✖ |
 
 ## 10. Reminders
@@ -151,10 +151,10 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-100 | Dark mode | Follows system | Light only | DIFF | | Light / Dark / System (default System) in Appearance | — | ☐ |
+| F-100 | Dark mode | Follows system | Light only | DIFF | | Light / Dark / System (default System) in Appearance | — | ◐ |
 | F-101 | Tablet / iPad layout | Universal, all orientations | Large-screen dimens | BOTH · NATIVE | | Responsive: 2-pane where it helps (lists + reader on wide screens), navigation rail on tablets | — | ☐ |
-| F-102 | Orientation | All | All | BOTH | | All on tablets; phones portrait + landscape | — | ☐ |
-| F-103 | Screen reader & text scaling | Minimal | Minimal | BROKEN | | Full semantics and Dynamic Type / font scale support (UX spec §9) | — | ☐ |
+| F-102 | Orientation | All | All | BOTH | | All on tablets; phones portrait + landscape | — | ◐ |
+| F-103 | Screen reader & text scaling | Minimal | Minimal | BROKEN | | Full semantics and Dynamic Type / font scale support (UX spec §9) | — | ◐ |
 | F-104 | Mac (Apple silicon) and visionOS availability | Offered by the store | — | iOS · NATIVE | | Keep "iPad apps on Mac" availability unless the owner opts out; smoke-test once | Q-P6 | ☐ |
 
 ## 12. Platform services

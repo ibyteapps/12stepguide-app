@@ -1,70 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-import '../core/config/app_config.dart';
 import '../core/config/app_env.dart';
+import '../design/components/text_scale.dart';
+import '../design/tokens/spacing.dart';
+import '../design/theme/app_theme.dart';
+import '../features/appearance/appearance_controller.dart';
+import 'providers.dart';
 
-/// The app root.
-///
-/// P0 placeholder: P1 replaces the home page with the router, the shell (four tabs and the
-/// drawer, D-001) and the design-token themes.
-class TwelveStepGuideApp extends StatelessWidget {
-  const TwelveStepGuideApp({required this.config, super.key});
+/// The app root: themes from the design tokens, the router, and the system text size capped at
+/// 2.0× for UI chrome (the reader restores the full size).
+class TwelveStepGuideApp extends ConsumerWidget {
+  const TwelveStepGuideApp({required this.router, super.key});
 
-  final AppConfig config;
+  final GoRouter router;
 
   @override
-  Widget build(BuildContext context) {
-    final app = MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mode = ref.watch(appearanceProvider.select((s) => s.themeMode));
+    final env = ref.watch(appConfigProvider).env;
+    return MaterialApp.router(
       title: '12 Step Guide',
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
-      theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
-      home: const _PlaceholderHome(),
-    );
-    if (config.env == AppEnv.prod) return app;
-    // Marks dev and staging builds so a screenshot can never be mistaken for the store app.
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Banner(
-        message: config.env.name.toUpperCase(),
-        location: BannerLocation.topEnd,
-        child: app,
-      ),
-    );
-  }
-}
-
-class _PlaceholderHome extends StatelessWidget {
-  const _PlaceholderHome();
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  '12 Step Guide',
-                  style: textTheme.headlineMedium,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Version 2.0 is being built.',
-                  style: textTheme.bodyLarge,
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      themeMode: mode,
+      routerConfig: router,
+      builder: (context, child) {
+        final media = MediaQuery.of(context);
+        Widget app = UnclampedTextScale(
+          scaler: media.textScaler,
+          child: MediaQuery(
+            data: media.copyWith(textScaler: media.textScaler.clamp(maxScaleFactor: 2)),
+            child: child ?? const SizedBox.shrink(),
           ),
-        ),
-      ),
+        );
+        // Marks dev and staging builds so a screenshot can never be mistaken for the store app.
+        if (env != AppEnv.prod) {
+          app = Banner(
+            message: env.name.toUpperCase(),
+            location: BannerLocation.topEnd,
+            child: app,
+          );
+        }
+        return app;
+      },
     );
   }
 }
@@ -79,6 +60,7 @@ class ConfigErrorApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: AppTheme.light(),
       home: _ConfigErrorPage(message: message),
     );
   }
@@ -94,15 +76,12 @@ class _ConfigErrorPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(Space.xxl),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'This build is misconfigured',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(height: 12),
+              Text('This build is misconfigured', style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(height: Space.m),
               SelectableText(message),
             ],
           ),

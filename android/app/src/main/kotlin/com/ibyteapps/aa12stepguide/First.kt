@@ -1,6 +1,7 @@
 package com.ibyteapps.aa12stepguide
 
 import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
 
 /**
  * The one Flutter activity.
@@ -12,4 +13,9 @@ import io.flutter.embedding.android.FlutterActivity
  *
  * Do not rename this class or its manifest entry.
  */
-class First : FlutterActivity()
+class First : FlutterActivity() {
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+        LegacyMigrationPlugin.register(flutterEngine, this)
+    }
+}

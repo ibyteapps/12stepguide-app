@@ -23,6 +23,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
       - name: Read the pinned Flutter version (.fvmrc)
         id: fvm
         run: echo "flutter=$(jq -r .flutter .fvmrc)" >> "$GITHUB_OUTPUT"
@@ -37,7 +41,7 @@ jobs:
       - run: flutter pub get
 
       - name: Format
-        run: tool/ci/run_logged.sh "Format" dart format --output=none --set-exit-if-changed lib test
+        run: tool/ci/run_logged.sh "Format" dart format --output=none --set-exit-if-changed lib test test_screenshots
 
       - name: Analyze
         run: tool/ci/run_logged.sh "Analyze" flutter analyze
@@ -45,9 +49,10 @@ jobs:
       - name: Test
         run: tool/ci/run_logged.sh "Test" flutter test
 
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.13"
+      - name: Generated data is up to date (content index, audio catalogue)
+        run: |
+          tool/ci/run_logged.sh "Content index" python3 tool/build_content_index.py --check
+          tool/ci/run_logged.sh "Audio catalogue" python3 tool/build_catalogue.py --check
 
       - name: Literature is the converter's exact output, word for word
         run: |

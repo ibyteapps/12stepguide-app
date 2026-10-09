@@ -12,5 +12,9 @@ import UIKit
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+    // Reads what the native 1.x app left on the device (MIGRATION_PLAN.md).
+    if let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "LegacyMigrationPlugin") {
+      LegacyMigrationPlugin.register(with: registrar)
+    }
   }
 }

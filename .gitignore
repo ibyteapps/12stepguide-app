@@ -49,3 +49,4 @@ firebase_options.dart
 *.swp
 __pycache__/
 *.pyc
+test_screenshots/review/

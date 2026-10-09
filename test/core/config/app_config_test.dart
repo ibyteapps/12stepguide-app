@@ -11,10 +11,7 @@ void main() {
 
     test('matching flavour and config', () {
       for (final env in AppEnv.values) {
-        expect(
-          AppConfig.resolve(flavor: env.name, envDefine: env.name).env,
-          env,
-        );
+        expect(AppConfig.resolve(flavor: env.name, envDefine: env.name).env, env);
       }
     });
 
@@ -61,10 +58,7 @@ void main() {
     });
 
     test('config without a flavour (Xcode run) follows the config', () {
-      expect(
-        AppConfig.resolve(flavor: null, envDefine: 'staging').env,
-        AppEnv.staging,
-      );
+      expect(AppConfig.resolve(flavor: null, envDefine: 'staging').env, AppEnv.staging);
     });
   });
 
