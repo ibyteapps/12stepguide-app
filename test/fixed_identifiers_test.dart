@@ -54,8 +54,7 @@ void main() {
       // Home-screen icons point at com.ibyteapps.aa12stepguide.First.
       expect(manifest, contains('android:name=".First"'));
       expect(
-        File('android/app/src/main/kotlin/com/ibyteapps/aa12stepguide/First.kt')
-            .existsSync(),
+        File('android/app/src/main/kotlin/com/ibyteapps/aa12stepguide/First.kt').existsSync(),
         isTrue,
       );
     });
@@ -64,10 +63,8 @@ void main() {
   group('iOS', () {
     final pbx = _read('ios/Runner.xcodeproj/project.pbxproj');
 
-    String bundleId(String flavor) => _match(
-      _read('ios/Flutter/$flavor.xcconfig'),
-      r'^APP_BUNDLE_ID = (\S+)$',
-    )!;
+    String bundleId(String flavor) =>
+        _match(_read('ios/Flutter/$flavor.xcconfig'), r'^APP_BUNDLE_ID = (\S+)$')!;
 
     test('bundle ids per flavour', () {
       expect(bundleId('prod'), _appId);
@@ -94,18 +91,13 @@ void main() {
     test('a scheme and three build configurations per flavour', () {
       for (final flavor in ['dev', 'staging', 'prod']) {
         expect(
-          File('ios/Runner.xcodeproj/xcshareddata/xcschemes/$flavor.xcscheme')
-              .existsSync(),
+          File('ios/Runner.xcodeproj/xcshareddata/xcschemes/$flavor.xcscheme').existsSync(),
           isTrue,
           reason: flavor,
         );
         for (final mode in ['Debug', 'Profile', 'Release']) {
           // Project, Runner and RunnerTests each have the configuration.
-          expect(
-            'name = $mode-$flavor;'.allMatchesIn(pbx),
-            3,
-            reason: '$mode-$flavor',
-          );
+          expect('name = $mode-$flavor;'.allMatchesIn(pbx), 3, reason: '$mode-$flavor');
         }
       }
     });
@@ -113,6 +105,5 @@ void main() {
 }
 
 extension on String {
-  int allMatchesIn(String text) =>
-      RegExp(RegExp.escape(this)).allMatches(text).length;
+  int allMatchesIn(String text) => RegExp(RegExp.escape(this)).allMatches(text).length;
 }

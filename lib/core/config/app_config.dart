@@ -15,10 +15,8 @@ class AppConfig {
   final AppEnv env;
 
   /// The configuration this binary was built with.
-  static AppConfig fromBuild() => AppConfig.resolve(
-    flavor: appFlavor,
-    envDefine: const String.fromEnvironment('ENV'),
-  );
+  static AppConfig fromBuild() =>
+      AppConfig.resolve(flavor: appFlavor, envDefine: const String.fromEnvironment('ENV'));
 
   /// Checks the flavour and the config file against each other.
   ///
@@ -27,18 +25,13 @@ class AppConfig {
   /// - staging or prod without a config file: refused, the build would ship missing values.
   /// - flavour and config naming different environments: refused, e.g. a prod app id with
   ///   dev values.
-  static AppConfig resolve({
-    required String? flavor,
-    required String envDefine,
-  }) {
+  static AppConfig resolve({required String? flavor, required String envDefine}) {
     final hasFlavor = flavor != null && flavor.isNotEmpty;
     final hasEnv = envDefine.isNotEmpty;
 
     final fromFlavor = hasFlavor ? AppEnv.tryParse(flavor) : null;
     if (hasFlavor && fromFlavor == null) {
-      throw ConfigException(
-        'Unknown build flavour "$flavor". Use dev, staging or prod.',
-      );
+      throw ConfigException('Unknown build flavour "$flavor". Use dev, staging or prod.');
     }
     final fromEnv = hasEnv ? AppEnv.tryParse(envDefine) : null;
     if (hasEnv && fromEnv == null) {

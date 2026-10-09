@@ -126,3 +126,39 @@ the Android "A.A. 12 Steps Guide" book. It follows D-005: no circle-and-triangle
   layer for themed icons, plus classic images for Android 7.
 - dev and staging builds carry a marked icon, so they can't be mistaken for the store app.
 - The store listings need the new 1024 px icon too (App Store Connect, Play Console 512 px).
+
+## D-008 — Provisional: the remaining recommendations, taken while the owner was away
+**Taken 2026-10-09 · Claude, on the owner's instruction to keep going overnight** ("Don't stop
+till you finish everything"). **Not yet confirmed by the owner.**
+
+Each open decision was built the way `OPEN_QUESTIONS.md` §3 recommended. Nothing has reached a
+user, so any line can still be changed; each is built behind one setting or one class, so a
+change is small. When the owner confirms or changes a line, it gets its own D-number and this
+entry stays as history.
+
+| Was | Built as |
+|---|---|
+| A-02 | "12 Step Guide" under the icon on both platforms (Android drops " - AA") |
+| A-04 | Android donors: legacy flag migrated; new donations **not consumed**; "Lost your supporter status?" opens an email to support. A hidden non-consumable `supporter_lifetime` is recognised as lifetime if the owner creates it in the Play Console for promo codes |
+| A-05 | Premium = no ads + audio downloads on both. If Premium lapses, files stay on the device, tracks stream, and the Downloads page offers to remove them |
+| A-06 | Android sells the three donation tiers as "Support the app — lifetime Premium". No Play subscription in 2.0 |
+| A-07 | "Conclusion" is the last row under Steps |
+| A-10 | Interstitial on every 3rd content open (persisted, reset after an app-open ad); app-open ≥ 45 s apart, never on first launch, onboarding, paywall, purchase flow or full player; banners in reader, player and quote screen; AdMob only |
+| A-11 | Google UMP consent form where required (UK/EEA); no App Tracking Transparency prompt, so iOS ads are non-personalised where ATT would be needed |
+| A-12 | iOS reminders: the new app keeps what each user actually receives (pending notifications), not the stored flag |
+| A-13 | "We miss you" nudges after 3 and 7 days without opening the app, at 10:00, with a switch in Reminders (on by default) |
+| A-14 | Contact us opens the email app with version and device details filled in, plus "Copy email address". The Toolkit `mail.php` form is not used |
+| A-15 | No backend; purchases verified on device (StoreKit 2 / Play Billing) |
+| A-16 | Minimum iOS 15 and Android 7 (API 24), as built in P0 |
+| A-17 | Firebase Cloud Messaging removed (no console campaigns are known — Q-P2) |
+| A-18 | Morning and night reminders left out (no user can reach them today) |
+| A-19 | 8-step text size with the old sizes preserved, reading position per document, "Continue reading", previous/next at the end. No serif option |
+| A-20 | Resume position per audio track and "Download over Wi-Fi only" included. Search, speed, sleep timer, favourites and quote "Another"/"Share" left out |
+| A-21 | No classic-layout switch |
+| A-24 | Audio catalogue bundled with the app |
+| A-25 | Paywall shown automatically on launch 2, 20 and 50 on both, free users only |
+| A-26 | System review prompt on launch 7, 15 and 30 on both; "Rate the app" in the drawer |
+| Q-C2 | Support address `ibyteappsuk@gmail.com` (today's Android support address) |
+| Q-P4 | "Our other apps" lists exactly what each app lists today, Meeting Finder included |
+| Q-P5 | Privacy policy `https://www.12steptoolkit.com/privacy-policy-ibyte/`, terms `https://www.12steptoolkit.com/terms-of-service/` (today's iOS links) |
+| Q-P6 | The iOS app stays available on Apple-silicon Macs (store default; nothing to build) |

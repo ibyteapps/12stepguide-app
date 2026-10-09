@@ -10,6 +10,7 @@ platform image is rendered from that drawing:
 
     assets/branding/*.svg                       vector masters
     assets/branding/store/                      App Store 1024 px and Google Play 512 px icons
+    assets/images/                              in-app icon and book mark (drawer, About, splash)
     ios/Runner/Assets.xcassets/AppIcon*.appiconset
         AppIcon (prod and staging builds use their own set, see APP_ICON_NAME in
         ios/Flutter/<flavour>.xcconfig): light, dark (transparent) and tinted (grey) variants
@@ -206,6 +207,15 @@ def write_masters() -> None:
     for flavor in ("dev", "staging"):
         (BRANDING / f"icon-{flavor}.svg").write_text(svg(LIGHT, IOS_SCALE, BACKGROUNDS[flavor]))
     (BRANDING / "mark.svg").write_text(svg(LIGHT, IOS_SCALE, None))
+
+    # In-app images: the drawer header, About, onboarding and the splash screen.
+    images = ROOT / "assets" / "images"
+    icon = render(svg(LIGHT, IOS_SCALE, BACKGROUNDS["prod"]), 288)
+    rounded = Image.new("RGBA", icon.size, (0, 0, 0, 0))
+    rounded.paste(icon, (0, 0), rounded_mask(288, 0.225, 0.0))
+    save_png(rounded, images / "app-icon.png")
+    save_png(render(svg(LIGHT, 1.0, None), 512), images / "mark.png")
+    save_png(render(svg(DARK, 1.0, None), 512), images / "mark-dark.png")
 
     store = BRANDING / "store"
     prod = render(svg(LIGHT, IOS_SCALE, BACKGROUNDS["prod"]), 1024).convert("RGB")

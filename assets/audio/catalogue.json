@@ -1,0 +1,1402 @@
+{
+ "version": 1,
+ "baseUrl": "https://scripts.12stepapp.com/tracks/",
+ "albums": [
+  {
+   "id": 1,
+   "title": "Joe & Charlie - Big Book Study",
+   "shortName": "Joe & Charlie",
+   "folder": "joeandcharlie",
+   "hasTranscripts": true,
+   "seconds": 38906,
+   "gradient": [
+    "#0D324D",
+    "#7F5A83"
+   ],
+   "tracks": [
+    {
+     "id": 1,
+     "number": 1,
+     "title": "AA History - Part 1",
+     "file": "joeandcharlie01.mp3",
+     "seconds": 1177,
+     "sizeLabel": "4.5 MB",
+     "approxBytes": 4500000
+    },
+    {
+     "id": 2,
+     "number": 2,
+     "title": "AA History - Part 2",
+     "file": "joeandcharlie02.mp3",
+     "seconds": 1073,
+     "sizeLabel": "4.1 MB",
+     "approxBytes": 4100000
+    },
+    {
+     "id": 3,
+     "number": 3,
+     "title": "AA History - Part 3",
+     "file": "joeandcharlie03.mp3",
+     "seconds": 1159,
+     "sizeLabel": "4.4 MB",
+     "approxBytes": 4400000
+    },
+    {
+     "id": 4,
+     "number": 4,
+     "title": "AA History - Part 4",
+     "file": "joeandcharlie04.mp3",
+     "seconds": 900,
+     "sizeLabel": "3.4 MB",
+     "approxBytes": 3400000
+    },
+    {
+     "id": 5,
+     "number": 5,
+     "title": "The Doctor's Opinion - Part 1",
+     "file": "joeandcharlie05.mp3",
+     "seconds": 1341,
+     "sizeLabel": "5.1 MB",
+     "approxBytes": 5100000
+    },
+    {
+     "id": 6,
+     "number": 6,
+     "title": "The Doctor's Opinion - Part 2",
+     "file": "joeandcharlie06.mp3",
+     "seconds": 1496,
+     "sizeLabel": "5.7 MB",
+     "approxBytes": 5700000
+    },
+    {
+     "id": 7,
+     "number": 7,
+     "title": "The Doctor's Opinion - Part 3",
+     "file": "joeandcharlie07.mp3",
+     "seconds": 592,
+     "sizeLabel": "2.3 MB",
+     "approxBytes": 2300000
+    },
+    {
+     "id": 8,
+     "number": 8,
+     "title": "Bill's Story - Part 1",
+     "file": "joeandcharlie08.mp3",
+     "seconds": 1575,
+     "sizeLabel": "6.0 MB",
+     "approxBytes": 6000000
+    },
+    {
+     "id": 9,
+     "number": 9,
+     "title": "Bill's Story - Part 2",
+     "file": "joeandcharlie09.mp3",
+     "seconds": 1517,
+     "sizeLabel": "5.8 MB",
+     "approxBytes": 5800000
+    },
+    {
+     "id": 10,
+     "number": 10,
+     "title": "There Is A Solution",
+     "file": "joeandcharlie10.mp3",
+     "seconds": 1410,
+     "sizeLabel": "5.4 MB",
+     "approxBytes": 5400000
+    },
+    {
+     "id": 11,
+     "number": 11,
+     "title": "Spiritual Experience",
+     "file": "joeandcharlie11.mp3",
+     "seconds": 1046,
+     "sizeLabel": "4.0 MB",
+     "approxBytes": 4000000
+    },
+    {
+     "id": 12,
+     "number": 12,
+     "title": "There Is A Solution",
+     "file": "joeandcharlie12.mp3",
+     "seconds": 780,
+     "sizeLabel": "3.0 MB",
+     "approxBytes": 3000000
+    },
+    {
+     "id": 13,
+     "number": 13,
+     "title": "More About Alcoholism - Part 1",
+     "file": "joeandcharlie13.mp3",
+     "seconds": 1254,
+     "sizeLabel": "4.8 MB",
+     "approxBytes": 4800000
+    },
+    {
+     "id": 14,
+     "number": 14,
+     "title": "More About Alcoholism - Part 2",
+     "file": "joeandcharlie14.mp3",
+     "seconds": 764,
+     "sizeLabel": "2.9 MB",
+     "approxBytes": 2900000
+    },
+    {
+     "id": 15,
+     "number": 15,
+     "title": "We Agnostics - Part 1",
+     "file": "joeandcharlie15.mp3",
+     "seconds": 1230,
+     "sizeLabel": "4.7 MB",
+     "approxBytes": 4700000
+    },
+    {
+     "id": 16,
+     "number": 16,
+     "title": "We Agnostics - Part 2",
+     "file": "joeandcharlie16.mp3",
+     "seconds": 1050,
+     "sizeLabel": "4.0 MB",
+     "approxBytes": 4000000
+    },
+    {
+     "id": 17,
+     "number": 17,
+     "title": "How It Works - Part 1",
+     "file": "joeandcharlie17.mp3",
+     "seconds": 1682,
+     "sizeLabel": "6.4 MB",
+     "approxBytes": 6400000
+    },
+    {
+     "id": 18,
+     "number": 18,
+     "title": "How It Works - Part 2",
+     "file": "joeandcharlie18.mp3",
+     "seconds": 1938,
+     "sizeLabel": "7.4 MB",
+     "approxBytes": 7400000
+    },
+    {
+     "id": 19,
+     "number": 19,
+     "title": "Third Step",
+     "file": "joeandcharlie19.mp3",
+     "seconds": 437,
+     "sizeLabel": "1.7 MB",
+     "approxBytes": 1700000
+    },
+    {
+     "id": 20,
+     "number": 20,
+     "title": "Fourth Step - Part 1",
+     "file": "joeandcharlie20.mp3",
+     "seconds": 1216,
+     "sizeLabel": "4.6 MB",
+     "approxBytes": 4600000
+    },
+    {
+     "id": 21,
+     "number": 21,
+     "title": "Fourth Step - Part 2",
+     "file": "joeandcharlie21.mp3",
+     "seconds": 1628,
+     "sizeLabel": "6.2 MB",
+     "approxBytes": 6200000
+    },
+    {
+     "id": 22,
+     "number": 22,
+     "title": "Fourth Step - Part 3",
+     "file": "joeandcharlie22.mp3",
+     "seconds": 925,
+     "sizeLabel": "3.5 MB",
+     "approxBytes": 3500000
+    },
+    {
+     "id": 23,
+     "number": 23,
+     "title": "Freedom From Bondage",
+     "file": "joeandcharlie23.mp3",
+     "seconds": 819,
+     "sizeLabel": "3.1 MB",
+     "approxBytes": 3100000
+    },
+    {
+     "id": 24,
+     "number": 24,
+     "title": "Fourth Step - Part 4",
+     "file": "joeandcharlie24.mp3",
+     "seconds": 1885,
+     "sizeLabel": "7.2 MB",
+     "approxBytes": 7200000
+    },
+    {
+     "id": 25,
+     "number": 25,
+     "title": "Fourth Step - List Of Fears",
+     "file": "joeandcharlie25.mp3",
+     "seconds": 1354,
+     "sizeLabel": "5.2 MB",
+     "approxBytes": 5200000
+    },
+    {
+     "id": 26,
+     "number": 26,
+     "title": "Fourth Step - Sex List",
+     "file": "joeandcharlie26.mp3",
+     "seconds": 1559,
+     "sizeLabel": "5.9 MB",
+     "approxBytes": 5900000
+    },
+    {
+     "id": 27,
+     "number": 27,
+     "title": "Fourth Step - Harms Done",
+     "file": "joeandcharlie27.mp3",
+     "seconds": 449,
+     "sizeLabel": "1.7 MB",
+     "approxBytes": 1700000
+    },
+    {
+     "id": 28,
+     "number": 28,
+     "title": "Fifth Step",
+     "file": "joeandcharlie28.mp3",
+     "seconds": 917,
+     "sizeLabel": "3.5 MB",
+     "approxBytes": 3500000
+    },
+    {
+     "id": 29,
+     "number": 29,
+     "title": "Sixth & Seventh Step",
+     "file": "joeandcharlie29.mp3",
+     "seconds": 828,
+     "sizeLabel": "3.2 MB",
+     "approxBytes": 3200000
+    },
+    {
+     "id": 30,
+     "number": 30,
+     "title": "Eighth Step",
+     "file": "joeandcharlie30.mp3",
+     "seconds": 568,
+     "sizeLabel": "2.2 MB",
+     "approxBytes": 2200000
+    },
+    {
+     "id": 31,
+     "number": 31,
+     "title": "Eighth & Ninth Step",
+     "file": "joeandcharlie31.mp3",
+     "seconds": 1787,
+     "sizeLabel": "6.8 MB",
+     "approxBytes": 6800000
+    },
+    {
+     "id": 32,
+     "number": 32,
+     "title": "Tenth Step",
+     "file": "joeandcharlie32.mp3",
+     "seconds": 516,
+     "sizeLabel": "2.0 MB",
+     "approxBytes": 2000000
+    },
+    {
+     "id": 33,
+     "number": 33,
+     "title": "Eleventh Step",
+     "file": "joeandcharlie33.mp3",
+     "seconds": 1039,
+     "sizeLabel": "4.0 MB",
+     "approxBytes": 4000000
+    },
+    {
+     "id": 34,
+     "number": 34,
+     "title": "Twelfth Step",
+     "file": "joeandcharlie34.mp3",
+     "seconds": 995,
+     "sizeLabel": "3.8 MB",
+     "approxBytes": 3800000
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "The Big Book",
+   "shortName": "The Big Book",
+   "folder": "aabigbook",
+   "hasTranscripts": true,
+   "seconds": 20662,
+   "gradient": [
+    "#1E3B70",
+    "#29539B"
+   ],
+   "tracks": [
+    {
+     "id": 35,
+     "number": 1,
+     "title": "Preface & Forewords",
+     "file": "aabigbook01.mp3",
+     "seconds": 1835,
+     "sizeLabel": "14.0 MB",
+     "approxBytes": 14000000
+    },
+    {
+     "id": 36,
+     "number": 2,
+     "title": "Chapter 1 Bill's Story",
+     "file": "aabigbook02.mp3",
+     "seconds": 1642,
+     "sizeLabel": "12.5 MB",
+     "approxBytes": 12500000
+    },
+    {
+     "id": 37,
+     "number": 3,
+     "title": "Chapter 2  There Is A Solution",
+     "file": "aabigbook03.mp3",
+     "seconds": 1313,
+     "sizeLabel": "10.0 MB",
+     "approxBytes": 10000000
+    },
+    {
+     "id": 38,
+     "number": 4,
+     "title": "Chapter 3  More About Alcoholism",
+     "file": "aabigbook04.mp3",
+     "seconds": 1453,
+     "sizeLabel": "11.1 MB",
+     "approxBytes": 11100000
+    },
+    {
+     "id": 39,
+     "number": 5,
+     "title": "Chapter 4 We Agnostics",
+     "file": "aabigbook05.mp3",
+     "seconds": 1398,
+     "sizeLabel": "10.7 MB",
+     "approxBytes": 10700000
+    },
+    {
+     "id": 40,
+     "number": 6,
+     "title": "Chapter 5 How It Works",
+     "file": "aabigbook06.mp3",
+     "seconds": 1399,
+     "sizeLabel": "10.7 MB",
+     "approxBytes": 10700000
+    },
+    {
+     "id": 41,
+     "number": 7,
+     "title": "Chapter 6 Into Action",
+     "file": "aabigbook07.mp3",
+     "seconds": 1746,
+     "sizeLabel": "13.3 MB",
+     "approxBytes": 13300000
+    },
+    {
+     "id": 42,
+     "number": 8,
+     "title": "Chapter 7 Working With Other",
+     "file": "aabigbook08.mp3",
+     "seconds": 1507,
+     "sizeLabel": "11.5 MB",
+     "approxBytes": 11500000
+    },
+    {
+     "id": 43,
+     "number": 9,
+     "title": "Chapter 8  To Wives",
+     "file": "aabigbook09.mp3",
+     "seconds": 1964,
+     "sizeLabel": "15.0 MB",
+     "approxBytes": 15000000
+    },
+    {
+     "id": 44,
+     "number": 10,
+     "title": "Chapter 9 The Family Afterward",
+     "file": "aabigbook10.mp3",
+     "seconds": 1534,
+     "sizeLabel": "11.7 MB",
+     "approxBytes": 11700000
+    },
+    {
+     "id": 45,
+     "number": 11,
+     "title": "Chapter 10 To Employers",
+     "file": "aabigbook11.mp3",
+     "seconds": 1391,
+     "sizeLabel": "10.6 MB",
+     "approxBytes": 10600000
+    },
+    {
+     "id": 46,
+     "number": 12,
+     "title": "Chapter 11 A Vision For You",
+     "file": "aabigbook12.mp3",
+     "seconds": 1390,
+     "sizeLabel": "10.6 MB",
+     "approxBytes": 10600000
+    },
+    {
+     "id": 47,
+     "number": 13,
+     "title": "Dr Bob's Nightmare",
+     "file": "aabigbook13.mp3",
+     "seconds": 1030,
+     "sizeLabel": "7.9 MB",
+     "approxBytes": 7900000
+    },
+    {
+     "id": 48,
+     "number": 14,
+     "title": "Personal Stories Part 2",
+     "file": "aabigbook14.mp3",
+     "seconds": 1060,
+     "sizeLabel": "8.1 MB",
+     "approxBytes": 8100000
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Speaker Tapes - Bill W",
+   "shortName": "Bill W.",
+   "folder": "aasbillw",
+   "hasTranscripts": false,
+   "seconds": 36661,
+   "gradient": [
+    "#4CA2CD",
+    "#67B26F"
+   ],
+   "tracks": [
+    {
+     "id": 49,
+     "number": 1,
+     "title": "The History of the Big Book",
+     "file": "aasbillw01.mp3",
+     "seconds": 4567,
+     "sizeLabel": "17.4 MB",
+     "approxBytes": 17400000
+    },
+    {
+     "id": 50,
+     "number": 2,
+     "title": "At The 3rd General Service Conference",
+     "file": "aasbillw02.mp3",
+     "seconds": 3593,
+     "sizeLabel": "13.7 MB",
+     "approxBytes": 13700000
+    },
+    {
+     "id": 51,
+     "number": 3,
+     "title": "At The Our Responsibility to AAs Future",
+     "file": "aasbillw03.mp3",
+     "seconds": 4345,
+     "sizeLabel": "16.6 MB",
+     "approxBytes": 16600000
+    },
+    {
+     "id": 52,
+     "number": 4,
+     "title": "Bill W. At The The Three Legacies",
+     "file": "aasbillw04.mp3",
+     "seconds": 4104,
+     "sizeLabel": "15.7 MB",
+     "approxBytes": 15700000
+    },
+    {
+     "id": 53,
+     "number": 5,
+     "title": "Bill W. At The The Traditions",
+     "file": "aasbillw05.mp3",
+     "seconds": 3581,
+     "sizeLabel": "13.7 MB",
+     "approxBytes": 13700000
+    },
+    {
+     "id": 54,
+     "number": 6,
+     "title": "At The 1st International Convention in Cleveland, OH on 01-01-1950",
+     "file": "aasbillw06.mp3",
+     "seconds": 4168,
+     "sizeLabel": "15.9 MB",
+     "approxBytes": 15900000
+    },
+    {
+     "id": 55,
+     "number": 7,
+     "title": "In Atlanta, GA on 1951",
+     "file": "aasbillw07.mp3",
+     "seconds": 4433,
+     "sizeLabel": "16.9 MB",
+     "approxBytes": 16900000
+    },
+    {
+     "id": 56,
+     "number": 8,
+     "title": "At The Singleness of Purpose on 01-01-1957",
+     "file": "aasbillw08.mp3",
+     "seconds": 449,
+     "sizeLabel": "1.7 MB",
+     "approxBytes": 1700000
+    },
+    {
+     "id": 57,
+     "number": 9,
+     "title": "At The 1st Alanon World Conference on 1961",
+     "file": "aasbillw09.mp3",
+     "seconds": 964,
+     "sizeLabel": "3.7 MB",
+     "approxBytes": 3700000
+    },
+    {
+     "id": 58,
+     "number": 10,
+     "title": "In Toronto on 01-01-1965",
+     "file": "aasbillw10.mp3",
+     "seconds": 2716,
+     "sizeLabel": "10.4 MB",
+     "approxBytes": 10400000
+    },
+    {
+     "id": 59,
+     "number": 11,
+     "title": "At The A Matter of Grace on 01-01-1966",
+     "file": "aasbillw11.mp3",
+     "seconds": 2544,
+     "sizeLabel": "9.7 MB",
+     "approxBytes": 9700000
+    },
+    {
+     "id": 60,
+     "number": 12,
+     "title": "On 04-17-1968",
+     "file": "aasbillw12.mp3",
+     "seconds": 1197,
+     "sizeLabel": "4.6 MB",
+     "approxBytes": 4600000
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Chuck C - A New Pair Of Glasses",
+   "shortName": "Chuck C.",
+   "folder": "aaschuckc",
+   "hasTranscripts": false,
+   "seconds": 26560,
+   "gradient": [
+    "#2657EB",
+    "#DE6161"
+   ],
+   "tracks": [
+    {
+     "id": 61,
+     "number": 1,
+     "title": "Part - 1",
+     "file": "aaschuckc01.mp3",
+     "seconds": 4794,
+     "sizeLabel": "18.3 MB",
+     "approxBytes": 18300000
+    },
+    {
+     "id": 62,
+     "number": 2,
+     "title": "Part - 2",
+     "file": "aaschuckc02.mp3",
+     "seconds": 4792,
+     "sizeLabel": "18.3 MB",
+     "approxBytes": 18300000
+    },
+    {
+     "id": 63,
+     "number": 3,
+     "title": "Part - 3",
+     "file": "aaschuckc03.mp3",
+     "seconds": 4792,
+     "sizeLabel": "18.3 MB",
+     "approxBytes": 18300000
+    },
+    {
+     "id": 64,
+     "number": 4,
+     "title": "Part - 4",
+     "file": "aaschuckc04.mp3",
+     "seconds": 4795,
+     "sizeLabel": "18.3 MB",
+     "approxBytes": 18300000
+    },
+    {
+     "id": 65,
+     "number": 5,
+     "title": "Part - 5",
+     "file": "aaschuckc05.mp3",
+     "seconds": 4793,
+     "sizeLabel": "18.3 MB",
+     "approxBytes": 18300000
+    },
+    {
+     "id": 66,
+     "number": 6,
+     "title": "Part - 6",
+     "file": "aaschuckc06.mp3",
+     "seconds": 2594,
+     "sizeLabel": "9.9 MB",
+     "approxBytes": 9900000
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Varieties Of Religious Experiences",
+   "shortName": "William James",
+   "folder": "varsofre",
+   "hasTranscripts": false,
+   "seconds": 79741,
+   "gradient": [
+    "#7C98B3",
+    "#637081"
+   ],
+   "tracks": [
+    {
+     "id": 67,
+     "number": 1,
+     "title": "Contents and Preface",
+     "file": "varsofre01.mp3",
+     "seconds": 1010,
+     "sizeLabel": "5.8 MB",
+     "approxBytes": 5800000
+    },
+    {
+     "id": 68,
+     "number": 2,
+     "title": "01 - Religion and Neurology",
+     "file": "varsofre02.mp3",
+     "seconds": 3577,
+     "sizeLabel": "20.5 MB",
+     "approxBytes": 20500000
+    },
+    {
+     "id": 69,
+     "number": 3,
+     "title": "02 - Circumscription of the Topic",
+     "file": "varsofre03.mp3",
+     "seconds": 3810,
+     "sizeLabel": "21.8 MB",
+     "approxBytes": 21800000
+    },
+    {
+     "id": 70,
+     "number": 4,
+     "title": "03 - The Reality of the Unseen",
+     "file": "varsofre04.mp3",
+     "seconds": 3818,
+     "sizeLabel": "21.8 MB",
+     "approxBytes": 21800000
+    },
+    {
+     "id": 71,
+     "number": 5,
+     "title": "04 - The Religion of Healthy-Mindedness",
+     "file": "varsofre05.mp3",
+     "seconds": 3688,
+     "sizeLabel": "21.1 MB",
+     "approxBytes": 21100000
+    },
+    {
+     "id": 72,
+     "number": 6,
+     "title": "05 - The Religion of Healthy-Mindedness",
+     "file": "varsofre06.mp3",
+     "seconds": 4091,
+     "sizeLabel": "23.4 MB",
+     "approxBytes": 23400000
+    },
+    {
+     "id": 73,
+     "number": 7,
+     "title": "06 - The Sick Soul",
+     "file": "varsofre07.mp3",
+     "seconds": 3184,
+     "sizeLabel": "18.2 MB",
+     "approxBytes": 18200000
+    },
+    {
+     "id": 74,
+     "number": 8,
+     "title": "07 - The Sick Soul",
+     "file": "varsofre08.mp3",
+     "seconds": 2800,
+     "sizeLabel": "16.0 MB",
+     "approxBytes": 16000000
+    },
+    {
+     "id": 75,
+     "number": 9,
+     "title": "08 - The Divided Self, and the Process of its Unification",
+     "file": "varsofre09.mp3",
+     "seconds": 3628,
+     "sizeLabel": "20.8 MB",
+     "approxBytes": 20800000
+    },
+    {
+     "id": 76,
+     "number": 10,
+     "title": "09 - Conversion",
+     "file": "varsofre10.mp3",
+     "seconds": 4063,
+     "sizeLabel": "23.3 MB",
+     "approxBytes": 23300000
+    },
+    {
+     "id": 77,
+     "number": 11,
+     "title": "10-1 - Conversion - Concluded, part 1",
+     "file": "varsofre11.mp3",
+     "seconds": 3184,
+     "sizeLabel": "18.2 MB",
+     "approxBytes": 18200000
+    },
+    {
+     "id": 78,
+     "number": 12,
+     "title": "10-2 - Conversion - Concluded, part 2",
+     "file": "varsofre12.mp3",
+     "seconds": 3076,
+     "sizeLabel": "17.6 MB",
+     "approxBytes": 17600000
+    },
+    {
+     "id": 79,
+     "number": 13,
+     "title": "11 - Saintliness",
+     "file": "varsofre13.mp3",
+     "seconds": 4089,
+     "sizeLabel": "23.4 MB",
+     "approxBytes": 23400000
+    },
+    {
+     "id": 80,
+     "number": 14,
+     "title": "12 - Saintliness",
+     "file": "varsofre14.mp3",
+     "seconds": 3770,
+     "sizeLabel": "21.6 MB",
+     "approxBytes": 21600000
+    },
+    {
+     "id": 81,
+     "number": 15,
+     "title": "13 - Saintliness",
+     "file": "varsofre15.mp3",
+     "seconds": 2254,
+     "sizeLabel": "12.9 MB",
+     "approxBytes": 12900000
+    },
+    {
+     "id": 82,
+     "number": 16,
+     "title": "14 - The Value of Sainliness",
+     "file": "varsofre16.mp3",
+     "seconds": 3129,
+     "sizeLabel": "17.9 MB",
+     "approxBytes": 17900000
+    },
+    {
+     "id": 83,
+     "number": 17,
+     "title": "15 - The Value of Saintliness",
+     "file": "varsofre17.mp3",
+     "seconds": 4303,
+     "sizeLabel": "24.6 MB",
+     "approxBytes": 24600000
+    },
+    {
+     "id": 84,
+     "number": 18,
+     "title": "16 - Mysticism",
+     "file": "varsofre18.mp3",
+     "seconds": 4473,
+     "sizeLabel": "25.6 MB",
+     "approxBytes": 25600000
+    },
+    {
+     "id": 85,
+     "number": 19,
+     "title": "17 - Mysticism",
+     "file": "varsofre19.mp3",
+     "seconds": 3435,
+     "sizeLabel": "19.7 MB",
+     "approxBytes": 19700000
+    },
+    {
+     "id": 86,
+     "number": 20,
+     "title": "18 - Philosophy",
+     "file": "varsofre20.mp3",
+     "seconds": 3939,
+     "sizeLabel": "22.5 MB",
+     "approxBytes": 22500000
+    },
+    {
+     "id": 87,
+     "number": 21,
+     "title": "19 - Other Characteristics",
+     "file": "varsofre21.mp3",
+     "seconds": 3893,
+     "sizeLabel": "22.3 MB",
+     "approxBytes": 22300000
+    },
+    {
+     "id": 88,
+     "number": 22,
+     "title": "20-1 Part 1 - Conclusions",
+     "file": "varsofre22.mp3",
+     "seconds": 2216,
+     "sizeLabel": "12.7 MB",
+     "approxBytes": 12700000
+    },
+    {
+     "id": 89,
+     "number": 23,
+     "title": "20-2 Part 2 - Conclusions",
+     "file": "varsofre23.mp3",
+     "seconds": 3316,
+     "sizeLabel": "19.0 MB",
+     "approxBytes": 19000000
+    },
+    {
+     "id": 90,
+     "number": 24,
+     "title": "21 - Postscript",
+     "file": "varsofre24.mp3",
+     "seconds": 995,
+     "sizeLabel": "5.7 MB",
+     "approxBytes": 5700000
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Sandy B - Saturday Morning Live",
+   "shortName": "Sandy B.",
+   "folder": "aassandybsmlive",
+   "hasTranscripts": false,
+   "seconds": 31433,
+   "gradient": [
+    "#556270",
+    "#4ECDC4"
+   ],
+   "tracks": [
+    {
+     "id": 91,
+     "number": 1,
+     "title": "Step 1 - January 1, 1994",
+     "file": "aassandybsmlive01.mp3",
+     "seconds": 2414,
+     "sizeLabel": "4.6 MB",
+     "approxBytes": 4600000
+    },
+    {
+     "id": 92,
+     "number": 2,
+     "title": "Step 2 - January 8, 1994",
+     "file": "aassandybsmlive02.mp3",
+     "seconds": 2657,
+     "sizeLabel": "5.1 MB",
+     "approxBytes": 5100000
+    },
+    {
+     "id": 93,
+     "number": 3,
+     "title": "Step 3 - January 15, 1994",
+     "file": "aassandybsmlive03.mp3",
+     "seconds": 2702,
+     "sizeLabel": "5.2 MB",
+     "approxBytes": 5200000
+    },
+    {
+     "id": 94,
+     "number": 4,
+     "title": "Step 4 - January 22, 1994",
+     "file": "aassandybsmlive04.mp3",
+     "seconds": 2268,
+     "sizeLabel": "4.3 MB",
+     "approxBytes": 4300000
+    },
+    {
+     "id": 95,
+     "number": 5,
+     "title": "Step 5 - January 29, 1994",
+     "file": "aassandybsmlive05.mp3",
+     "seconds": 2709,
+     "sizeLabel": "5.2 MB",
+     "approxBytes": 5200000
+    },
+    {
+     "id": 96,
+     "number": 6,
+     "title": "Step 6 - February 5, 1994",
+     "file": "aassandybsmlive06.mp3",
+     "seconds": 2648,
+     "sizeLabel": "5.1 MB",
+     "approxBytes": 5100000
+    },
+    {
+     "id": 97,
+     "number": 7,
+     "title": "Step 7 - February 12, 1994",
+     "file": "aassandybsmlive07.mp3",
+     "seconds": 2633,
+     "sizeLabel": "5.0 MB",
+     "approxBytes": 5000000
+    },
+    {
+     "id": 98,
+     "number": 8,
+     "title": "Step 8 - February 19, 1994",
+     "file": "aassandybsmlive08.mp3",
+     "seconds": 2711,
+     "sizeLabel": "5.2 MB",
+     "approxBytes": 5200000
+    },
+    {
+     "id": 99,
+     "number": 9,
+     "title": "Step 9 - February 26, 1994",
+     "file": "aassandybsmlive09.mp3",
+     "seconds": 2637,
+     "sizeLabel": "5.0 MB",
+     "approxBytes": 5000000
+    },
+    {
+     "id": 100,
+     "number": 10,
+     "title": "Step 10 - March 5, 1994",
+     "file": "aassandybsmlive10.mp3",
+     "seconds": 2683,
+     "sizeLabel": "5.1 MB",
+     "approxBytes": 5100000
+    },
+    {
+     "id": 101,
+     "number": 11,
+     "title": "Step 11 - March 12, 1994",
+     "file": "aassandybsmlive11.mp3",
+     "seconds": 2659,
+     "sizeLabel": "5.1 MB",
+     "approxBytes": 5100000
+    },
+    {
+     "id": 102,
+     "number": 12,
+     "title": "Step 12 - March 19, 1994",
+     "file": "aassandybsmlive12.mp3",
+     "seconds": 2712,
+     "sizeLabel": "5.2 MB",
+     "approxBytes": 5200000
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Meditation Bells",
+   "shortName": "Bells",
+   "folder": "bells",
+   "hasTranscripts": false,
+   "seconds": 3396,
+   "gradient": [
+    "#7BC6CC",
+    "#BE93C5"
+   ],
+   "tracks": [
+    {
+     "id": 103,
+     "number": 1,
+     "title": "5 minutes Mindfullness - non-stop",
+     "file": "bells01.mp3",
+     "seconds": 148,
+     "sizeLabel": "6.8 MB",
+     "approxBytes": 6800000
+    },
+    {
+     "id": 104,
+     "number": 2,
+     "title": "5 minutes bell - no intervals",
+     "file": "bells02.mp3",
+     "seconds": 86,
+     "sizeLabel": "1.3 MB",
+     "approxBytes": 1300000
+    },
+    {
+     "id": 105,
+     "number": 3,
+     "title": "10 minutes bell - no intervals",
+     "file": "bells03.mp3",
+     "seconds": 161,
+     "sizeLabel": "2.5 MB",
+     "approxBytes": 2500000
+    },
+    {
+     "id": 106,
+     "number": 4,
+     "title": "20 minutes bell - no intervals",
+     "file": "bells04.mp3",
+     "seconds": 164,
+     "sizeLabel": "1.3 MB",
+     "approxBytes": 1300000
+    },
+    {
+     "id": 107,
+     "number": 5,
+     "title": "20 minutes - 5 minutes bell interval",
+     "file": "bells05.mp3",
+     "seconds": 311,
+     "sizeLabel": "4.7 MB",
+     "approxBytes": 4700000
+    },
+    {
+     "id": 108,
+     "number": 6,
+     "title": "25 minutes - 5 minutes bell interval",
+     "file": "bells06.mp3",
+     "seconds": 381,
+     "sizeLabel": "5.8 MB",
+     "approxBytes": 5800000
+    },
+    {
+     "id": 109,
+     "number": 7,
+     "title": "30 minutes - 5 minutes bell interval",
+     "file": "bells07.mp3",
+     "seconds": 766,
+     "sizeLabel": "11.7 MB",
+     "approxBytes": 11700000
+    },
+    {
+     "id": 110,
+     "number": 8,
+     "title": "45 minutes - 15 minutes bell interval",
+     "file": "bells08.mp3",
+     "seconds": 687,
+     "sizeLabel": "10.5 MB",
+     "approxBytes": 10500000
+    },
+    {
+     "id": 111,
+     "number": 9,
+     "title": "45 minutes - 5 minute bell interval",
+     "file": "bells09.mp3",
+     "seconds": 692,
+     "sizeLabel": "10.6 MB",
+     "approxBytes": 10600000
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "Speaker Tapes - Mark H.",
+   "shortName": "Mark H.",
+   "folder": "markh",
+   "hasTranscripts": false,
+   "seconds": 60346,
+   "gradient": [
+    "#19547B",
+    "#FFD89B"
+   ],
+   "tracks": [
+    {
+     "id": 112,
+     "number": 1,
+     "title": "Steps 1-9 - Amarillo, 1995",
+     "file": "markh01.mp3",
+     "seconds": 2950,
+     "sizeLabel": "8.4 MB",
+     "approxBytes": 8400000
+    },
+    {
+     "id": 113,
+     "number": 2,
+     "title": "Steps 10,11, 12",
+     "file": "markh02.mp3",
+     "seconds": 4714,
+     "sizeLabel": "18.0 MB",
+     "approxBytes": 18000000
+    },
+    {
+     "id": 114,
+     "number": 3,
+     "title": "Recovery, Spirituality, & Meditation",
+     "file": "markh03.mp3",
+     "seconds": 12378,
+     "sizeLabel": "47.2 MB",
+     "approxBytes": 47200000
+    },
+    {
+     "id": 115,
+     "number": 4,
+     "title": "5th Step with Mark Houston",
+     "file": "markh04.mp3",
+     "seconds": 3000,
+     "sizeLabel": "11.4 MB",
+     "approxBytes": 11400000
+    },
+    {
+     "id": 116,
+     "number": 5,
+     "title": "Mark H - Meditation, Step 9, 10, & 11",
+     "file": "markh05.mp3",
+     "seconds": 5377,
+     "sizeLabel": "20.5 MB",
+     "approxBytes": 20500000
+    },
+    {
+     "id": 117,
+     "number": 6,
+     "title": "Clearing the Path with Steps 4-9 - Part 1",
+     "file": "markh06.mp3",
+     "seconds": 3821,
+     "sizeLabel": "43.7 MB",
+     "approxBytes": 43700000
+    },
+    {
+     "id": 118,
+     "number": 7,
+     "title": "63rd Tyler Anniversary - Jan,2010 His Last Talk",
+     "file": "markh07.mp3",
+     "seconds": 2906,
+     "sizeLabel": "11.1 MB",
+     "approxBytes": 11100000
+    },
+    {
+     "id": 119,
+     "number": 8,
+     "title": "Unplugged",
+     "file": "markh08.mp3",
+     "seconds": 2959,
+     "sizeLabel": "11.3 MB",
+     "approxBytes": 11300000
+    },
+    {
+     "id": 120,
+     "number": 9,
+     "title": "New England Fellowship of the Spirit conference in Portland, ME - March 7th 2009",
+     "file": "markh09.mp3",
+     "seconds": 3753,
+     "sizeLabel": "14.3 MB",
+     "approxBytes": 14300000
+    },
+    {
+     "id": 121,
+     "number": 10,
+     "title": "Carry This Message Group , W.Orange NJ. May 2002",
+     "file": "markh10.mp3",
+     "seconds": 3624,
+     "sizeLabel": "13.8 MB",
+     "approxBytes": 13800000
+    },
+    {
+     "id": 122,
+     "number": 11,
+     "title": "Way Out Group in Staten Island, NY on (12-08-2002)",
+     "file": "markh11.mp3",
+     "seconds": 2085,
+     "sizeLabel": "4.0 MB",
+     "approxBytes": 4000000
+    },
+    {
+     "id": 123,
+     "number": 12,
+     "title": "Mark Houston and Friends 2006",
+     "file": "markh12.mp3",
+     "seconds": 4212,
+     "sizeLabel": "16.1 MB",
+     "approxBytes": 16100000
+    },
+    {
+     "id": 124,
+     "number": 13,
+     "title": "Step Workshop - Focus on Step 4/Inventory - Part 2",
+     "file": "markh13.mp3",
+     "seconds": 4051,
+     "sizeLabel": "46.4 MB",
+     "approxBytes": 46400000
+    },
+    {
+     "id": 125,
+     "number": 14,
+     "title": "Step Workshop - Part 3",
+     "file": "markh14.mp3",
+     "seconds": 4516,
+     "sizeLabel": "51.7 MB",
+     "approxBytes": 51700000
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "title": "Speakers - Clarence S.",
+   "shortName": "Clarence S.",
+   "folder": "clarences",
+   "hasTranscripts": false,
+   "seconds": 19018,
+   "gradient": [
+    "#4CA1AF",
+    "#2C3E50"
+   ],
+   "tracks": [
+    {
+     "id": 126,
+     "number": 1,
+     "title": "Cleveland, OH - 1966",
+     "file": "clarences01.mp3",
+     "seconds": 4685,
+     "sizeLabel": "17.9 MB",
+     "approxBytes": 17900000
+    },
+    {
+     "id": 127,
+     "number": 2,
+     "title": "11th Step Retreat, Camp Monroe Retreat - 1975",
+     "file": "clarences02.mp3",
+     "seconds": 4627,
+     "sizeLabel": "8.8 MB",
+     "approxBytes": 8800000
+    },
+    {
+     "id": 128,
+     "number": 3,
+     "title": "AA History Talk - 1975.",
+     "file": "clarences03.mp3",
+     "seconds": 5288,
+     "sizeLabel": "10.1 MB",
+     "approxBytes": 10100000
+    },
+    {
+     "id": 129,
+     "number": 4,
+     "title": "How It Works - 1982",
+     "file": "clarences04.mp3",
+     "seconds": 4418,
+     "sizeLabel": "8.4 MB",
+     "approxBytes": 8400000
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "title": "Speakers - Father Martin",
+   "shortName": "Father Martin",
+   "folder": "father_martin",
+   "hasTranscripts": false,
+   "seconds": 16505,
+   "gradient": [
+    "#CB3066",
+    "#16BFFD"
+   ],
+   "tracks": [
+    {
+     "id": 130,
+     "number": 1,
+     "title": "Chalk Talk",
+     "file": "father_martin01.mp3",
+     "seconds": 4947,
+     "sizeLabel": "14.2 MB",
+     "approxBytes": 14200000
+    },
+    {
+     "id": 131,
+     "number": 2,
+     "title": "Twelve Steps",
+     "file": "father_martin02.mp3",
+     "seconds": 3236,
+     "sizeLabel": "37.0 MB",
+     "approxBytes": 37000000
+    },
+    {
+     "id": 132,
+     "number": 3,
+     "title": "Feelings",
+     "file": "father_martin03.mp3",
+     "seconds": 4133,
+     "sizeLabel": "47.3 MB",
+     "approxBytes": 47300000
+    },
+    {
+     "id": 133,
+     "number": 4,
+     "title": "His Story",
+     "file": "father_martin04.mp3",
+     "seconds": 4189,
+     "sizeLabel": "16.0 MB",
+     "approxBytes": 16000000
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "title": "Speakers - Father John Doe",
+   "shortName": "Father John Doe",
+   "folder": "father_johndoe",
+   "hasTranscripts": false,
+   "seconds": 4425,
+   "gradient": [
+    "#1FDDFF",
+    "#FF4B1F"
+   ],
+   "tracks": [
+    {
+     "id": 134,
+     "number": 1,
+     "title": "On Resentment - Part 1",
+     "file": "father_johndoe01.mp3",
+     "seconds": 819,
+     "sizeLabel": "1.6 MB",
+     "approxBytes": 1600000
+    },
+    {
+     "id": 135,
+     "number": 2,
+     "title": "On Resentment - Part 2",
+     "file": "father_johndoe02.mp3",
+     "seconds": 801,
+     "sizeLabel": "1.5 MB",
+     "approxBytes": 1500000
+    },
+    {
+     "id": 136,
+     "number": 3,
+     "title": "On Resentment - Part 3",
+     "file": "father_johndoe03.mp3",
+     "seconds": 804,
+     "sizeLabel": "1.5 MB",
+     "approxBytes": 1500000
+    },
+    {
+     "id": 137,
+     "number": 4,
+     "title": "On Sanity - Part 1",
+     "file": "father_johndoe04.mp3",
+     "seconds": 990,
+     "sizeLabel": "1.9 MB",
+     "approxBytes": 1900000
+    },
+    {
+     "id": 138,
+     "number": 5,
+     "title": "On Sanity - Part 2",
+     "file": "father_johndoe05.mp3",
+     "seconds": 1011,
+     "sizeLabel": "1.9 MB",
+     "approxBytes": 1900000
+    }
+   ]
+  }
+ ]
+}

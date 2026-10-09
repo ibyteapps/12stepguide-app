@@ -81,25 +81,25 @@ gives the recommendation first.
 | A-03 | ~~Naming / AAWS compliance~~ | **Decided: D-005** | — | — |
 | A-08 | ~~Step-guide text~~ | **Decided: D-002** | — | — |
 | A-23 | ~~How literature is displayed~~ | **Decided: D-003** | — | — |
-| A-02 | Name under the icon | **"12 Step Guide" on both** (Android drops " - AA") | Keep per-platform names | P2 |
-| A-04 | Android donors after reinstall (Billing 8 has no purchase history) | **Migrate the flag + stop consuming new donations + "Lost your supporter status?" → Play promo code** | Accept the loss; build a server record | P4 |
-| A-05 | Premium benefits and lapsed downloads | **Premium = no ads + downloads on both. If Premium lapses, files stay; tracks stream instead and the Downloads page offers to remove them** (today's iOS rule) | Let lapsed users keep playing their downloads offline | P3 |
-| A-06 | Android products | **Keep the 3 donation tiers as "Support the app — lifetime Premium" (now also unlocking downloads)**; optional later: add the `annual` subscription on Play for parity | Add the Play subscription in 2.0 | P4 |
-| A-07 | Hidden "Conclusion" chapter | **Show it as the last row under Steps** | Leave hidden | P2 |
+| A-02 | Name under the icon | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-04 | Android donors after reinstall (Billing 8 has no purchase history) | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-05 | Premium benefits and lapsed downloads | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-06 | Android products | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-07 | Hidden "Conclusion" chapter | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
 | A-09 | ~~Toolkit leftovers~~ | **Decided: D-006** | — | — |
-| A-10 | Ad pacing | **Interstitial every 3rd content open (persisted, reset after an app-open ad); app-open ≥ 45 s, never on first launch/onboarding/paywall/player; banners in reader, player and quote screen; drop direct Meta SDK (optionally Meta via AdMob mediation)** | Keep iOS every-2nd-tap; keep Android's 20 s app-open | P4 |
-| A-11 | Ad consent | **Google UMP form for UK/EEA; no ATT prompt** (same as the Toolkit's D-006) | UMP + ATT for personalised iOS ads | P4 |
-| A-12 | iOS reminders on upgrade | **Keep what each user actually receives today** (pending notifications), not the unreliable flag | Turn hourly on for everyone whose flag says on | P5 |
-| A-13 | "We miss you" nudges | **Keep on both, fired after 3 and 7 days without opening the app, with a switch in Reminders** | Drop them; keep iOS install-date behaviour | P5 |
-| A-14 | Contact us | **Open the email app with diagnostics pre-filled, plus "copy address"** — removes the dependency on the Toolkit's `mail.php` and its embedded secret | Keep the iOS in-app form via the Toolkit server | P6 |
-| A-15 | Backend | **None for 2.0**; purchases verified on device (StoreKit 2 / Play) | Laravel API like your other apps (server verification, tickets, remote config) | P4 |
-| A-16 | Minimum OS | **iOS 15, Android 7.0 (API 24)** — forced by Flutter/Firebase | — | P0 |
-| A-17 | Firebase Cloud Messaging | **Remove, unless you send console campaigns** (Q-P2). iOS never had the FCM SDK; Android shows console notifications only on Android ≤ 12 today | Keep display-only on both | P5 |
-| A-18 | Morning and night reminders: implemented in the iOS code but **hidden** from users (no one can turn them on); Android has none | **Leave them out of 2.0** — no user loses anything | Add them on both, with taps opening "On Awakening" / "When We Retire" | P5 |
-| A-19 | Reading comfort | **8-step text size (old sizes preserved), remember reading position, "Continue reading", prev/next at the end of a reading**; serif option only if you want it | Size only | P2 |
-| A-20 | Optional extras | **Include: resume position per audio track, Wi-Fi-only downloads.** Defer: literature search, playback speed, sleep timer, favourites, quote "Another"/"Share" | Include any deferred item | P3 |
-| A-21 | "Classic layout" option (like the Toolkit's D-011) | **Not needed — the new tabs already match both old orders** | Build one | P2 |
+| A-10 | Ad pacing | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-11 | Ad consent | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-12 | iOS reminders on upgrade | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-13 | "We miss you" nudges | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-14 | Contact us | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-15 | Backend | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-16 | Minimum OS | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-17 | Firebase Cloud Messaging | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-18 | Morning and night reminders: implemented in the iOS code but **hidden** from users (no one can turn them on); Android has none | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-19 | Reading comfort | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-20 | Optional extras | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-21 | "Classic layout" option (like the Toolkit's D-011) | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
 | A-22 | ~~Icon and brand direction~~ | **Decided: D-007** (new icon on both) | — | — |
-| A-24 | Audio catalogue | **Bundled (as today)**; remote catalogue later if you add tracks | Remote JSON from your server | P3 |
-| A-25 | Paywall auto-show | **Launch 2, 20, 50 (today's iOS rule) on both, free users only** | iOS only; never automatic | P4 |
-| A-26 | Review prompt | **System prompt on launch 7, 15, 30 on both; "Rate the app" in the drawer** | Keep Android's custom dialog | P6 |
+| A-24 | Audio catalogue | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-25 | Paywall auto-show | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
+| A-26 | Review prompt | **Provisional: D-008** (built as recommended; confirm or change) | — | — |
