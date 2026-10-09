@@ -4,6 +4,7 @@ import '../core/config/app_config.dart';
 import '../core/links/links.dart';
 import '../core/platform/legacy_bridge.dart';
 import '../core/prefs/key_value_store.dart';
+import '../core/telemetry/telemetry.dart';
 import '../features/audio/domain/catalogue.dart';
 import '../features/content/domain/content_index.dart';
 
@@ -68,3 +69,6 @@ final currentLocationProvider = Provider<String Function()>(
   (ref) =>
       () => '',
 );
+
+/// Analytics and crash reporting; off unless bootstrap found Firebase values for this build.
+final telemetryProvider = Provider<Telemetry>((ref) => const NoTelemetry());

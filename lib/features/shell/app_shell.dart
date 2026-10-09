@@ -14,6 +14,7 @@ import '../audio/presentation/mini_player.dart';
 import '../premium/entitlement_controller.dart';
 import '../premium/offers.dart';
 import '../premium/purchase_service.dart';
+import '../support/review_prompt.dart';
 import 'app_drawer.dart';
 import 'shell_scaffold_key.dart';
 
@@ -41,7 +42,22 @@ class _AppShellState extends ConsumerState<AppShell> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _maybeShowPaywall());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _maybeShowPaywall();
+      _maybeAskForReview();
+    });
+  }
+
+  /// The system review prompt on launch 7, 15 and 30 (A-26), on a tab list, never over reading
+  /// or listening, a few seconds after the app opens.
+  Future<void> _maybeAskForReview() async {
+    final launch = ref.read(launchInfoProvider).launchCount;
+    if (!ReviewCadence.shouldAsk(launchCount: launch, store: ref.read(kvStoreProvider))) return;
+    await Future<void>.delayed(const Duration(seconds: 4));
+    if (!mounted) return;
+    // Only from a tab's root, with nothing pushed over it.
+    if (ModalRoute.of(context)?.isCurrent != true) return;
+    await ref.read(reviewPromptProvider)(launch);
   }
 
   /// The automatic paywall on launch 2, 20 and 50 for free users (A-25). Only from the shell, so
