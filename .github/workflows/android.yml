@@ -53,10 +53,10 @@ jobs:
         run: for env in dev staging prod; do cp config/$env.example.json config/$env.json; done
 
       - name: Build dev debug APK
-        run: flutter build apk --debug --flavor dev --dart-define-from-file=config/dev.json
+        run: tool/ci/run_logged.sh "Build dev APK" flutter build apk --debug --flavor dev --dart-define-from-file=config/dev.json
 
       - name: Build prod release bundle
-        run: flutter build appbundle --release --flavor prod --dart-define-from-file=config/prod.json
+        run: tool/ci/run_logged.sh "Build prod bundle" flutter build appbundle --release --flavor prod --dart-define-from-file=config/prod.json
 
       - name: Fetch bundletool
         run: |
@@ -66,8 +66,8 @@ jobs:
 
       - name: Verify ids and versions
         run: |
-          python3 tool/ci/verify_build.py android-apk build/app/outputs/flutter-apk/app-dev-debug.apk dev
-          python3 tool/ci/verify_build.py android-aab build/app/outputs/bundle/prodRelease/app-prod-release.aab prod
+          tool/ci/run_logged.sh "Verify dev APK" python3 tool/ci/verify_build.py android-apk build/app/outputs/flutter-apk/app-dev-debug.apk dev
+          tool/ci/run_logged.sh "Verify prod bundle" python3 tool/ci/verify_build.py android-aab build/app/outputs/bundle/prodRelease/app-prod-release.aab prod
 
       - uses: actions/upload-artifact@v7
         with:

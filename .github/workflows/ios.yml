@@ -45,13 +45,13 @@ jobs:
         run: for env in dev staging prod; do cp config/$env.example.json config/$env.json; done
 
       - name: Build prod (release, no code signing)
-        run: flutter build ios --release --no-codesign --flavor prod --dart-define-from-file=config/prod.json
+        run: tool/ci/run_logged.sh "Build iOS prod" flutter build ios --release --no-codesign --flavor prod --dart-define-from-file=config/prod.json
 
       - name: Verify prod
-        run: python3 tool/ci/verify_build.py ios-app build/ios/iphoneos/Runner.app prod
+        run: tool/ci/run_logged.sh "Verify iOS prod" python3 tool/ci/verify_build.py ios-app build/ios/iphoneos/Runner.app prod
 
       - name: Build dev (simulator)
-        run: flutter build ios --simulator --debug --flavor dev --dart-define-from-file=config/dev.json
+        run: tool/ci/run_logged.sh "Build iOS dev" flutter build ios --simulator --debug --flavor dev --dart-define-from-file=config/dev.json
 
       - name: Verify dev
-        run: python3 tool/ci/verify_build.py ios-app build/ios/iphonesimulator/Runner.app dev
+        run: tool/ci/run_logged.sh "Verify iOS dev" python3 tool/ci/verify_build.py ios-app build/ios/iphonesimulator/Runner.app dev

@@ -50,14 +50,24 @@ class Checker:
     def __init__(self, what: str):
         self.what = what
         self.failures = 0
+        self.lines: list[str] = []
 
     def eq(self, label: str, actual, expected) -> None:
         ok = actual == expected
         self.failures += 0 if ok else 1
-        print(f"  {'✓' if ok else '✗'} {label}: {actual!r}" + ("" if ok else f" (expected {expected!r})"))
+        line = f"{'✓' if ok else '✗'} {label}: {actual!r}" + ("" if ok else f" (expected {expected!r})")
+        self.lines.append(line)
+        print("  " + line)
 
     def done(self) -> int:
-        print(f"{self.what}: {'OK' if not self.failures else f'{self.failures} problem(s)'}")
+        verdict = "OK" if not self.failures else f"{self.failures} problem(s)"
+        print(f"{self.what}: {verdict}")
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            # A notice annotation puts the checked values on the run's summary page.
+            level = "notice" if not self.failures else "error"
+            body = "%0A".join(line.replace("%", "%25") for line in self.lines)
+            title = f"{self.what} {verdict}".replace("%", "%25").replace(":", "%3A").replace(",", "%2C")
+            print(f"::{level} title={title}::{body}")
         return 1 if self.failures else 0
 
 
