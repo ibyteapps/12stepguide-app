@@ -12,6 +12,7 @@ own. Where this app deliberately differs from the Toolkit, the reason is given.
 |---|---|---|
 | iOS bundle id | `com.ibyteapps.aa12stepguide` | App Store listing 1238097883, the `annual` subscription and old donation tiers, Firebase iOS app, AdMob iOS app id |
 | Android applicationId | `com.ibyteapps.aa12stepguide` | Play listing, donation products, Firebase Android app, AdMob Android app id; an update must replace the old app in place to read its preferences |
+| Android launcher activity | `com.ibyteapps.aa12stepguide.First` | Home-screen icons store this component; the Flutter activity keeps the name |
 | Product ids | `annual`, `com.ibyteapps.aa12stepguide.donatetier5/10/20` (iOS); `donatetier1/2/3` (Android) | Existing purchases |
 | Firebase project | `aa-12-step-guide` | Analytics and crash history continuity |
 | Audio URLs | `https://scripts.12stepapp.com/tracks/{variable}/{file_name}` | Server unchanged |
@@ -76,7 +77,7 @@ design        (tokens, theme, components) — used by presentation only
 ```
 app/                                   ← repo root = Websites/12StepGuide/app
 ├─ lib/
-│  ├─ main_dev.dart · main_staging.dart · main_prod.dart   (thin; call bootstrap(env))
+│  ├─ main.dart                one entry point; the env comes from the flavour + config file
 │  ├─ app/
 │  │  ├─ bootstrap.dart        Firebase, error handlers, migration, consent, run app
 │  │  ├─ app.dart              MaterialApp.router, themes
@@ -237,7 +238,7 @@ live in `AndroidManifest.xml` / `Info.plist` per flavour.
 | Env | Android | iOS | Ads | Firebase | Distribution |
 |---|---|---|---|---|---|
 | dev | flavour `dev`, id `…aa12stepguide.dev`, name "12SG Dev" | scheme `dev`, bundle `…aa12stepguide.dev` | Google test units | dev apps in the same Firebase project | Local, CI artefacts |
-| staging | flavour `prod` ids, `ENV=staging` | scheme `staging`, production bundle id | Google test units | production apps, analytics collection off | TestFlight internal, Play internal testing |
+| staging | flavour `staging`, production id, name "12SG Staging" | scheme `staging`, production bundle id | Google test units | production apps, analytics collection off | TestFlight internal, Play internal testing |
 | prod | flavour `prod` | scheme `prod` | live units | production apps | Store |
 
 **Never committed:** keystores, `key.properties`, App Store Connect API keys, real
@@ -382,16 +383,31 @@ rather than a percentage.
 ---
 
 ## 14. CI (GitHub Actions)
-- `ci.yml` (every push/PR, Linux): `flutter analyze`, `dart format --set-exit-if-changed`, unit +
-  widget + golden tests, `tool/html_to_markdown.py --check` and an index-freshness check.
-- `android.yml` (PRs to `main` + manual): build `dev` debug APK and `prod` release AAB (unsigned
-  unless secrets are present), run integration tests on an emulator.
-- `ios.yml` (manual + release tags, macOS): `flutter build ios --no-codesign` for `prod`, run
-  integration tests on a simulator. macOS minutes cost more on private repos, so this runs on
-  demand.
-- Release signing and store upload (fastlane or `flutter build ipa` + App Store Connect API
-  key; Play service account) are added once the owner provides the secrets as GitHub encrypted
-  secrets (Q-T2).
+The repository is public, so GitHub-hosted runners (Linux and macOS) cost nothing. All three
+workflows run on every push to `main` and on every pull request.
+- `ci.yml` (Linux): `dart format --set-exit-if-changed`, `flutter analyze`, `flutter test`
+  (including `test/fixed_identifiers_test.dart`, which reads the native project files), and
+  `tool/html_to_markdown.py --check` followed by a check that `content/` is unchanged. P1 adds
+  the content-index freshness check.
+- `android.yml` (Linux): `dev` debug APK and `prod` release AAB, then
+  `tool/ci/verify_build.py` checks the package name, version, SDK levels, launcher activity and
+  label inside them (aapt2, bundletool). The AAB is debug-signed until the upload key is
+  provided (Q-T2). Emulator integration tests join when P1 adds the first ones.
+- `ios.yml` (macOS 26): `prod` release build without code signing and a `dev` simulator build,
+  then the same check of bundle id, version, minimum iOS and display name. Simulator
+  integration tests join with P1.
+- Release signing and store upload (`flutter build ipa` + App Store Connect API key; Play
+  service account) are added once the owner provides the secrets as GitHub encrypted secrets
+  (Q-T2).
+
+**Building locally** (each environment pairs a flavour with its config file; `AppConfig`
+refuses a mismatch):
+```bash
+cp config/dev.example.json config/dev.json        # once per environment
+flutter run --flavor dev --dart-define-from-file=config/dev.json
+flutter build appbundle --flavor prod --dart-define-from-file=config/prod.json
+flutter build ipa --flavor prod --dart-define-from-file=config/prod.json
+```
 
 ---
 

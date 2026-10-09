@@ -4,9 +4,9 @@ The unified Flutter rebuild of **12 Step Guide** (iOS `com.ibyteapps.aa12stepgui
 id 1238097883; Android `com.ibyteapps.aa12stepguide`), shipping to both stores as version 2.0
 in place of the two native apps.
 
-**Status (9 Oct 2026):** planning complete; first owner decisions recorded in
-[DECISIONS.md](DECISIONS.md); all literature converted to Markdown in [content/](content/README.md).
-No Flutter code yet.
+**Status (9 Oct 2026):** planning complete; owner decisions D-001 to D-005 recorded in
+[DECISIONS.md](DECISIONS.md); all literature converted to Markdown in
+[content/](content/README.md). **P0 (project, flavours, CI) in place**; P1 (foundations) is next.
 
 | Document | What it is |
 |---|---|
@@ -21,8 +21,31 @@ No Flutter code yet.
 | [DECISIONS.md](DECISIONS.md) | Owner decisions, dated, with what each commits the build to |
 | [content/README.md](content/README.md) | The literature as Markdown: folders, file format, known source issues |
 
+## Build and run
+
+Flutter **3.47.7** (pinned in `.fvmrc`; with FVM, prefix the commands with `fvm`). Each
+environment is a flavour plus its config file, and the app refuses to start if they disagree.
+
+```bash
+cp config/dev.example.json config/dev.json      # once; real config files are gitignored
+flutter run --flavor dev --dart-define-from-file=config/dev.json
+flutter test
+```
+
+| Environment | App id | Name under the icon | Ads | Where it goes |
+|---|---|---|---|---|
+| `dev` | `com.ibyteapps.aa12stepguide.dev` (installs beside the store app) | 12SG Dev | Google test ads | Your devices, CI |
+| `staging` | `com.ibyteapps.aa12stepguide` | 12SG Staging | Google test ads | TestFlight internal, Play internal testing |
+| `prod` | `com.ibyteapps.aa12stepguide` | iOS "12 Step Guide", Android "12 Step Guide - AA" (A-02) | Live | The stores |
+
+CI (GitHub Actions, free on this public repository) runs on every push to `main`: format,
+analyze, tests and the literature check (`ci.yml`); Android dev APK and prod bundle (`android.yml`);
+iOS prod and dev builds (`ios.yml`). The two build workflows check the app ids, version
+and minimum OS inside the built apps (`tool/ci/verify_build.py`).
+
 **Folders:** `content/` (literature, Markdown) · `content-source/` (original HTML and the legacy
-audio database, for reference and re-conversion) · `tool/` (converters and checks).
+audio database, for reference and re-conversion) · `tool/` (converters and checks) · `lib/`, `test/`, `android/`, `ios/` (the Flutter app) ·
+`config/` (environment examples) · `.github/workflows/` (CI).
 
 **Never change:** the bundle id / applicationId, product ids, Firebase project
 `aa-12-step-guide`, the audio URLs, and the iOS download location `Documents/{file_name}`.

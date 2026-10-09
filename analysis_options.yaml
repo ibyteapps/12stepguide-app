@@ -1,0 +1,23 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-raw-types: true
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - content/**
+    - content-source/**
+
+linter:
+  rules:
+    # The Toolkit's stricter rules (FLUTTER_ARCHITECTURE.md §2).
+    avoid_print: true
+    prefer_final_locals: true
+    unawaited_futures: true
+    require_trailing_commas: true
+    prefer_single_quotes: true
+    always_declare_return_types: true
+    avoid_dynamic_calls: true

@@ -37,7 +37,7 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-010 | Steps list (Intro + 12) | Number icons, step text subtitle | Number icons, step text subtitle | BOTH | Icon art differs; iOS Intro uses the AA circle-triangle symbol | Same list, new number badges; no AA symbol | A-03 | ☐ |
+| F-010 | Steps list (Intro + 12) | Number icons, step text subtitle | Number icons, step text subtitle | BOTH | Icon art differs; iOS Intro uses the AA circle-triangle symbol | Same list, new number badges; no AA symbol | D-005 | ☐ |
 | F-011 | Step guide text | Original text (`guide/gtape1–13`) | Expanded 2024 text (`guide/tape1–13`) | DIFF | Different text and length | Android's 2024 text on both platforms; the iOS original kept in `content/archive/` | D-002 | ☐ |
 | F-012 | Conclusion chapter | `gtape14`, unlinked | `tape14`, unlinked | BROKEN | Hidden on both | Listed as the last row under Steps ("Conclusion") | A-07 | ☐ |
 | F-013 | Traditions list + 12 guides | — | Tab with full tradition text as subtitles; `guide/tradition1–12` | AND | | "Traditions" segment inside the Steps tab, on both platforms | D-001 | ☐ |
@@ -47,9 +47,9 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-020 | Daily Reflections link | Top of Literature, "Link – Opens Official AA Website" | Readings row "Today's AA Daily Reflection ↗" | DIFF | Placement, title | Row near the top of Readings: "Daily Reflections ↗ Opens aa.org". Opens the system browser (in-app browser tab), no ad before it | A-03 | ☐ |
+| F-020 | Daily Reflections link | Top of Literature, "Link – Opens Official AA Website" | Readings row "Today's AA Daily Reflection ↗" | DIFF | Placement, title | Row near the top of Readings: "Daily Reflections ↗ Opens aa.org". Opens the system browser (in-app browser tab), no ad before it | D-005 | ☐ |
 | F-021 | Prayers (6) | Serenity, Serenity Extended Version, 3rd Step, 7th Step, 11th Step, Lord's Prayer | Serenity, Serenity Plus, Third Step, Seventh Step, Eleventh Step, The Lord's Prayer | DIFF | Titles | Same 6 documents; titles from one content index (iOS wording, "Serenity Prayer (Extended)") | — | ☐ |
-| F-022 | Readings (8) | Preamble, How It Works, 12 Traditions, Promises, Just For Today, On Awakening, On Retiring, A Vision For You | How It Works, 12 Traditions, Promises (9th Step), Preamble, Just For Today, On Awakening, When We Retire, A Vision For You | DIFF | Order, titles | One order and one set of titles; "When We Retire" (the Big Book phrase) with "On Retiring" as a search alias | A-03 | ☐ |
+| F-022 | Readings (8) | Preamble, How It Works, 12 Traditions, Promises, Just For Today, On Awakening, On Retiring, A Vision For You | How It Works, 12 Traditions, Promises (9th Step), Preamble, Just For Today, On Awakening, When We Retire, A Vision For You | DIFF | Order, titles | One order and one set of titles; "When We Retire" (the Big Book phrase) with "On Retiring" as a search alias | D-005 | ☐ |
 | F-023 | Sobriety Tips (4) | — | How to use the Big Book, How to find a sponsor, Sobriety & Recovery, 12 Years On | AND | | Section "Sobriety tips" in Readings on both. Fixes BUG-11 (wrong titles) | — | ☐ |
 | F-024 | Promote our other apps | Literature section, 5 App Store apps | Settings section, 5 Play apps incl. Meeting Finder | DIFF | Lists differ | "Our other apps" page from the drawer; one list per platform, from config; no ads before opening a store link | Q-P4 | ☐ |
 
@@ -168,7 +168,7 @@ has the detail.
 | F-114 | URL schemes (Google, LinkedIn) | Declared, unused | — | BROKEN | | Not carried over | A-09 | ☐ |
 | F-115 | Face ID string, Sign in with Apple entitlement | Declared, unused | — | BROKEN | | Not carried over | A-09 | ☐ |
 | F-116 | Unused HTML pages | 10 files | 5 files | BROKEN | | Converted to Markdown in `content/archive/` for reference, not shipped | A-09 | ☐ |
-| F-117 | Debug "admin" switches | `ADMIN_MODE` | `subscribedMode`, `skuMode` | BROKEN | | Replaced by the dev flavour and test ad units | — | ☐ |
+| F-117 | Debug "admin" switches | `ADMIN_MODE` | `subscribedMode`, `skuMode` | BROKEN | | Replaced by the dev flavour and test ad units (flavours done in P0; test units with P4) | — | ◐ |
 
 ---
 

@@ -1,0 +1,57 @@
+# iOS builds on macOS: prod release without code signing (the shape of the store build) and a
+# dev simulator build, with the ids and versions inside them checked (tool/ci/verify_build.py).
+# FLUTTER_ARCHITECTURE.md §14. Signing and upload arrive in P8 with the owner's secrets.
+#
+# The repository is public, so GitHub-hosted macOS runners cost nothing; this runs on every push
+# to main as well as on pull requests.
+name: iOS
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and verify
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Read the pinned Flutter version (.fvmrc)
+        id: fvm
+        run: echo "flutter=$(jq -r .flutter .fvmrc)" >> "$GITHUB_OUTPUT"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm.outputs.flutter }}
+          channel: stable
+          cache: true
+
+      - run: xcodebuild -version && flutter --version
+      - run: flutter pub get
+
+      - name: Config from examples
+        run: for env in dev staging prod; do cp config/$env.example.json config/$env.json; done
+
+      - name: Build prod (release, no code signing)
+        run: flutter build ios --release --no-codesign --flavor prod --dart-define-from-file=config/prod.json
+
+      - name: Verify prod
+        run: python3 tool/ci/verify_build.py ios-app build/ios/iphoneos/Runner.app prod
+
+      - name: Build dev (simulator)
+        run: flutter build ios --simulator --debug --flavor dev --dart-define-from-file=config/dev.json
+
+      - name: Verify dev
+        run: python3 tool/ci/verify_build.py ios-app build/ios/iphonesimulator/Runner.app dev

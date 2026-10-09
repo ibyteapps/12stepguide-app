@@ -1,0 +1,6 @@
+// Debug build of the prod flavour (scheme "prod"). Selected by: flutter build ios --flavor prod
+// The optional Pods include only matters if a plugin ever needs CocoaPods; Swift Package
+// Manager does not use it.
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-prod.xcconfig"
+#include "Generated.xcconfig"
+#include "prod.xcconfig"

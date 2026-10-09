@@ -1,0 +1,6 @@
+// Debug build of the dev flavour (scheme "dev"). Selected by: flutter build ios --flavor dev
+// The optional Pods include only matters if a plugin ever needs CocoaPods; Swift Package
+// Manager does not use it.
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-dev.xcconfig"
+#include "Generated.xcconfig"
+#include "dev.xcconfig"

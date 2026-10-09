@@ -1,0 +1,58 @@
+# Every push and pull request: static checks, tests and the literature check (Linux, fast).
+# FLUTTER_ARCHITECTURE.md §14.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Analyze, test, content
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Read the pinned Flutter version (.fvmrc)
+        id: fvm
+        run: echo "flutter=$(jq -r .flutter .fvmrc)" >> "$GITHUB_OUTPUT"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm.outputs.flutter }}
+          channel: stable
+          cache: true
+
+      - run: flutter --version
+      - run: flutter pub get
+
+      - name: Format
+        run: dart format --output=none --set-exit-if-changed lib test
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Literature is the converter's exact output, word for word
+        run: |
+          pip install -r tool/requirements.txt
+          python3 tool/html_to_markdown.py --check
+          # Any change means content/ was hand-edited or the converter changed without a re-run.
+          git status --porcelain -- content
+          test -z "$(git status --porcelain -- content)"

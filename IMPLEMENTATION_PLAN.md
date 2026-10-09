@@ -21,13 +21,13 @@ lands after the screens exist (its gateways can be built in parallel). P7 needs 
 
 | Phase | Blocking decisions | Delivers |
 |---|---|---|
-| P0 | Repo created (done when you confirm), Q-T1 | Flutter project in `app/`, flavours, CI |
+| P0 | Repo created (done) | Flutter project, flavours, CI |
 | P1 | A-09 (A-08 and A-23 decided: D-002, D-003) | Design system, shell and drawer skeleton, prefs, logging, legacy bridge, migration runner, content pipeline |
-| P2 | A-03, A-07, A-19, A-02 (A-01 decided: D-001) | Steps, Traditions, Readings, Big Book, Reader, Aa sheet, recovery date, onboarding, welcome back, appearance |
+| P2 | A-07, A-19, A-02 (A-01 and A-03 decided: D-001, D-005) | Steps, Traditions, Readings, Big Book, Reader, Aa sheet, recovery date, onboarding, welcome back, appearance |
 | P3 | A-05, A-24, A-20 | Audio library, album, player, mini-player, background audio, downloads |
 | P4 | A-04, A-06, A-10, A-11, A-15, A-25, A-26 | Purchases, entitlement, paywall, restore, consent, ads |
 | P5 | A-12, A-13, A-17, A-18 | Reminders, quote screen, notification routing, iOS reminder migration |
-| P6 | A-14, Q-P4, Q-P5 | Contact, rate, share, other apps, about, legal, privacy options, analytics wiring |
+| P6 | A-14, Q-P4, Q-P5, Q-T1 | Contact, rate, share, other apps, about, legal, privacy options, analytics wiring |
 | P7 | — | Accessibility, tablets, performance, integration tests, device upgrade tests, store assets |
 | P8 | Q-T2 (signing) | Internal → beta → phased production release |
 
@@ -40,8 +40,9 @@ lands after the screens exist (its gateways can be built in parallel). P7 needs 
 - `flutter create` (Flutter 3.47.7) in `Websites/12StepGuide/app` with org `com.ibyteapps` and
   the exact ids; `.fvmrc`; analysis options; README; planning documents
   moved into the repo.
-- Android flavours `dev` / `prod`; iOS schemes `dev` / `staging` / `prod` with xcconfigs;
-  `config/*.example.json`; `.gitignore` for real configs, keys, Firebase files, `z.txt`.
+- Flavours `dev` / `staging` / `prod` on both platforms (Android product flavours; iOS schemes,
+  build configurations and xcconfigs); one `lib/main.dart`; `config/*.example.json`;
+  `.gitignore` for real configs, keys, Firebase files, `z.txt`.
 - GitHub Actions: `ci.yml`, `android.yml`, `ios.yml` (FLUTTER_ARCHITECTURE §14).
 
 **Acceptance criteria**
