@@ -1,0 +1,96 @@
+{
+  "identifier": "12SG0001",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "E03FA20C",
+      "localizations": [
+        {
+          "description": "Old tip: lifetime Premium (restore only)",
+          "displayName": "Support tier 5",
+          "locale": "en_GB"
+        }
+      ],
+      "productID": "com.ibyteapps.aa12stepguide.donatetier5",
+      "referenceName": "Donate tier 5 (legacy, restore only)",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "BA1D5118",
+      "localizations": [
+        {
+          "description": "Old tip: lifetime Premium (restore only)",
+          "displayName": "Support tier 10",
+          "locale": "en_GB"
+        }
+      ],
+      "productID": "com.ibyteapps.aa12stepguide.donatetier10",
+      "referenceName": "Donate tier 10 (legacy, restore only)",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "19.99",
+      "familyShareable": false,
+      "internalID": "8201182F",
+      "localizations": [
+        {
+          "description": "Old tip: lifetime Premium (restore only)",
+          "displayName": "Support tier 20",
+          "locale": "en_GB"
+        }
+      ],
+      "productID": "com.ibyteapps.aa12stepguide.donatetier20",
+      "referenceName": "Donate tier 20 (legacy, restore only)",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "en_GB",
+    "_storefront": "GBR",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [
+    {
+      "id": "398237D5",
+      "localizations": [],
+      "name": "12 Step Guide Premium",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "16.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "1741DD38",
+          "introductoryOffer": {
+            "internalID": "988C1546",
+            "paymentMode": "free",
+            "subscriptionPeriod": "P1W"
+          },
+          "localizations": [
+            {
+              "description": "No adverts and offline listening",
+              "displayName": "Annual",
+              "locale": "en_GB"
+            }
+          ],
+          "productID": "annual",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Annual",
+          "subscriptionGroupID": "398237D5",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 4,
+    "minor": 0
+  }
+}

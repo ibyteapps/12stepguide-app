@@ -29,6 +29,14 @@ class AudioScreen extends ConsumerWidget {
 
     return TabPage(
       title: 'Audio',
+      // The tab's contextual action (UNIFIED_PRODUCT_SPEC §3.2).
+      actions: [
+        IconButton(
+          icon: const Icon(AppIcons.downloads),
+          tooltip: 'Downloads',
+          onPressed: () => context.push(Routes.downloads),
+        ),
+      ],
       body: ContentWidth(
         child: ListView(
           padding: const EdgeInsets.only(bottom: Space.xxl),

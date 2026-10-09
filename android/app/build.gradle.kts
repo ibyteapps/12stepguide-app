@@ -51,17 +51,24 @@ android {
             // Installs beside the store app, so development never touches real user data.
             applicationIdSuffix = ".dev"
             manifestPlaceholders["appLabel"] = "12SG Dev"
+            // Google's sample AdMob app id: the dev package is not registered in AdMob.
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
         }
         create("staging") {
             dimension = "env"
             // Production id, so it upgrades over the store app like the real release will.
             // Test ads and analytics off (config/staging.json). Never promoted to production.
             manifestPlaceholders["appLabel"] = "12SG Staging"
+            // The app's own AdMob app id (public; it ships in every APK). Staging still requests
+            // only Google's test units (AdUnits.forBuild).
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-3935706727993760~6070100472"
         }
         create("prod") {
             dimension = "env"
-            // Today's Play name. Whether it becomes "12 Step Guide" is decision A-02.
-            manifestPlaceholders["appLabel"] = "12 Step Guide - AA"
+            // A-02 (provisional, D-008): "12 Step Guide" on both platforms.
+            manifestPlaceholders["appLabel"] = "12 Step Guide"
+            // The existing AdMob app, for reporting continuity (MIGRATION_PLAN §2).
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-3935706727993760~6070100472"
         }
     }
 

@@ -295,6 +295,15 @@ disk are re-checked at every start, so a file removed behind the app's back neve
   with no server-side entitlement need, on-device verification is sufficient for 2.0. Server
   verification can be added behind `PurchaseGateway` later (A-15).
 - `Entitlement` (domain) = store state ∪ legacy lifetime flags, with the cache rules in §9.
+- As built (P4): StoreKit 2 is the plugin's default. On every start `PurchaseService` calls the
+  plugin's `restorePurchases`, which on iOS reads `Transaction.currentEntitlements` (no sign-in
+  prompt) and on Android Play's owned purchases; what comes back replaces the cached answer, and
+  an unreachable store leaves the cache alone. The "Restore purchases" button first runs
+  `AppStore.sync()` on iOS (which may ask the user to sign in). Android donations are bought as
+  non-consumables (acknowledged, never consumed — A-04); the hidden `supporter_lifetime` product
+  is recognised. StoreKit gives the end of the current period but not whether it will renew,
+  so the app says "active until …". `ios/Runner/Products.storekit` is the local StoreKit test
+  configuration (attach it in the dev scheme's Run options).
 
 ### 10.4 Ads and consent — `google_mobile_ads` 9.1 (UMP built in)
 - `ConsentController` runs the UMP flow before any ad request (A-11), exposes
@@ -308,6 +317,15 @@ disk are re-checked at every start, so a file removed behind the app's back neve
 - Meta Audience Network: dropped as a direct SDK. If the owner wants the revenue,
   `gma_mediation_meta` adds it as AdMob mediation with no app logic (A-10).
 - Dev and staging always use Google's published test units.
+- As built (P4): ad **unit** ids come only from `config/prod.json` (`ADMOB_*` keys; a blank key
+  turns that format off) — `AdUnits.forBuild`. AdMob **app** ids are per flavour in
+  `android/app/build.gradle.kts` (manifest placeholder) and `ios/Flutter/<flavour>.xcconfig`
+  (`GAD_APP_ID` → `GADApplicationIdentifier`); dev uses Google's sample app id. `AdCoordinator`
+  applies `AdPolicy`, keeps the counters (`ads.contentOpenCount`, `ads.lastAppOpenAt`) and shows
+  app-open adverts from an `AppLifecycleListener` on resume. The SDK starts only after consent,
+  and only for free users. Banners use the large anchored adaptive size and take no space until
+  loaded. `SKAdNetworkItems` holds Google's own id; add the third-party buyer list from the
+  AdMob iOS quick-start if wanted.
 
 ### 10.5 Reminders — `flutter_local_notifications` 22 + `timezone` + `flutter_timezone`
 - `ReminderSchedule` (domain) turns settings into a list of `(id, hour, minute, kind, route)`.

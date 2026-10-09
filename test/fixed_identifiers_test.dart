@@ -50,6 +50,15 @@ void main() {
       expect(_match(gradle, r'^\s*compileSdk = (\d+)'), '36');
     });
 
+    test('the existing AdMob app id in prod (MIGRATION_PLAN §2)', () {
+      final prod = RegExp(r'create\("prod"\)[\s\S]*?\n        \}').firstMatch(gradle)![0]!;
+      expect(
+        _match(prod, r'manifestPlaceholders\["admobAppId"\] = "([^"]+)"'),
+        'ca-app-pub-3935706727993760~6070100472',
+      );
+      expect(manifest, contains(r'android:value="${admobAppId}"'));
+    });
+
     test('launcher activity keeps the native component name', () {
       // Home-screen icons point at com.ibyteapps.aa12stepguide.First.
       expect(manifest, contains('android:name=".First"'));
@@ -78,6 +87,14 @@ void main() {
           .map((m) => m.group(1))
           .toSet();
       expect(ids, {'"\$(APP_BUNDLE_ID)"', '$_appId.RunnerTests'});
+    });
+
+    test('the existing AdMob app id in prod (MIGRATION_PLAN §2)', () {
+      expect(
+        _match(_read('ios/Flutter/prod.xcconfig'), r'^GAD_APP_ID = (\S+)$'),
+        'ca-app-pub-3935706727993760~5296879139',
+      );
+      expect(_read('ios/Runner/Info.plist'), contains(r'<string>$(GAD_APP_ID)</string>'));
     });
 
     test('every configuration targets iOS 15.0', () {

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/providers.dart';
 import '../../app/routes.dart';
 import '../ads/ad_coordinator.dart';
+import '../audio/application/player_controller.dart';
 import '../content/domain/content_index.dart';
 
 /// Opens a document from any list. One place for the double-tap guard (F-009) and the
@@ -22,7 +23,10 @@ class ContentOpener {
     final now = _ref.read(clockProvider)();
     if (_last != null && now.difference(_last!) < guard) return;
     _last = now;
-    await _ref.read(adCoordinatorProvider).beforeContentOpen();
+    // No interstitial over a recording that is playing (UNIFIED_PRODUCT_SPEC §2.4).
+    await _ref
+        .read(adCoordinatorProvider)
+        .beforeContentOpen(audioPlaying: _ref.read(playerProvider).playing);
     if (!context.mounted) return;
     if (replace) {
       context.pushReplacement(Routes.read(entry.id));

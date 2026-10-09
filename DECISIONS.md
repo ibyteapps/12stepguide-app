@@ -84,8 +84,9 @@ is not used anywhere in the app, its icons or its store artwork.
 - The literature and recordings keep their own titles and words: "Alcoholics Anonymous Number
   Three", the Joe and Charlie talks "AA History – Part 1–4", and the book's text are the names
   of the works, not app branding. Changing them would be a content edit (content/README.md).
-- The name under the icon is a separate decision (A-02, still open; Android today shows
-  "12 Step Guide - AA"). Until it is decided the prod builds keep each platform's current name.
+- The name under the icon is a separate decision (A-02). Built provisionally under D-008 as
+  "12 Step Guide" on both platforms (Android dropped " - AA" in P4); revert in
+  android/app/build.gradle.kts and tool/ci/verify_build.py if the owner prefers the old name.
 - Android users will see renamed titles; the "What's new" text says so (MIGRATION_PLAN §8).
 - The store listings should follow the same naming. That is done in App Store Connect and the
   Play Console, not in the app.

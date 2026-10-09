@@ -119,9 +119,9 @@ class _DrawerHeader extends ConsumerWidget {
     final offer = ref.watch(headlineOfferProvider);
     final status = switch (entitlement.kind) {
       PremiumKind.lifetime => 'Premium · lifetime',
+      // StoreKit tells the app when the current period ends, not whether it will renew.
       PremiumKind.annual when entitlement.renewsAt != null =>
-        'Premium · ${entitlement.willRenew ? 'renews' : 'ends'} '
-            '${DateFormat('d MMM').format(entitlement.renewsAt!)}',
+        'Premium · until ${DateFormat('d MMM').format(entitlement.renewsAt!)}',
       PremiumKind.annual => 'Premium',
       PremiumKind.none => offer == null ? 'Free · Go Premium' : 'Free · Go Premium – $offer',
     };

@@ -65,7 +65,7 @@ void main() {
       expect(find.text(item), findsOneWidget, reason: item);
     }
     expect(find.text('About · Version 2.0.0 (100)'), findsOneWidget);
-    expect(find.text('Free · Go Premium'), findsOneWidget);
+    expect(find.text('Free · Go Premium – from £1.99'), findsOneWidget);
   });
 
   testWidgets('a misconfigured build explains itself', (tester) async {

@@ -41,7 +41,7 @@ has the detail.
 | F-011 | Step guide text | Original text (`guide/gtape1–13`) | Expanded 2024 text (`guide/tape1–13`) | DIFF | Different text and length | Android's 2024 text on both platforms; the iOS original kept in `content/archive/` | D-002 | ◐ |
 | F-012 | Conclusion chapter | `gtape14`, unlinked | `tape14`, unlinked | BROKEN | Hidden on both | Listed as the last row under Steps ("Conclusion") | A-07 | ◐ |
 | F-013 | Traditions list + 12 guides | — | Tab with full tradition text as subtitles; `guide/tradition1–12` | AND | | "Traditions" segment inside the Steps tab, on both platforms | D-001 | ◐ |
-| F-014 | Interstitial before a guide | Every 2nd content tap | Every 3rd open | DIFF | Pacing | Unified ad pacing (F-073) | A-10 | ☐ |
+| F-014 | Interstitial before a guide | Every 2nd content tap | Every 3rd open | DIFF | Pacing | Unified ad pacing (F-073) | A-10 | ◐ |
 
 ## 3. Readings (prayers, readings, tips)
 
@@ -105,18 +105,18 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-070 | Premium definition | No ads + downloads | No ads | DIFF | | **Premium** = no ads + audio downloads, on both | A-05 | ☐ |
-| F-071 | Annual subscription `annual` (7-day trial) | Sold | — | iOS | | Sold on iOS, same product id, StoreKit 2 | A-06 | ☐ |
-| F-072 | Donation tiers | Old iOS tiers (`…donatetier5/10/20`): restore only, lifetime | `donatetier1/2/3`: sold, consumed, "remove ads for life" | DIFF | | iOS: legacy tiers keep lifetime Premium. Android: tiers keep being sold as "Support the app" and give lifetime Premium | A-04, A-06 | ☐ |
-| F-073 | Interstitial pacing | Every 2nd counted tap (also counts non-content taps — BUG-31); AdMob only | Every 3rd open incl. the Daily Reflection link, persisted; AdMob → Meta fallback | DIFF | | Every 3rd content open, persisted, reset after an app-open ad; never before external links; AdMob only (Meta via AdMob mediation if wanted) | A-10 | ☐ |
-| F-074 | App-open ads | ≥ 45 s since last, not on cold start, not over paywall | Every foreground, ≥ 20 s (in memory) | DIFF | | ≥ 45 s since last (persisted); never on first launch, onboarding, paywall, purchase flow or full player | A-10 | ☐ |
-| F-075 | Banner ads | Reader, player, quote screen | Reader | DIFF | | Reader, player, quote screen | A-10 | ☐ |
-| F-076 | Mute video ads | — | `setAppVolume(0)` | AND | | Kept on both (and never duck playing audio) | — | ☐ |
-| F-077 | Ad consent | None | None (changelog says UMP; code doesn't) | BROKEN | | Google UMP consent at first launch for UK/EEA; "Privacy & ad choices" in the drawer; no ATT on iOS | A-11 | ☐ |
-| F-078 | Paywall | Auto at launch 2, 20, 50; benefits list; price; terms/privacy links | Store list of tiers | DIFF | | One paywall screen per platform's products (§3 of the spec); auto-shown on iOS cadence on both, never on first launch | A-25 | ☐ |
-| F-079 | Restore purchases | Settings row; toasts; silent restore on first launch after upgrade (may prompt Apple ID) | — (automatic) | iOS | | "Restore purchases" in the drawer and on the paywall, on both; StoreKit 2 check at launch never prompts sign-in | — | ☐ |
-| F-079a | Subscription status | "Annual Subscription · Expires …", legacy-supporter note, cancel instructions | "Purchased" labels | DIFF | | Premium page: plan, renewal date or "Lifetime", legacy-supporter note, "Manage subscription" (opens store) | — | ☐ |
-| F-079b | Receipt validation | `verifyReceipt` with shared secret, on device | Purchase history | DIFF · NATIVE | | iOS StoreKit 2 on-device verification (no secret); Android `queryPurchases` + migrated flag | A-15 | ☐ |
+| F-070 | Premium definition | No ads + downloads | No ads | DIFF | | **Premium** = no ads + audio downloads, on both | A-05 | ◐ |
+| F-071 | Annual subscription `annual` (7-day trial) | Sold | — | iOS | | Sold on iOS, same product id, StoreKit 2 | A-06 | ◐ |
+| F-072 | Donation tiers | Old iOS tiers (`…donatetier5/10/20`): restore only, lifetime | `donatetier1/2/3`: sold, consumed, "remove ads for life" | DIFF | | iOS: legacy tiers keep lifetime Premium. Android: tiers keep being sold as "Support the app" and give lifetime Premium | A-04, A-06 | ◐ |
+| F-073 | Interstitial pacing | Every 2nd counted tap (also counts non-content taps — BUG-31); AdMob only | Every 3rd open incl. the Daily Reflection link, persisted; AdMob → Meta fallback | DIFF | | Every 3rd content open, persisted, reset after an app-open ad; never before external links; AdMob only (Meta via AdMob mediation if wanted) | A-10 | ◐ |
+| F-074 | App-open ads | ≥ 45 s since last, not on cold start, not over paywall | Every foreground, ≥ 20 s (in memory) | DIFF | | ≥ 45 s since last (persisted); never on first launch, onboarding, paywall, purchase flow or full player | A-10 | ◐ |
+| F-075 | Banner ads | Reader, player, quote screen | Reader | DIFF | | Reader, player, quote screen | A-10 | ◐ |
+| F-076 | Mute video ads | — | `setAppVolume(0)` | AND | | Kept on both (and never duck playing audio) | — | ◐ |
+| F-077 | Ad consent | None | None (changelog says UMP; code doesn't) | BROKEN | | Google UMP consent at first launch for UK/EEA; "Privacy & ad choices" in the drawer; no ATT on iOS | A-11 | ◐ |
+| F-078 | Paywall | Auto at launch 2, 20, 50; benefits list; price; terms/privacy links | Store list of tiers | DIFF | | One paywall screen per platform's products (§3 of the spec); auto-shown on iOS cadence on both, never on first launch | A-25 | ◐ |
+| F-079 | Restore purchases | Settings row; toasts; silent restore on first launch after upgrade (may prompt Apple ID) | — (automatic) | iOS | | "Restore purchases" in the drawer and on the paywall, on both; StoreKit 2 check at launch never prompts sign-in | — | ◐ |
+| F-079a | Subscription status | "Annual Subscription · Expires …", legacy-supporter note, cancel instructions | "Purchased" labels | DIFF | | Premium page: plan, renewal date or "Lifetime", legacy-supporter note, "Manage subscription" (opens store) | — | ◐ |
+| F-079b | Receipt validation | `verifyReceipt` with shared secret, on device | Purchase history | DIFF · NATIVE | | iOS StoreKit 2 on-device verification (no secret); Android `queryPurchases` + migrated flag | A-15 | ◐ |
 
 ## 9. Drawer destinations (formerly Settings)
 
