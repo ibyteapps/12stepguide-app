@@ -153,7 +153,9 @@ def android_aab(path: str, flavor: str) -> int:
         e.get(ANDROID_NS + "name"): e.get(ANDROID_NS + "foregroundServiceType")
         for e in (app.findall("service") if app is not None else [])
     }
-    c.eq("media service", services.get("com.ryanheise.audioservice.AudioService"), "mediaPlayback")
+    # bundletool prints the flag value: mediaPlayback is 0x00000002.
+    media_type = services.get("com.ryanheise.audioservice.AudioService")
+    c.eq("media service", media_type in {"mediaPlayback", "0x00000002", "2"}, True)
     receivers = {e.get(ANDROID_NS + "name") for e in (app.findall("receiver") if app is not None else [])}
     c.eq("media button receiver", "com.ryanheise.audioservice.MediaButtonReceiver" in receivers, True)
     return c.done()
