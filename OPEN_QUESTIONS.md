@@ -78,7 +78,7 @@ gives the recommendation first.
 | ID | Decision | Recommendation | Alternatives | Phase |
 |---|---|---|---|---|
 | A-01 | ~~Primary navigation~~ | **Decided: D-001** | — | — |
-| **A-03** | Naming / AAWS compliance | **Use the iOS 1.21 compliant names on both platforms; drop the AA circle-triangle symbol** | Keep Android names as they are | P2 |
+| A-03 | ~~Naming / AAWS compliance~~ | **Decided: D-005** | — | — |
 | A-08 | ~~Step-guide text~~ | **Decided: D-002** | — | — |
 | A-23 | ~~How literature is displayed~~ | **Decided: D-003** | — | — |
 | A-02 | Name under the icon | **"12 Step Guide" on both** (Android drops " - AA") | Keep per-platform names | P2 |

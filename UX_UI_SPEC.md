@@ -182,7 +182,7 @@ chose. `MIGRATION_PLAN.md` §4 has the table. Text scaling from the OS multiplie
 | **Paywall** | Header (icon + "12 Step Guide Premium"), benefit rows with icons, trial timeline (iOS trial only), price line from the store, primary CTA, "Restore", "Terms · Privacy", visible close |
 
 **Icons.** Material Symbols Rounded (variable font; one weight, 24 dp, optical size 24) on both
-platforms for a consistent identity. The AA circle-triangle symbol is not used (A-03).
+platforms for a consistent identity. The AA circle-triangle symbol is not used (D-005).
 
 ---
 
@@ -238,7 +238,7 @@ respected; landscape phones keep the bottom bar.
 
 - Sentence case everywhere ("Set your recovery date", not "Tap To Set Recovery Date").
 - Plain, kind wording; no blame ("Couldn't load this track. Try again." not "Error!").
-- Titles follow the AAWS-compliant naming of iOS 1.21 on both platforms (A-03): no "AA" prefix
+- Titles follow the AAWS-compliant naming of iOS 1.21 on both platforms (D-005): no "AA" prefix
   in feature titles, "Daily Reflections", "The Big Book", "Speaker Tapes".
 - Disclaimer in About and the store listings: "not affiliated with or endorsed by Alcoholics
   Anonymous or A.A. World Services, Inc."
