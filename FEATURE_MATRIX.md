@@ -22,7 +22,7 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-001 | Launch screen | Launch image storyboard | `BrandedLaunch` theme on `First` | DIFF · NATIVE | Different artwork | Native splash (flutter_native_splash) in brand colours, light and dark, then straight to the shell. No artificial delay | A-22 | ☐ |
+| F-001 | Launch screen | Launch image storyboard | `BrandedLaunch` theme on `First` | DIFF · NATIVE | Different artwork | Native splash (flutter_native_splash) in brand colours, light and dark, then straight to the shell. No artificial delay. Uses the new icon mark | D-007 | ☐ |
 | F-002 | First-run onboarding | 6 pages: Welcome, Audiobooks ×2, Big Book, Ad-supported, All set | 3 pages: Hey there, Support us, Ad-supported | DIFF | Content and length | One 4-page flow on both: Welcome → What's inside (steps, Big Book, audio) → Reminders (primes notification permission, F-064) → Ad-supported/Premium note. Skippable; shown once | — | ☐ |
 | F-003 | "App updated" onboarding for upgraders | 5 pages when `FLAG_ONBOARDING_UPDATE_SHOWN` is false | — | iOS | | One "Welcome to the new 12 Step Guide" screen for **every** upgrading user on both platforms, saying their date, reminders, downloads and purchases came across. Shown once after migration | — | ☐ |
 | F-004 | Launch counter | `launchcount` (counts the first launch twice) | `…launchCount…` key | DIFF | Keys differ; iOS value is launches + 1 | One counter, seeded from the legacy value so prompt cadences continue | — | ☐ |
@@ -131,7 +131,7 @@ has the detail.
 | F-086 | Privacy policy | `…/privacy-policy-ibyte/` | `…/privacy` | DIFF | URL | One URL (iOS one) | Q-P5 | ☐ |
 | F-087 | Terms of use | Settings + paywall | — | iOS | | Drawer + paywall, both | — | ☐ |
 | F-088 | App version | Contact footer | Settings footer | DIFF | | About page + drawer footer | — | ☐ |
-| F-089 | Hidden "My Account / Sign out" | Hidden row | — | BROKEN | | Not built (no accounts) | A-09 | ☐ |
+| F-089 | Hidden "My Account / Sign out" | Hidden row | — | BROKEN | | Not built (no accounts) | D-006 | ✖ |
 
 ## 10. Reminders
 
@@ -142,7 +142,7 @@ has the detail.
 | F-092 | On-awakening reminder | Implemented ("Time For Your Morning Inventory") but the cell is **hidden**, so no user can enable it | — | BROKEN | Unreachable | Not built unless A-18 approves (then: both platforms, tap opens "On Awakening") | A-18 | ☐ |
 | F-093 | Night-time reminder | Implemented ("Time For Your Night Inventory") but the cell is **hidden** | — | BROKEN | Unreachable | Not built unless A-18 approves (then: tap opens "When We Retire") | A-18 | ☐ |
 | F-094 | "We miss you" (3 and 7 days) | Fresh installs only; fires once at 00:00; tap likely crashes (BUG-22) | — | iOS · BROKEN | | Re-armed on every open so it fires after 3/7 days without use, at a daytime hour; switch in Reminders | A-13 | ☐ |
-| F-095 | Sponsorship notification switches | Implemented, cells hidden, no feature behind them | — | BROKEN | | Not built | A-09 | ☐ |
+| F-095 | Sponsorship notification switches | Implemented, cells hidden, no feature behind them | — | BROKEN | | Not built | D-006 | ✖ |
 | F-096 | Remote push (FCM) | None in practice: APNs registration only, no FCM SDK; Toolkit handlers unreachable | SDK with default display of console notifications (Android ≤ 12) | BROKEN · NATIVE | | Keep FCM display-only on both if campaigns are used; otherwise remove | **A-17** | ☐ |
 | F-097 | Permission request | At every launch, no context | Never | DIFF · NATIVE | | Primed in onboarding (F-002) and when a reminder is first switched on; Android 13+ `POST_NOTIFICATIONS` | — | ☐ |
 | F-098 | Hourly window changes | Narrowing the window leaves old hours scheduled (BUG-23) | — | BROKEN | | Scheduler diffs the wanted set against pending requests | — | ☐ |
@@ -165,10 +165,10 @@ has the detail.
 | F-111 | Crashlytics | ✓ | ✓ (with breadcrumbs) | BOTH | | ✓; breadcrumbs carry no personal data | — | ☐ |
 | F-112 | Network reachability | `Reachability` before streaming | — | iOS | | Connectivity-aware audio and links, with offline banners | — | ☐ |
 | F-113 | Backups | iCloud backs up Documents (downloads too) | `allowBackup=true` | NATIVE | | Downloads excluded from iCloud backup (re-downloadable); preferences backed up on both | — | ☐ |
-| F-114 | URL schemes (Google, LinkedIn) | Declared, unused | — | BROKEN | | Not carried over | A-09 | ☐ |
-| F-115 | Face ID string, Sign in with Apple entitlement | Declared, unused | — | BROKEN | | Not carried over | A-09 | ☐ |
-| F-116 | Unused HTML pages | 10 files | 5 files | BROKEN | | Converted to Markdown in `content/archive/` for reference, not shipped | A-09 | ☐ |
-| F-117 | Debug "admin" switches | `ADMIN_MODE` | `subscribedMode`, `skuMode` | BROKEN | | Replaced by the dev flavour and test ad units (flavours done in P0; test units with P4) | — | ◐ |
+| F-114 | URL schemes (Google, LinkedIn) | Declared, unused | — | BROKEN | | Not carried over | D-006 | ✖ |
+| F-115 | Face ID string, Sign in with Apple entitlement | Declared, unused | — | BROKEN | | Not carried over | D-006 | ✖ |
+| F-116 | Unused HTML pages | 10 files | 5 files | BROKEN | | Converted to Markdown in `content/archive/` for reference, not shipped | D-006 | ✖ |
+| F-117 | Debug "admin" switches | `ADMIN_MODE` | `subscribedMode`, `skuMode` | BROKEN | | Replaced by the dev flavour and test ad units (flavours done in P0; test units with P4) | D-006 | ◐ |
 
 ---
 
@@ -179,4 +179,4 @@ DIFF 31, iOS 21, BROKEN 15, BOTH 12, AND 12, NATIVE 11.
 
 **Not lost:** every iOS-only row and every Android-only row has a unified behaviour that keeps
 it on both platforms, except the BROKEN rows, which had no working behaviour. Those are dropped
-only if A-09 is approved.
+by D-006.

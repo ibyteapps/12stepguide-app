@@ -59,8 +59,8 @@ conversion (the 30th file never existed).
 
 **Assets**
 
-6. App icon decision (A-22) and, if new, 1024 px master artwork (light and dark if you want an
-   iOS 18+ dark/tinted icon).
+6. ~~App icon decision (A-22)~~ Decided (D-007): a new icon on both platforms, designed in the
+   repo (`assets/branding/`). Nothing needed from you unless you want changes.
 7. Any onboarding or store screenshot artwork you want kept (the old onboarding images are in the
    projects and can be reused).
 8. The AAWS complaint text or a summary (Q-L1).
@@ -86,7 +86,7 @@ gives the recommendation first.
 | A-05 | Premium benefits and lapsed downloads | **Premium = no ads + downloads on both. If Premium lapses, files stay; tracks stream instead and the Downloads page offers to remove them** (today's iOS rule) | Let lapsed users keep playing their downloads offline | P3 |
 | A-06 | Android products | **Keep the 3 donation tiers as "Support the app — lifetime Premium" (now also unlocking downloads)**; optional later: add the `annual` subscription on Play for parity | Add the Play subscription in 2.0 | P4 |
 | A-07 | Hidden "Conclusion" chapter | **Show it as the last row under Steps** | Leave hidden | P2 |
-| A-09 | Toolkit leftovers (sponsorship switches, hidden account cell, Face ID string, Sign in with Apple entitlement, URL schemes, unused HTML) | **Drop them** — none does anything | Keep any you know is used | P1 |
+| A-09 | ~~Toolkit leftovers~~ | **Decided: D-006** | — | — |
 | A-10 | Ad pacing | **Interstitial every 3rd content open (persisted, reset after an app-open ad); app-open ≥ 45 s, never on first launch/onboarding/paywall/player; banners in reader, player and quote screen; drop direct Meta SDK (optionally Meta via AdMob mediation)** | Keep iOS every-2nd-tap; keep Android's 20 s app-open | P4 |
 | A-11 | Ad consent | **Google UMP form for UK/EEA; no ATT prompt** (same as the Toolkit's D-006) | UMP + ATT for personalised iOS ads | P4 |
 | A-12 | iOS reminders on upgrade | **Keep what each user actually receives today** (pending notifications), not the unreliable flag | Turn hourly on for everyone whose flag says on | P5 |
@@ -99,7 +99,7 @@ gives the recommendation first.
 | A-19 | Reading comfort | **8-step text size (old sizes preserved), remember reading position, "Continue reading", prev/next at the end of a reading**; serif option only if you want it | Size only | P2 |
 | A-20 | Optional extras | **Include: resume position per audio track, Wi-Fi-only downloads.** Defer: literature search, playback speed, sleep timer, favourites, quote "Another"/"Share" | Include any deferred item | P3 |
 | A-21 | "Classic layout" option (like the Toolkit's D-011) | **Not needed — the new tabs already match both old orders** | Build one | P2 |
-| A-22 | Icon and brand direction | **Keep each platform's current icon for 2.0** (recognition); one palette built from both (navy, guide blue, coral) | One new icon on both | P0 |
+| A-22 | ~~Icon and brand direction~~ | **Decided: D-007** (new icon on both) | — | — |
 | A-24 | Audio catalogue | **Bundled (as today)**; remote catalogue later if you add tracks | Remote JSON from your server | P3 |
 | A-25 | Paywall auto-show | **Launch 2, 20, 50 (today's iOS rule) on both, free users only** | iOS only; never automatic | P4 |
 | A-26 | Review prompt | **System prompt on launch 7, 15, 30 on both; "Rate the app" in the drawer** | Keep Android's custom dialog | P6 |
