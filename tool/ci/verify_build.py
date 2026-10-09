@@ -25,6 +25,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 APP_ID = "com.ibyteapps.aa12stepguide"
 LAUNCHER = f"{APP_ID}.First"
+# Streaming, downloads and background playback need these in every build.
+REQUIRED_PERMISSIONS = [
+    "android.permission.INTERNET",
+    "android.permission.FOREGROUND_SERVICE",
+    "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+    "android.permission.WAKE_LOCK",
+]
 ANDROID_MIN_SDK = "24"
 ANDROID_TARGET_SDK = "36"
 IOS_MIN_OS = "15.0"
@@ -101,6 +108,9 @@ def android_apk(path: str, flavor: str) -> int:
     c.eq("label", field(r"^application-label:'([^']*)'"), ANDROID_LABEL[flavor])
     c.eq("adaptive icon", field(r"^application-icon-65534:'([^']*)'"),
          "res/mipmap-anydpi-v26/ic_launcher.xml")
+    perms = set(re.findall(r"^uses-permission: name='([^']+)'", out, re.M))
+    for perm in REQUIRED_PERMISSIONS:
+        c.eq(f"permission {perm.rsplit('.', 1)[-1]}", perm in perms, True)
     return c.done()
 
 
@@ -136,6 +146,16 @@ def android_aab(path: str, flavor: str) -> int:
     c.eq("debuggable", app.get(ANDROID_NS + "debuggable", "false") if app is not None else None, "false")
     c.eq("icon set", bool(app is not None and app.get(ANDROID_NS + "icon")), True)
     c.eq("round icon set", bool(app is not None and app.get(ANDROID_NS + "roundIcon")), True)
+    perms = {e.get(ANDROID_NS + "name") for e in root.findall("uses-permission")}
+    for perm in REQUIRED_PERMISSIONS:
+        c.eq(f"permission {perm.rsplit('.', 1)[-1]}", perm in perms, True)
+    services = {
+        e.get(ANDROID_NS + "name"): e.get(ANDROID_NS + "foregroundServiceType")
+        for e in (app.findall("service") if app is not None else [])
+    }
+    c.eq("media service", services.get("com.ryanheise.audioservice.AudioService"), "mediaPlayback")
+    receivers = {e.get(ANDROID_NS + "name") for e in (app.findall("receiver") if app is not None else [])}
+    c.eq("media button receiver", "com.ryanheise.audioservice.MediaButtonReceiver" in receivers, True)
     return c.done()
 
 
@@ -153,6 +173,7 @@ def ios_app(path: str, flavor: str) -> int:
     icon = info.get("CFBundleIcons", {}).get("CFBundlePrimaryIcon", {}).get("CFBundleIconName")
     c.eq("app icon set", icon, IOS_ICON[flavor])
     c.eq("compiled asset catalog", (Path(path) / "Assets.car").exists(), True)
+    c.eq("background audio", "audio" in info.get("UIBackgroundModes", []), True)
     return c.done()
 
 

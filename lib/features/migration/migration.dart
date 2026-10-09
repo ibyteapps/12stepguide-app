@@ -4,6 +4,7 @@ import '../../core/logging/log.dart';
 import '../../core/platform/legacy_bridge.dart';
 import '../../core/prefs/key_value_store.dart';
 import '../../design/tokens/typography.dart';
+import '../audio/domain/catalogue.dart';
 import '../sobriety/sobriety_date.dart';
 import 'legacy_keys.dart';
 
@@ -268,6 +269,48 @@ class ReviewStep extends MigrationStep {
     if (s.bool_(AndroidKeys.ratedApp) || s.bool_(AndroidKeys.rated)) {
       await ctx.store.setBool(PrefKeys.reviewRated, true);
     }
+  }
+}
+
+/// m008: recordings the native iOS app downloaded into `Documents` (MIGRATION_PLAN §7). They stay
+/// where they are and are marked downloaded, so nobody downloads them twice; from now on they are
+/// kept out of iCloud backups. Anything that is not a catalogue file (`main.db`, unknown files) is
+/// left alone.
+class DownloadsStep extends MigrationStep {
+  const DownloadsStep(this.catalogue);
+
+  final Catalogue catalogue;
+
+  @override
+  String get id => 'm008';
+  @override
+  Set<LegacyPlatform> get platforms => {LegacyPlatform.ios};
+
+  /// The catalogue sizes come from one-decimal "4.5 MB" labels, so the check allows for that
+  /// rounding (and for MB/MiB) while still turning away a truncated file.
+  static bool sizeMatches(Track track, int bytes) {
+    if (bytes <= 0) return false;
+    final approx = track.approxBytes;
+    if (approx == null) return true;
+    return bytes >= approx * 0.9 && bytes <= approx * 1.15;
+  }
+
+  @override
+  Future<void> run(MigrationContext ctx) async {
+    final byName = {for (final t in catalogue.allTracks) t.file: t};
+    final found = <int>[];
+    for (final file in await ctx.bridge.listDocuments()) {
+      final track = byName[file.name];
+      if (track == null || !sizeMatches(track, file.bytes)) continue;
+      found.add(track.id);
+      await ctx.bridge.excludeFromBackup(file.path);
+    }
+    final existing = ctx.store.getStringList(PrefKeys.downloadedTracks) ?? const [];
+    await ctx.store.setStringList(
+      PrefKeys.downloadedTracks,
+      {...existing, for (final id in found) '$id'}.toList(),
+    );
+    ctx.summary.downloads = found.length;
   }
 }
 

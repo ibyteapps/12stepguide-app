@@ -199,7 +199,9 @@ the Reminders page). Android 13+ asks for `POST_NOTIFICATIONS` at that moment.
 - Existing files are in `Documents/{file_name}` (flat). The new `DownloadStore` uses the same
   directory on iOS, so **nothing is moved or copied**.
 - m008 lists `Documents`, matches file names against the catalogue, and checks the size is
-  above zero and within ±2 % of the catalogue size (when known). Matches are marked downloaded.
+  between 90 % and 115 % of the catalogue size (when known). The catalogue sizes come from the
+  native app's one-decimal labels ("4.5 MB"), so a tighter check would turn away good files
+  (rounding, and MB versus MiB); a truncated file still fails. Matches are marked downloaded.
   Anything else (`main.db`, unknown files) is left alone.
 - Partial downloads left by the old background `URLSession` cannot be resumed (the session
   belonged to the old binary). They show as not downloaded and can be downloaded again.

@@ -10,11 +10,17 @@ import 'package:twelve_step_guide/app/router.dart';
 import 'package:twelve_step_guide/core/config/app_config.dart';
 import 'package:twelve_step_guide/core/config/app_env.dart';
 import 'package:twelve_step_guide/core/links/links.dart';
+import 'package:twelve_step_guide/core/platform/connectivity.dart';
 import 'package:twelve_step_guide/core/prefs/key_value_store.dart';
+import 'package:twelve_step_guide/features/audio/application/downloads_controller.dart';
+import 'package:twelve_step_guide/features/audio/application/player_controller.dart';
+import 'package:twelve_step_guide/features/audio/data/download_gateway.dart';
 import 'package:twelve_step_guide/features/audio/domain/catalogue.dart';
 import 'package:twelve_step_guide/features/content/domain/content_index.dart';
 import 'package:twelve_step_guide/features/shell/shell_scaffold_key.dart';
 import 'package:twelve_step_guide/features/sobriety/cheer.dart';
+
+import 'fakes.dart';
 
 final testIndex = ContentIndex.fromJsonString(File('assets/content_index.json').readAsStringSync());
 final testCatalogue = Catalogue.fromJsonString(
@@ -58,8 +64,30 @@ const phone = Size(390, 844);
 const appBoundaryKey = ValueKey('app-boundary');
 const tablet = Size(1024, 1366);
 
+/// A fresh, empty folder for "downloaded" files.
+String tempAudioDir() {
+  final dir = Directory.systemTemp.createTempSync('audio');
+  addTearDown(() {
+    if (dir.existsSync()) dir.deleteSync(recursive: true);
+  });
+  return dir.path;
+}
+
+/// Writes a fake downloaded file for [track] into [dir].
+void writeTrackFile(String dir, Track track, {int bytes = 1024}) =>
+    File('$dir/${track.file}').writeAsBytesSync(List.filled(bytes, 0));
+
+typedef TestApp = ({
+  MemoryStore store,
+  FakeLinkOpener links,
+  ProviderContainer container,
+  FakeAudioEngine audio,
+  FakeDownloadGateway downloads,
+  String audioDir,
+});
+
 /// Pumps the whole app at [location] with in-memory storage and fakes.
-Future<({MemoryStore store, FakeLinkOpener links, ProviderContainer container})> pumpApp(
+Future<TestApp> pumpApp(
   WidgetTester tester, {
   String location = '/steps',
   Map<String, Object>? prefs,
@@ -70,6 +98,10 @@ Future<({MemoryStore store, FakeLinkOpener links, ProviderContainer container})>
   ThemeMode? themeMode,
   List<Override> overrides = const [],
   DateTime? now,
+  bool online = true,
+  FakeAudioEngine? audio,
+  FakeDownloadGateway? downloads,
+  String? audioDir,
 }) async {
   tester.view.physicalSize = size * ratio;
   tester.view.devicePixelRatio = ratio;
@@ -83,6 +115,9 @@ Future<({MemoryStore store, FakeLinkOpener links, ProviderContainer container})>
     ...?prefs,
   });
   final links = FakeLinkOpener();
+  final engine = audio ?? FakeAudioEngine();
+  final gateway = downloads ?? FakeDownloadGateway();
+  final dir = audioDir ?? tempAudioDir();
   final container = ProviderContainer(
     overrides: [
       appConfigProvider.overrideWithValue(AppConfig(env: env)),
@@ -93,6 +128,10 @@ Future<({MemoryStore store, FakeLinkOpener links, ProviderContainer container})>
       linkOpenerProvider.overrideWithValue(links),
       clockProvider.overrideWithValue(() => now ?? testNow),
       cheerPlayerProvider.overrideWithValue(FakeCheer()),
+      onlineProvider.overrideWith((ref) => Stream.value(online)),
+      audioEngineProvider.overrideWithValue(engine),
+      downloadGatewayProvider.overrideWithValue(gateway),
+      audioFilesProvider.overrideWithValue(AudioFiles(dir)),
       launchInfoProvider.overrideWithValue(
         const LaunchInfo(
           launchCount: 5,
@@ -118,7 +157,14 @@ Future<({MemoryStore store, FakeLinkOpener links, ProviderContainer container})>
     ),
   );
   await tester.pumpAndSettle();
-  return (store: store, links: links, container: container);
+  return (
+    store: store,
+    links: links,
+    container: container,
+    audio: engine,
+    downloads: gateway,
+    audioDir: dir,
+  );
 }
 
 /// Opens the drawer from anywhere in the shell.

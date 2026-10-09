@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/providers.dart';
 import '../../core/links/links.dart';
 import '../../design/components/app_icons.dart';
+import '../../design/components/dialogs.dart';
 import '../../design/components/pickers.dart';
 import '../../design/theme/app_colors.dart';
 import '../../design/tokens/spacing.dart';
@@ -34,23 +35,13 @@ class RecoveryDateScreen extends ConsumerWidget {
   }
 
   Future<void> _clear(BuildContext context, WidgetRef ref) async {
-    final ok = await showAdaptiveDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog.adaptive(
-        title: const Text('Clear your recovery date?'),
-        content: const Text('The day count will disappear until you set a date again.'),
-        actions: [
-          adaptiveAction(context, 'Cancel', () => Navigator.of(context).pop(false)),
-          adaptiveAction(
-            context,
-            'Clear date',
-            () => Navigator.of(context).pop(true),
-            destructive: true,
-          ),
-        ],
-      ),
+    final ok = await confirmAction(
+      context,
+      title: 'Clear your recovery date?',
+      message: 'The day count will disappear until you set a date again.',
+      confirmLabel: 'Clear date',
     );
-    if (ok ?? false) await ref.read(sobrietyProvider.notifier).clear();
+    if (ok) await ref.read(sobrietyProvider.notifier).clear();
   }
 
   @override
@@ -171,19 +162,4 @@ class _Stats extends ConsumerWidget {
       ],
     );
   }
-}
-
-/// A dialog action that looks right on both platforms.
-Widget adaptiveAction(
-  BuildContext context,
-  String label,
-  VoidCallback onPressed, {
-  bool destructive = false,
-}) {
-  final c = context.colors;
-  return TextButton(
-    onPressed: onPressed,
-    style: destructive ? TextButton.styleFrom(foregroundColor: c.error) : null,
-    child: Text(label),
-  );
 }

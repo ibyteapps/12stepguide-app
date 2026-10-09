@@ -27,7 +27,7 @@ has the detail.
 | F-003 | "App updated" onboarding for upgraders | 5 pages when `FLAG_ONBOARDING_UPDATE_SHOWN` is false | — | iOS | | One "Welcome to the new 12 Step Guide" screen for **every** upgrading user on both platforms, saying their date, reminders, downloads and purchases came across. Shown once after migration | — | ◐ |
 | F-004 | Launch counter | `launchcount` (counts the first launch twice) | `…launchCount…` key | DIFF | Keys differ; iOS value is launches + 1 | One counter, seeded from the legacy value so prompt cadences continue | — | ◐ |
 | F-005 | Primary navigation | 5 tabs: The Steps, Literature, Big Book, Audio Books, Settings | 5 tabs: Steps, Traditions, Readings, Big Book, Settings | DIFF | Different sets | 4 tabs: **Steps** (Steps \| Traditions), **Readings**, **Big Book**, **Audio**. Settings and secondary items move to the drawer (F-080) | D-001 | ◐ |
-| F-006 | Now-playing indicator | Animated icon in the nav bar opens the player | — | iOS | | Mini-player docked above the tab bar on every tab while a track is loaded; tap → full player | — | ☐ |
+| F-006 | Now-playing indicator | Animated icon in the nav bar opens the player | — | iOS | | Mini-player docked above the tab bar on every tab while a track is loaded; tap → full player | — | ◐ |
 | F-007 | Tab transition | Crossfade | Fragment swap; per-tab back stacks | DIFF · NATIVE | | Per-tab back stacks (StatefulShellRoute); platform default transitions | — | ◐ |
 | F-008 | Bottom bar hidden on detail screens | — | Hidden on reader, calculator, store | AND | | Hidden in the reader and full player (immersive reading); shown elsewhere | — | ◐ |
 | F-015 | Free/Pro header on Steps and Traditions | — | "12 Step Guide - AA Free" / "… Pro" above the list | AND | | Status lives in the drawer header and Premium page; lists carry no header | D-001 | ◐ |
@@ -90,16 +90,16 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-060 | Audio library (11 albums, 138 tracks) | `AudioBooksVC` from bundled `main.db` | — | iOS | | Audio tab on both. Catalogue shipped as an asset generated from `main.db` | A-24 | ☐ |
-| F-061 | Album screen | Tracks, download state, ⋯ menu: Download all / Delete offline / Play all | — | iOS | | Same actions, as visible buttons rather than a hidden menu | — | ☐ |
-| F-062 | Streaming playback | From `scripts.12stepapp.com/tracks/…` | — | iOS | | Same URLs, unchanged. Buffering state and network error with retry | — | ☐ |
-| F-063 | Player | Modal; play/pause, ±10 s, prev/next, scrubber, times, transcript (2 albums) or animation, font size, banner | — | iOS | | Same controls; transcript for Joe & Charlie and Big Book; artwork tile otherwise; ±10 s kept; fixes BUG-05 | — | ☐ |
-| F-064 | Auto-advance + loop album | ✓ | — | iOS | | Kept | — | ☐ |
-| F-065 | Downloads | Subscribers only; 2 at a time; progress ring; files in Documents | — | iOS | | Premium only; background downloads with progress; same Documents location on iOS so existing files are reused | A-05 | ☐ |
-| F-066 | Offline play rule | Local file only while subscribed | — | iOS | | See A-05 | A-05 | ☐ |
-| F-067 | Background audio | Background mode on; session mixes with other audio (`mixWithOthers`); no lock-screen controls (BUG-07) | — | iOS · NATIVE | | Background playback with lock-screen / notification media controls on both (required for Android); standard spoken-audio session that pauses other audio (difference from iOS today) | — | ☐ |
-| F-068 | Ads around audio | Interstitial every 2nd play/next/prev; banner in player; playback paused for the ad | — | iOS | | Unified pacing (F-073); never interrupts audio already playing | A-10 | ☐ |
-| F-069 | Favourites | Button outlet + `favourites` table, never wired | — | BROKEN | | Not built (no behaviour existed) | A-20 | ☐ |
+| F-060 | Audio library (11 albums, 138 tracks) | `AudioBooksVC` from bundled `main.db` | — | iOS | | Audio tab on both. Catalogue shipped as an asset generated from `main.db` | A-24 | ◐ |
+| F-061 | Album screen | Tracks, download state, ⋯ menu: Download all / Delete offline / Play all | — | iOS | | Same actions, as visible buttons rather than a hidden menu | — | ◐ |
+| F-062 | Streaming playback | From `scripts.12stepapp.com/tracks/…` | — | iOS | | Same URLs, unchanged. Buffering state and network error with retry | — | ◐ |
+| F-063 | Player | Modal; play/pause, ±10 s, prev/next, scrubber, times, transcript (2 albums) or animation, font size, banner | — | iOS | | Same controls; transcript for Joe & Charlie and Big Book; artwork tile otherwise; ±10 s kept; fixes BUG-05 | — | ◐ |
+| F-064 | Auto-advance + loop album | ✓ | — | iOS | | Kept | — | ◐ |
+| F-065 | Downloads | Subscribers only; 2 at a time; progress ring; files in Documents | — | iOS | | Premium only; background downloads with progress; same Documents location on iOS so existing files are reused | A-05 | ◐ |
+| F-066 | Offline play rule | Local file only while subscribed | — | iOS | | See A-05 | A-05 | ◐ |
+| F-067 | Background audio | Background mode on; session mixes with other audio (`mixWithOthers`); no lock-screen controls (BUG-07) | — | iOS · NATIVE | | Background playback with lock-screen / notification media controls on both (required for Android); standard spoken-audio session that pauses other audio (difference from iOS today) | — | ◐ |
+| F-068 | Ads around audio | Interstitial every 2nd play/next/prev; banner in player; playback paused for the ad | — | iOS | | Unified pacing (F-073); never interrupts audio already playing | A-10 | ◐ |
+| F-069 | Favourites | Button outlet + `favourites` table, never wired | — | BROKEN | | Not built (no behaviour existed) | A-20 | ✖ |
 
 ## 8. Monetisation
 
@@ -163,8 +163,8 @@ has the detail.
 |---|---|---|---|---|---|---|---|---|
 | F-110 | Firebase Analytics | Automatic | Automatic | BOTH | | Same project, same apps → continuity. No new custom events without approval | — | ☐ |
 | F-111 | Crashlytics | ✓ | ✓ (with breadcrumbs) | BOTH | | ✓; breadcrumbs carry no personal data | — | ☐ |
-| F-112 | Network reachability | `Reachability` before streaming | — | iOS | | Connectivity-aware audio and links, with offline banners | — | ☐ |
-| F-113 | Backups | iCloud backs up Documents (downloads too) | `allowBackup=true` | NATIVE | | Downloads excluded from iCloud backup (re-downloadable); preferences backed up on both | — | ☐ |
+| F-112 | Network reachability | `Reachability` before streaming | — | iOS | | Connectivity-aware audio and links, with offline banners | — | ◐ |
+| F-113 | Backups | iCloud backs up Documents (downloads too) | `allowBackup=true` | NATIVE | | Downloads excluded from iCloud backup (re-downloadable); preferences backed up on both | — | ◐ |
 | F-114 | URL schemes (Google, LinkedIn) | Declared, unused | — | BROKEN | | Not carried over | D-006 | ✖ |
 | F-115 | Face ID string, Sign in with Apple entitlement | Declared, unused | — | BROKEN | | Not carried over | D-006 | ✖ |
 | F-116 | Unused HTML pages | 10 files | 5 files | BROKEN | | Converted to Markdown in `content/archive/` for reference, not shipped | D-006 | ✖ |

@@ -14,7 +14,8 @@ platform image is rendered from that drawing:
     ios/Runner/Assets.xcassets/AppIcon*.appiconset
         AppIcon (prod and staging builds use their own set, see APP_ICON_NAME in
         ios/Flutter/<flavour>.xcconfig): light, dark (transparent) and tinted (grey) variants
-    android/app/src/main/res/                   adaptive icon: foreground + monochrome layers
+    android/app/src/main/res/                   adaptive icon: foreground + monochrome layers,
+                                                and drawable-*/ic_notification.png (playback)
     android/app/src/<flavour>/res/              adaptive background + classic icons (Android 7)
 
 dev and staging differ from prod only in the background colour, so a test build is never
@@ -326,6 +327,26 @@ def write_android() -> None:
     print(f"Android foreground scale {scale}")
 
 
+def notification_icon(size: int) -> Image.Image:
+    """The status-bar icon for the playback notification: the white silhouette filling the
+    24 dp box less 2 dp padding (Android's notification icon grid)."""
+    big = monochrome(1.0, 1024)
+    mark = big.crop(big.getchannel("A").getbbox())
+    inner = round(size * 20 / 24)
+    w, h = mark.size
+    k = inner / max(w, h)
+    mark = mark.resize((max(1, round(w * k)), max(1, round(h * k))), Image.LANCZOS)
+    out = Image.new("RGBA", (size, size), (255, 255, 255, 0))
+    out.paste(mark, ((size - mark.width) // 2, (size - mark.height) // 2), mark)
+    return out
+
+
+def write_notification_icon() -> None:
+    main = ANDROID_RES / "main" / "res"
+    for d, k in ANDROID_DENSITIES.items():
+        save_png(notification_icon(round(24 * k)), main / f"drawable-{d}" / "ic_notification.png")
+
+
 def squircle_mask(size: int) -> Image.Image:
     """Approximates the iOS icon shape, for the preview sheet only."""
     import math
@@ -400,6 +421,7 @@ def main() -> int:
     write_masters()
     write_ios()
     write_android()
+    write_notification_icon()
     write_preview()
     print("Icons written; see assets/branding/preview.png")
     return 0

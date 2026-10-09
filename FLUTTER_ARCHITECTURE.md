@@ -260,14 +260,27 @@ new app.
 - `audio_session` configures the `playback` category, handles interruptions (calls, Siri) and
   "becoming noisy" (headphones unplugged → pause).
 - Source choice per track: local file if downloaded **and** Premium (A-05), otherwise the
-  stream.
+  stream. Offline, the queue holds only the album's downloaded tracks; a track that cannot
+  play offline is refused before anything starts ("Connect to the internet to play this
+  track").
+- As built (P3): `AudioEngine` (features/audio/data) is the interface the screens use;
+  `JustAudioHandler` is the real one (an `audio_service` handler wrapping `just_audio`), tests
+  use a fake. `PlayerController` holds the snapshot, chooses sources, applies the ad rule before
+  a track starts (never during playback, F-068) and saves the resume position every 5 s and on
+  pause (`audio.positions`). Lock-screen artwork comes from `assets/images/albums/<id>.png`
+  (tool/build_album_art.py), copied to the cache folder because the media session needs a file
+  URI. The Android activity extends `AudioServiceActivity`; the notification icon is
+  `drawable/ic_notification` (tool/build_icons.py). Transcripts use the reading text size, as
+  the native player did.
 
 ### 10.2 Downloads — `background_downloader` 9.6
 iOS background `URLSession` and Android WorkManager behind one API. It handles progress,
 resume after app kill, a concurrency limit (2, as today), Wi-Fi-only constraint, and retries.
-Destination per platform as in §9. Downloaded audio is excluded from iCloud backup through a
-one-line native call in the platform plugin (it is re-downloadable). Final size is checked
-against the expected size before marking a track downloaded.
+Destination per platform as in §9. Downloaded audio is excluded from iCloud backup (it is
+re-downloadable): new downloads through the downloader's `excludeFromCloudBackup` setting, the
+native app's files through the platform plugin during m008. A track counts as downloaded only
+when the downloader reports it complete **and** the file is on disk and not empty; the files on
+disk are re-checked at every start, so a file removed behind the app's back never shows ✓.
 
 ### 10.3 Purchases — `in_app_purchase` 3.3 (StoreKit 2 / Play Billing 8)
 - `PurchaseGateway` wraps the plugin: product query, buy, restore, the purchase stream, and

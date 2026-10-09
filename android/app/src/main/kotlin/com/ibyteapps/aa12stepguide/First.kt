@@ -1,6 +1,6 @@
 package com.ibyteapps.aa12stepguide
 
-import io.flutter.embedding.android.FlutterActivity
+import com.ryanheise.audioservice.AudioServiceActivity
 import io.flutter.embedding.engine.FlutterEngine
 
 /**
@@ -12,8 +12,10 @@ import io.flutter.embedding.engine.FlutterEngine
  * the name means the icon survives the upgrade to 2.0 (MIGRATION_PLAN.md §2).
  *
  * Do not rename this class or its manifest entry.
+ *
+ * It extends audio_service's activity so the media service and the UI share one Flutter engine.
  */
-class First : FlutterActivity() {
+class First : AudioServiceActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         LegacyMigrationPlugin.register(flutterEngine, this)
