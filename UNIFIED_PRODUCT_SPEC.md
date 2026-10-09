@@ -238,7 +238,7 @@ instantly and persist.
 3. **Prayers** — Serenity Prayer, Serenity Prayer (Extended), Third Step, Seventh Step,
    Eleventh Step, The Lord's Prayer.
 4. **Readings** — How It Works, The Twelve Traditions, The Promises, The Preamble, Just for
-   Today, On Awakening, When We Retire, A Vision for You **[A-03 naming]**.
+   Today, On Awakening, When We Retire, A Vision for You **[D-005 naming]**.
 5. **Sobriety tips** — How to use the Big Book, How to find a sponsor, Sobriety & recovery,
    12 years on.
 Section headers are real headings for screen readers.

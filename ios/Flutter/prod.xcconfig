@@ -1,0 +1,5 @@
+// prod flavour: the App Store build.
+// APP_BUNDLE_ID MUST NOT CHANGE: it is the App Store listing (id 1238097883), the `annual`
+// subscription and the donation purchases (FLUTTER_ARCHITECTURE.md §0).
+APP_BUNDLE_ID = com.ibyteapps.aa12stepguide
+APP_DISPLAY_NAME = 12 Step Guide

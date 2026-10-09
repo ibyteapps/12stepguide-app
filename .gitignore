@@ -8,8 +8,22 @@ z.txt
 build/
 .flutter-plugins
 .flutter-plugins-dependencies
-.fvm/flutter_sdk
+.pub-cache/
+.pub/
+.fvm/
 coverage/
+migrate_working_dir/
+.widget_preview/
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.build/
+.swiftpm/
+/android/app/debug
+/android/app/profile
+/android/app/release
+# Symbolication and obfuscation maps (kept with each release build, not in git)
+app.*.symbols
+app.*.map.json
 
 # Secrets and per-machine config
 config/*.json
@@ -30,5 +44,8 @@ firebase_options.dart
 *.iml
 .vscode/
 .DS_Store
+*.class
+*.log
+*.swp
 __pycache__/
 *.pyc

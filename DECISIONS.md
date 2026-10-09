@@ -58,3 +58,35 @@ Every HTML document from both apps is converted to a standard Markdown file
 There is no iOS project newer than `Work/Apple/12StepGuideAA/workspace`. It is treated as the
 source of the live 1.51 build. The mismatch between the project's 1.21 and the store's 1.51
 stays unexplained and does not matter: 2.0.0 is above both.
+
+## D-005 — AAWS-compliant names on both platforms, no circle-and-triangle symbol
+**Decided 2026-10-09 · Tushar** (was A-03)
+
+Both platforms use the names iOS adopted in 1.21 for the 2021 "AAWS Complaint Compliance"
+release. The places iOS 1.21 missed are renamed as well. The A.A. circle-and-triangle symbol
+is not used anywhere in the app, its icons or its store artwork.
+
+| Today | 2.0 |
+|---|---|
+| "AA Big Book", "AA Big Book Text", "Big Book - Alcoholics Anonymous" (segment, album short name, onboarding) | "The Big Book" |
+| "Alcoholics Anonymous Literature" (iOS Literature header) | "Readings" (the tab, D-001) |
+| "AA Daily Reflections", "Today's AA Daily Reflection ↗", "Link – Opens Official AA Website" | "Daily Reflections ↗" with "Opens the official aa.org page" |
+| "AA Preamble", "AA 12 Traditions" (Android) | "The Preamble", "The Twelve Traditions" |
+| "AA Speaker Tapes" | "Speaker Tapes" |
+| "Recovery Box - AA 12 Step Toolkit" | "12 Step Toolkit" |
+| "AA 12 Step Guide" (iOS share text) | "12 Step Guide" |
+| Circle-and-triangle list icon (`ic_sobersince` beside "Introduction" on iOS; Android list icon) | Number badge / Material Symbol |
+
+*What this commits us to:*
+- App titles, headers, onboarding, share text, notifications and the drawer carry no "AA"
+  prefix. The About page carries the disclaimer: "not affiliated with or endorsed by Alcoholics
+  Anonymous or A.A. World Services, Inc." (UX_UI_SPEC §10).
+- The literature and recordings keep their own titles and words: "Alcoholics Anonymous Number
+  Three", the Joe and Charlie talks "AA History – Part 1–4", and the book's text are the names
+  of the works, not app branding. Changing them would be a content edit (content/README.md).
+- The name under the icon is a separate decision (A-02, still open; Android today shows
+  "12 Step Guide - AA"). Until it is decided the prod builds keep each platform's current name.
+- Android users will see renamed titles; the "What's new" text says so (MIGRATION_PLAN §8).
+- The store listings should follow the same naming. That is done in App Store Connect and the
+  Play Console, not in the app.
+- FEATURE_MATRIX rows F-010, F-020 and F-022 now cite D-005.

@@ -40,6 +40,7 @@ and how to back out if it goes wrong.
 | URL schemes / deep links | Google + LinkedIn schemes (unused) | none | Dropped (A-09); no inbound links exist |
 | Notification channel ids | n/a | none existed | New ids (no legacy settings to preserve) |
 | Min OS | 12.1 → **15.0** | 23 → **24** | §8 |
+| Launcher activity | n/a | `com.ibyteapps.aa12stepguide.First` | Keep: the Flutter activity is named `First`, so home-screen icons that point at this component survive the update (some launchers delete an icon whose activity disappears) |
 
 ---
 
@@ -220,7 +221,7 @@ the Reminders page). Android 13+ asks for `POST_NOTIFICATIONS` at that moment.
 | iOS adds `PrivacyInfo.xcprivacy` (UserDefaults, file timestamp, disk space reasons) | — | Required for submission |
 | App Store privacy label: "Data Not Collected" → must declare Identifiers (device ID for ads), Usage Data, Diagnostics, linked to tracking = No | iOS | Update before submission (R-10) |
 | Play Data safety: device ids (ads, analytics), crash logs, app interactions; "data can't be deleted" stays (no server data) | Android | Update before rollout |
-| Android naming brought in line with AAWS compliance (A-03) | Android users | "What's new" mentions the new look |
+| Android naming brought in line with AAWS compliance (D-005) | Android users | "What's new" mentions the new look |
 | Play app name (A-02) | Android | Listing change |
 
 ---
@@ -232,7 +233,7 @@ the Reminders page). Android 13+ asks for `POST_NOTIFICATIONS` at that moment.
 | R-01 | Android donors lose ad-free status after a reinstall | Medium | Medium (goodwill) | §5.2 recommendation |
 | R-02 | Audio host down or slow; no monitoring | Low–Medium | High (Android users newly depend on it) | Uptime check on one track URL; graceful errors; ask about a CDN (Q-B1) |
 | R-03 | Users on iOS 12–14 / Android 6 stop getting updates | Certain for them | Low (they keep the old app) | Release notes; data check first |
-| R-04 | AAWS compliance on Android | Unknown | High (takedown) | Apply iOS naming everywhere (A-03); owner to share the complaint scope (Q-L1) |
+| R-04 | AAWS compliance on Android | Unknown | High (takedown) | iOS naming applied everywhere, gaps closed (D-005); complaint scope still unknown (Q-L1) |
 | R-05 | UMP lowers EEA/UK ad revenue at first | High | Medium | Required by Google; no alternative |
 | R-06 | Step-guide text change noticed by one audience | Certain | Low–Medium | A-08; mention in release notes |
 | R-07 | Toolkit server cut-over breaks `/universal/1/mail.php`, which the **old** iOS contact form uses | Medium | Low–Medium | Keep or redirect that path in the Toolkit Laravel app until 2.0 adoption is high; A-14 removes the dependency from 2.0 |

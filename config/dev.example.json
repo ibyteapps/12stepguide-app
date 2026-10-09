@@ -1,0 +1,4 @@
+{
+  "_comment": "Copy to config/dev.json (gitignored) and run with: flutter run --flavor dev --dart-define-from-file=config/dev.json. Every key is read with String.fromEnvironment, a compile-time constant: a missing key is an empty string, not an error, so keep names exact. Keys arrive with the features that read them (FLUTTER_ARCHITECTURE.md §9). Never put a password, signing key or server secret in any config file.",
+  "ENV": "dev"
+}

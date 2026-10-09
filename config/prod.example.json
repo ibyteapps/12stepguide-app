@@ -1,0 +1,4 @@
+{
+  "_comment": "Copy to config/prod.json (gitignored) and fill in. Build with --flavor prod --dart-define-from-file=config/prod.json. The AdMob unit ids and other live values are added here in the phase that uses them; they stay out of git because a value baked into a release cannot be changed without another release.",
+  "ENV": "prod"
+}

@@ -1,0 +1,4 @@
+// dev flavour: local development and CI builds. Installs beside the store app.
+// Pairs with config/dev.json (FLUTTER_ARCHITECTURE.md §9).
+APP_BUNDLE_ID = com.ibyteapps.aa12stepguide.dev
+APP_DISPLAY_NAME = 12SG Dev

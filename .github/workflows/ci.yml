@@ -1,0 +1,61 @@
+# Every push and pull request: static checks, tests and the literature check (Linux, fast).
+# FLUTTER_ARCHITECTURE.md §14.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Analyze, test, content
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Read the pinned Flutter version (.fvmrc)
+        id: fvm
+        run: echo "flutter=$(jq -r .flutter .fvmrc)" >> "$GITHUB_OUTPUT"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm.outputs.flutter }}
+          channel: stable
+          cache: true
+
+      - run: flutter --version
+      - run: flutter pub get
+
+      - name: Format
+        run: tool/ci/run_logged.sh "Format" dart format --output=none --set-exit-if-changed lib test
+
+      - name: Analyze
+        run: tool/ci/run_logged.sh "Analyze" flutter analyze
+
+      - name: Test
+        run: tool/ci/run_logged.sh "Test" flutter test
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Literature is the converter's exact output, word for word
+        run: |
+          pip install -r tool/requirements.txt
+          tool/ci/run_logged.sh "Literature check" python3 tool/html_to_markdown.py --check
+          # Any change means content/ was hand-edited or the converter changed without a re-run.
+          changed="$(git status --porcelain -- content)"
+          if [ -n "$changed" ]; then
+            echo "::error title=content/ differs from the converter output::$(echo "$changed" | head -n 40 | awk '{printf "%s%%0A", $0}')"
+            exit 1
+          fi

@@ -1,0 +1,4 @@
+{
+  "_comment": "Copy to config/staging.json (gitignored). Build with --flavor staging --dart-define-from-file=config/staging.json. Staging uses the production app ids with Google's test ads and analytics off; it goes to TestFlight internal and Play internal testing only and is never promoted to production.",
+  "ENV": "staging"
+}

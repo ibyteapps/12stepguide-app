@@ -1,0 +1,5 @@
+// staging flavour: the production bundle id, so it upgrades over the store app the way the
+// real release will. Test ads and analytics off (config/staging.json). TestFlight internal only;
+// never submitted for review.
+APP_BUNDLE_ID = com.ibyteapps.aa12stepguide
+APP_DISPLAY_NAME = 12SG Staging

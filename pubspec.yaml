@@ -1,0 +1,28 @@
+name: twelve_step_guide
+description: "12 Step Guide — the unified Flutter app replacing the native iOS and Android builds."
+publish_to: 'none'
+
+# 2.0.0+100 replaces the native apps: iOS shipped 1.51, Android versionCode 29.
+# Build numbers only go up (FLUTTER_ARCHITECTURE.md §0).
+version: 2.0.0+100
+
+environment:
+  sdk: ^3.13.5
+  # Pinned in .fvmrc and in CI; this is the floor.
+  flutter: ">=3.47.7"
+
+# Packages arrive with the phase that needs them (FLUTTER_ARCHITECTURE.md §15).
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  # `flutter run` with no --flavor builds dev. Pass the matching config too:
+  #   flutter run --dart-define-from-file=config/dev.json
+  default-flavor: dev

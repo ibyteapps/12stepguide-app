@@ -1,0 +1,79 @@
+# Android builds: dev debug APK and prod release bundle, with the ids and versions inside them
+# checked (tool/ci/verify_build.py). FLUTTER_ARCHITECTURE.md §14.
+#
+# The repository is public, so GitHub-hosted runners cost nothing; this runs on every push to
+# main as well as on pull requests.
+name: Android
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  BUNDLETOOL_VERSION: "1.18.3"
+
+jobs:
+  build:
+    name: Build and verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Read the pinned Flutter version (.fvmrc)
+        id: fvm
+        run: echo "flutter=$(jq -r .flutter .fvmrc)" >> "$GITHUB_OUTPUT"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm.outputs.flutter }}
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+
+      # CI has no real config files; the committed examples carry no secrets and are enough to
+      # build. Store builds use the owner's real config/*.json.
+      - name: Config from examples
+        run: for env in dev staging prod; do cp config/$env.example.json config/$env.json; done
+
+      - name: Build dev debug APK
+        run: tool/ci/run_logged.sh "Build dev APK" flutter build apk --debug --flavor dev --dart-define-from-file=config/dev.json
+
+      - name: Build prod release bundle
+        run: tool/ci/run_logged.sh "Build prod bundle" flutter build appbundle --release --flavor prod --dart-define-from-file=config/prod.json
+
+      - name: Fetch bundletool
+        run: |
+          curl -sSL -o "$RUNNER_TEMP/bundletool.jar" \
+            "https://github.com/google/bundletool/releases/download/${BUNDLETOOL_VERSION}/bundletool-all-${BUNDLETOOL_VERSION}.jar"
+          echo "BUNDLETOOL_JAR=$RUNNER_TEMP/bundletool.jar" >> "$GITHUB_ENV"
+
+      - name: Verify ids and versions
+        run: |
+          tool/ci/run_logged.sh "Verify dev APK" python3 tool/ci/verify_build.py android-apk build/app/outputs/flutter-apk/app-dev-debug.apk dev
+          tool/ci/run_logged.sh "Verify prod bundle" python3 tool/ci/verify_build.py android-aab build/app/outputs/bundle/prodRelease/app-prod-release.aab prod
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: android-${{ github.sha }}
+          path: |
+            build/app/outputs/flutter-apk/app-dev-debug.apk
+            build/app/outputs/bundle/prodRelease/app-prod-release.aab
+          retention-days: 14
+          if-no-files-found: error
