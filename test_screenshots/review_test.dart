@@ -5,6 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:twelve_step_guide/core/prefs/key_value_store.dart';
+import 'package:twelve_step_guide/features/audio/application/downloads_controller.dart';
+import 'package:twelve_step_guide/features/audio/application/player_controller.dart';
+import 'package:twelve_step_guide/features/audio/data/download_gateway.dart';
 
 import '../test/helpers/test_app.dart';
 import 'screenshot_harness.dart';
@@ -13,8 +16,32 @@ typedef Scenario = ({
   String name,
   String location,
   Map<String, Object> prefs,
-  Future<void> Function(WidgetTester tester)? act,
+  Future<void> Function(WidgetTester tester, TestApp app)? act,
 });
+
+const _premium = {PrefKeys.legacyLifetime: true, PrefKeys.legacySource: 'ios-donation'};
+
+/// Starts album [albumId] at [index], as a tap on the track would.
+Future<void> play(TestApp app, int albumId, int index, {int seconds = 0}) async {
+  await app.container.read(playerProvider.notifier).playAlbum(testCatalogue.album(albumId)!, index);
+  app.audio.emit(app.audio.value.copyWith(position: Duration(seconds: seconds)));
+}
+
+/// Some tracks downloaded, one downloading, one waiting.
+void downloads(TestApp app, int albumId, {int done = 3}) {
+  final album = testCatalogue.album(albumId)!;
+  for (final t in album.tracks.take(done)) {
+    writeTrackFile(app.audioDir, t, bytes: t.approxBytes ?? 1000000);
+  }
+  app.container.read(downloadsProvider.notifier).adopt([
+    for (final t in album.tracks.take(done)) t.id,
+  ]);
+  if (album.tracks.length > done + 1) {
+    app.downloads
+      ..emit(DownloadEvent(album.tracks[done].id, DownloadEventKind.progress, progress: 0.62))
+      ..emit(DownloadEvent(album.tracks[done + 1].id, DownloadEventKind.queued));
+  }
+}
 
 final scenarios = <Scenario>[
   (name: 'steps', location: '/steps', prefs: {}, act: null),
@@ -46,7 +73,47 @@ final scenarios = <Scenario>[
     act: null,
   ),
   (name: 'appearance', location: '/appearance', prefs: {}, act: null),
-  (name: 'drawer', location: '/steps', prefs: {}, act: (tester) => openDrawer(tester)),
+  (name: 'drawer', location: '/steps', prefs: {}, act: (tester, _) => openDrawer(tester)),
+  (
+    name: 'audio',
+    location: '/audio',
+    prefs: _premium,
+    act: (tester, app) async {
+      downloads(app, 1, done: 34);
+      downloads(app, 3, done: 4);
+      await play(app, 1, 5, seconds: 740);
+    },
+  ),
+  (
+    name: 'album',
+    location: '/audio/album/1',
+    prefs: _premium,
+    act: (tester, app) async {
+      downloads(app, 1);
+      await play(app, 1, 1, seconds: 312);
+    },
+  ),
+  (
+    name: 'player-transcript',
+    location: '/player',
+    prefs: {},
+    act: (tester, app) => play(app, 2, 5, seconds: 1210),
+  ),
+  (
+    name: 'player-artwork',
+    location: '/player',
+    prefs: {},
+    act: (tester, app) => play(app, 9, 1, seconds: 1622),
+  ),
+  (
+    name: 'downloads',
+    location: '/downloads',
+    prefs: _premium,
+    act: (tester, app) async {
+      downloads(app, 1, done: 12);
+      downloads(app, 7, done: 9);
+    },
+  ),
   (name: 'onboarding', location: '/onboarding', prefs: {PrefKeys.onboardingDone: false}, act: null),
   (name: 'about', location: '/about', prefs: {}, act: null),
   (name: 'other-apps', location: '/other-apps', prefs: {}, act: null),
@@ -64,7 +131,7 @@ void main() {
           debugDefaultTargetPlatformOverride = device.platform;
           debugDisableShadows = false;
           try {
-            await pumpApp(
+            final app = await pumpApp(
               tester,
               location: s.location,
               prefs: s.prefs,
@@ -73,7 +140,7 @@ void main() {
               themeMode: mode,
             );
             await settleForCapture(tester);
-            await s.act?.call(tester);
+            await s.act?.call(tester, app);
             await settleForCapture(tester);
             await expectLater(
               find.byKey(appBoundaryKey),

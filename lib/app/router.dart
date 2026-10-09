@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../design/tokens/spacing.dart';
 import '../features/appearance/appearance_screen.dart';
 import '../features/audio/presentation/album_screen.dart';
 import '../features/audio/presentation/audio_screen.dart';
@@ -73,7 +74,24 @@ GoRouter buildRouter({required String initialLocation, List<NavigatorObserver>? 
       root(Routes.onboarding, (_) => const OnboardingScreen()),
       root(Routes.welcomeBack, (_) => const WelcomeBackScreen()),
       root(Routes.recoveryDate, (_) => const RecoveryDateScreen()),
-      root(Routes.player, (_) => const PlayerScreen(), dialog: true),
+      GoRoute(
+        path: Routes.player,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          opaque: false,
+          transitionDuration: Motion.of(context, Motion.slow),
+          reverseTransitionDuration: Motion.of(context, Motion.medium),
+          transitionsBuilder: (context, animation, _, child) => SlideTransition(
+            position: Tween(
+              begin: const Offset(0, 1),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(parent: animation, curve: Motion.emphasised)),
+            child: child,
+          ),
+          child: const PlayerScreen(),
+        ),
+      ),
       root(Routes.premium, (_) => const PremiumScreen()),
       root(Routes.paywall, (_) => const PaywallScreen(), dialog: true),
       root(Routes.reminders, (_) => const RemindersScreen()),

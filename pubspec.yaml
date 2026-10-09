@@ -13,7 +13,9 @@ environment:
 
 # Packages arrive with the phase that needs them (FLUTTER_ARCHITECTURE.md §15).
 dependencies:
+  audio_service: ^0.18.19
   audio_session: ^0.2.4
+  background_downloader: ^9.6.4
   connectivity_plus: ^7.3.2
   flutter:
     sdk: flutter
@@ -46,6 +48,7 @@ flutter:
     - assets/quotes.txt
     - assets/sounds/
     - assets/images/
+    - assets/images/albums/
     - content/steps/
     - content/traditions/
     - content/readings/

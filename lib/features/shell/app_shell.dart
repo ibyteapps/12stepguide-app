@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/providers.dart';
+import '../../core/platform/connectivity.dart';
 import '../../core/prefs/key_value_store.dart';
 import '../../design/components/app_icons.dart';
 import '../../design/theme/app_colors.dart';
@@ -35,6 +36,9 @@ class AppShell extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Keeps the connection watch running for the whole session, so "offline" is known before
+    // any audio or link needs it (F-112).
+    ref.listen(onlineProvider, (_, _) {});
     final width = MediaQuery.sizeOf(context).width;
     final useRail = width >= Breakpoints.medium;
     final c = context.colors;
@@ -42,7 +46,8 @@ class AppShell extends ConsumerWidget {
     final body = Column(
       children: [
         Expanded(child: navigationShell),
-        const MiniPlayer(),
+        // With the rail there is no tab bar below to keep it clear of the home indicator.
+        if (useRail) const SafeArea(top: false, child: MiniPlayer()) else const MiniPlayer(),
       ],
     );
 

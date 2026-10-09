@@ -116,7 +116,8 @@ class RowGroup extends StatelessWidget {
       padding: margin ?? const EdgeInsets.symmetric(horizontal: Space.l),
       child: ClipRRect(
         borderRadius: Radii.mdAll,
-        child: ColoredBox(
+        // Material, not a plain colour, so list tiles and switches inside show their ink.
+        child: Material(
           color: c.surface,
           child: Column(mainAxisSize: MainAxisSize.min, children: items),
         ),

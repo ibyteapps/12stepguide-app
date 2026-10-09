@@ -145,10 +145,8 @@ abstract final class PrefKeys {
   static const hourlyEnd = 'reminders.hourly.end';
   static const nudgesEnabled = 'reminders.nudges.enabled';
 
-  // Audio
+  // Audio (transcripts use the reading text size, as the native player did)
   static const trackPositions = 'audio.positions';
-  static const lastTrack = 'audio.lastTrack';
-  static const transcriptStep = 'audio.transcriptStep';
   static const wifiOnly = 'downloads.wifiOnly';
   static const downloadedTracks = 'downloads.tracks';
 

@@ -5,11 +5,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../core/config/app_config.dart';
 import '../core/logging/log.dart';
 import '../core/platform/legacy_bridge.dart';
 import '../core/prefs/key_value_store.dart';
+import '../features/audio/application/artwork.dart';
+import '../features/audio/application/downloads_controller.dart';
+import '../features/audio/application/player_controller.dart';
+import '../features/audio/data/audio_engine.dart';
+import '../features/audio/data/download_gateway.dart';
+import '../features/audio/data/just_audio_handler.dart';
 import '../features/audio/domain/catalogue.dart';
 import '../features/content/domain/content_index.dart';
 import '../features/migration/migration.dart';
@@ -57,7 +64,12 @@ Future<void> bootstrap() async {
       .toList();
   final package = results[3] as PackageInfo;
 
-  final launch = await prepareLaunch(store: store, bridge: const MethodChannelLegacyBridge());
+  final launch = await prepareLaunch(
+    store: store,
+    bridge: const MethodChannelLegacyBridge(),
+    steps: migrationSteps(catalogue),
+  );
+  final audio = await startAudio();
   final router = buildRouter(initialLocation: initialLocation(store));
 
   runApp(
@@ -68,6 +80,10 @@ Future<void> bootstrap() async {
         contentIndexProvider.overrideWithValue(index),
         catalogueProvider.overrideWithValue(catalogue),
         quotesProvider.overrideWithValue(quotes),
+        audioEngineProvider.overrideWithValue(audio.engine),
+        audioFilesProvider.overrideWithValue(audio.files),
+        downloadGatewayProvider.overrideWithValue(audio.downloads),
+        artworkProvider.overrideWithValue(audio.artwork),
         launchInfoProvider.overrideWithValue(
           LaunchInfo(
             launchCount: launch.launchCount,
@@ -83,23 +99,58 @@ Future<void> bootstrap() async {
   );
 }
 
+/// Background audio and downloads (FLUTTER_ARCHITECTURE §10.1, §10.2). Downloads live where the
+/// native apps kept them: iOS `Documents/{file}` (so its downloads are reused in place) and
+/// Android `filesDir/audio/{file}`.
+Future<({AudioEngine engine, AudioFiles files, DownloadGateway downloads, ArtworkSource artwork})>
+startAudio() async {
+  final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
+  final dir = isIOS
+      ? (await getApplicationDocumentsDirectory()).path
+      : '${(await getApplicationSupportDirectory()).path}/audio';
+  final cache = (await getApplicationCacheDirectory()).path;
+
+  AudioEngine engine;
+  try {
+    engine = await JustAudioHandler.start();
+  } on Object catch (error, stack) {
+    // Without the media service, audio still plays while the app is open.
+    Log.e('Audio service failed to start', error, stack);
+    engine = JustAudioHandler();
+  }
+
+  final downloads = BackgroundDownloaderGateway(isIOS: isIOS);
+  try {
+    await downloads.start();
+  } on Object catch (error, stack) {
+    Log.e('Downloader failed to start', error, stack);
+  }
+  return (
+    engine: engine,
+    files: AudioFiles(dir),
+    downloads: downloads,
+    artwork: BundledArtwork('$cache/artwork') as ArtworkSource,
+  );
+}
+
 /// The steps the migration runs, in order (MIGRATION_PLAN §3).
-List<MigrationStep> migrationSteps() => const [
-  LaunchAndOnboardingStep(),
-  SobrietyDateStep(),
-  TextSizeStep(),
-  PremiumStep(),
-  AdPacingStep(),
-  ReviewStep(),
-  CoachMarkStep(),
+List<MigrationStep> migrationSteps(Catalogue catalogue) => [
+  const LaunchAndOnboardingStep(),
+  const SobrietyDateStep(),
+  const TextSizeStep(),
+  const PremiumStep(),
+  const AdPacingStep(),
+  const ReviewStep(),
+  DownloadsStep(catalogue),
+  const CoachMarkStep(),
 ];
 
 /// Runs the migration (on iOS and Android only) and counts this launch.
 Future<({int launchCount, bool isUpgrade})> prepareLaunch({
   required KeyValueStore store,
   required LegacyBridge bridge,
+  required List<MigrationStep> steps,
   DateTime Function() clock = DateTime.now,
-  List<MigrationStep>? steps,
 }) async {
   var isUpgrade = false;
   final platform = switch (defaultTargetPlatform) {
@@ -113,7 +164,7 @@ Future<({int launchCount, bool isUpgrade})> prepareLaunch({
         store: store,
         bridge: bridge,
         platform: platform,
-        steps: steps ?? migrationSteps(),
+        steps: steps,
         now: clock(),
       ).run();
       isUpgrade = outcome.isUpgrade;

@@ -8,6 +8,8 @@ import 'package:twelve_step_guide/core/platform/legacy_bridge.dart';
 import 'package:twelve_step_guide/core/prefs/key_value_store.dart';
 import 'package:twelve_step_guide/features/migration/migration.dart';
 
+import '../helpers/test_app.dart';
+
 class FixtureBridge implements LegacyBridge {
   FixtureBridge(Map<String, Object?> prefs, {this.throws = false})
     : prefs = Map.unmodifiable(prefs);
@@ -53,7 +55,7 @@ Future<MigrationOutcome> migrate(
   store: store,
   bridge: bridge,
   platform: platform,
-  steps: steps ?? migrationSteps(),
+  steps: steps ?? migrationSteps(testCatalogue),
   now: now,
 ).run();
 
@@ -221,7 +223,7 @@ void main() {
     test('a failing step is recorded, retried next launch, and blocks nothing', () async {
       final store = MemoryStore();
       final bridge = FixtureBridge({'launchcount': 3, 'KEY_DATA_INT_FONT_SIZE': 30});
-      final steps = [...migrationSteps(), const _Boom()];
+      final steps = [...migrationSteps(testCatalogue), const _Boom()];
       final first = await migrate(store, bridge, LegacyPlatform.ios, steps: steps);
       expect(first.failed, ['m999']);
       expect(store.getInt(PrefKeys.textStep), 8);
@@ -252,6 +254,7 @@ void main() {
       final launch = await prepareLaunch(
         store: store,
         bridge: FixtureBridge({'launchcount': 23}),
+        steps: migrationSteps(testCatalogue),
         clock: () => now,
       );
       // Tests run as Android, so the iOS key is not recognised: a first launch.

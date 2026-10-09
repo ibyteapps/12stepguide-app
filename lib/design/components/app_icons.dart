@@ -50,6 +50,8 @@ abstract final class AppIcons {
   static const IconData download = Symbols.download_rounded;
   static const IconData downloaded = Symbols.download_done_rounded;
   static const IconData equaliser = Symbols.graphic_eq_rounded;
+  static const IconData stop = Symbols.stop_rounded;
+  static const IconData album = Symbols.album_rounded;
 
   // General
   static const IconData back = Symbols.arrow_back_rounded;

@@ -95,7 +95,8 @@ Future<void> loadFonts() async {
 
 /// Lets asset loads (documents, images) finish, decodes every image on screen, then settles.
 Future<void> settleForCapture(WidgetTester tester) async {
-  for (var i = 0; i < 25; i++) {
+  // Long documents (a Big Book chapter) take a few seconds to parse on a busy CI machine.
+  for (var i = 0; i < 80; i++) {
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 80)));
     await tester.pump(const Duration(milliseconds: 50));
     if (i >= 2 && find.byType(SkeletonLines).evaluate().isEmpty) break;
