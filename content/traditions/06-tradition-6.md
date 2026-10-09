@@ -1,0 +1,58 @@
+---
+id: "traditions/06-tradition-6"
+title: "Tradition 6"
+collection: "traditions"
+order: 6
+subtitle: "An A.A. group ought never endorse, finance or lend the A.A. name to any related facility or outside enterprise, lest problems of money, property and prestige divert us from our primary purpose."
+source: "android/guide/tradition6.html"
+---
+
+# Tradition 6: An A.A. group ought never endorse, finance, or lend the A.A. name to any related facility or outside enterprise, lest problems of money, property, and prestige divert us from our primary purpose.
+
+Tradition 6 serves as a crucial safeguard for Alcoholics Anonymous (A.A.), preventing the fellowship from being pulled in multiple directions by the allure of money, power, or prestige. When A.A. was still in its infancy, the fellowship began to experience the temptations that arise when a successful movement like A.A. gains momentum. Alcoholics who had found a solution to their own drinking problem started believing they could apply the same principles to solve a wide range of other societal issues. While well-intentioned, these early attempts threatened to pull A.A. away from its singular focus: helping alcoholics recover.
+
+## The Temptations of Expansion and Affiliation
+
+As alcoholics began to recover in the early days of A.A., a new kind of madness took hold. Members began to think that because they had found a solution to the devastating problem of alcoholism, they could now solve all the world’s problems. With their newfound clarity and enthusiasm, some early A.A. members proposed forming hospitals to treat alcoholics, reforming the prison system, or even taking on political causes. There were grand visions of expanding A.A.’s influence into education, healthcare, and even legislation. These ideas, though well-meaning, started to shift the focus of the fellowship away from its primary purpose.
+
+The danger was clear: if A.A. began lending its name and resources to outside enterprises, the fellowship would risk being distracted by the complex and contentious issues that come with money, property, and prestige. The moment A.A. became affiliated with hospitals, schools, or political movements, it would be drawn into battles over finances, legal matters, and public image. Worse, it might start to lose its focus on helping alcoholics stay sober. Tradition 6 was established to prevent this from happening. By staying out of outside ventures, A.A. ensures that it remains focused on what it does best—helping alcoholics recover.
+
+## How Tradition 6 Protects A.A.’s Integrity
+
+The essence of Tradition 6 is about protecting the integrity of A.A. and ensuring that the fellowship never becomes entangled in controversies that could divert attention away from its primary purpose. Problems of money, property, and prestige are often the downfall of organizations, as they introduce politics, competition, and corruption. A.A. recognized this early on and took proactive steps to ensure that it would never be drawn into such issues. By refusing to endorse, finance, or affiliate with any outside entity, A.A. has maintained its independence, neutrality, and singular focus.
+
+Even organizations closely related to A.A., like Al-Anon (which helps the families and loved ones of alcoholics), are not formally affiliated with A.A. Although A.A. and Al-Anon often work together and even share events, they remain entirely separate entities. This distinction is crucial because it ensures that A.A. doesn’t become responsible for the actions, finances, or controversies of any other group, even one as closely aligned as Al-Anon. This separation preserves A.A.’s independence and ensures that it can continue to focus solely on helping alcoholics recover without being drawn into the challenges of other organizations.
+
+The decision to keep A.A. separate from other enterprises wasn’t always easy. In the early days, there were numerous proposals for joint ventures, endorsements, and affiliations with various groups. But A.A. learned from experience that whenever it got involved with outside organizations, it encountered problems that threatened to destabilize the fellowship. Tradition 6 was created to prevent these issues from ever threatening A.A. again.
+
+## The Dangers of Money, Property, and Prestige
+
+Money, property, and prestige have long been sources of conflict for organizations, both big and small. They introduce power struggles, competition, and greed. Even well-meaning efforts can become mired in controversy when large amounts of money or valuable property are involved. In A.A.’s case, these dangers were particularly pronounced because the fellowship is built on the principle of equality—no one member or group is more important than another. Introducing money, property, or prestige into the equation could undermine this principle and create divisions within the fellowship.
+
+For example, if A.A. were to finance or endorse a treatment facility, it would inevitably become involved in the financial management of that facility. Decisions about how to allocate funds, how to manage the property, and how to handle employees would arise. These issues would distract A.A. from its core mission of helping alcoholics, and worse, they could create tensions within the fellowship. If some members felt that A.A. was mismanaging money or property, it could lead to disagreements, power struggles, and even legal battles.
+
+The same is true for prestige. If A.A. were to lend its name to an outside organization, it would risk being associated with that organization’s successes and failures. A.A. could find itself drawn into public controversies, debates, or scandals that had nothing to do with helping alcoholics recover. Worse, A.A.’s reputation could be tarnished if the organization it was affiliated with made poor decisions or became embroiled in a scandal.
+
+By adhering to Tradition 6, A.A. avoids these pitfalls. It remains focused on its primary purpose and stays out of the complex and often contentious world of money, property, and prestige. This allows A.A. to operate as a purely spiritual fellowship, where the only currency is experience, strength, and hope.
+
+## The Relationship with Al-Anon
+
+One of the clearest examples of Tradition 6 in action is A.A.’s relationship with Al-Anon. While Al-Anon is often referred to as A.A.’s "sister fellowship," it is not formally affiliated with A.A. This distinction is important because it allows each fellowship to operate independently, with its own structure, principles, and finances. Even though A.A. and Al-Anon often collaborate and share events, they remain separate entities.
+
+For example, at world conventions or mini-conventions, A.A. and Al-Anon may come together to celebrate recovery, but each fellowship maintains its autonomy. This arrangement allows both A.A. and Al-Anon to focus on their respective missions without becoming entangled in each other’s challenges or controversies. It also ensures that if one fellowship encounters difficulties—financial or otherwise—the other is not affected.
+
+This "special relationship" between A.A. and Al-Anon illustrates the wisdom of Tradition 6. It allows for collaboration without entanglement, ensuring that both fellowships can continue to focus on their primary purposes while maintaining their independence.
+
+## Sticking to the Basics
+
+Tradition 6 serves as a reminder that A.A. should always stick to the basics. The fellowship’s primary purpose is to help alcoholics recover, and anything that distracts from that mission should be avoided. A.A. does not need to solve the world’s problems or become involved in outside ventures. It has one job: to carry the message of recovery to alcoholics who are still suffering.
+
+By sticking to this simple yet profound mission, A.A. has been able to help millions of alcoholics around the world find sobriety and rebuild their lives. The fellowship has thrived for decades because it has stayed true to its core principles and avoided the distractions that come with money, property, and prestige.
+
+## Conclusion: Avoiding Distractions, Preserving Purpose
+
+Tradition 6 is one of the key traditions that has allowed Alcoholics Anonymous to remain focused on its mission of helping alcoholics recover. By refusing to endorse, finance, or affiliate with outside organizations, A.A. has protected itself from the distractions and conflicts that come with money, property, and prestige. This tradition ensures that A.A. remains a spiritual fellowship, focused solely on carrying the message of recovery to those who need it most.
+
+The lesson of Tradition 6 is clear: stick to the basics. A.A. does not need to involve itself in outside ventures, no matter how well-intentioned. The fellowship’s strength lies in its simplicity and its unwavering focus on helping alcoholics recover. By adhering to Tradition 6, A.A. ensures that it will continue to fulfill its primary purpose for generations to come.
+
+## Stick to the basics. There is nothing but the basics!

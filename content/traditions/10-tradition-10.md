@@ -1,0 +1,56 @@
+---
+id: "traditions/10-tradition-10"
+title: "Tradition 10"
+collection: "traditions"
+order: 10
+subtitle: "Alcoholics Anonymous has no opinion on outside issues; hence the A.A. name ought never be drawn into public controversy."
+source: "android/guide/tradition10.html"
+---
+
+# Tradition 10: Alcoholics Anonymous has no opinion on outside issues; hence the A.A. name ought never be drawn into public controversy.
+
+Tradition 10 serves as a shield for Alcoholics Anonymous (A.A.), protecting it from the divisive nature of public debate and outside controversies. The tradition ensures that A.A. remains focused on its primary purpose—helping alcoholics recover—without getting involved in issues that could distract or divide its members. This tradition has been vital to A.A.'s success over the decades, allowing the fellowship to grow and thrive without becoming embroiled in the social, political, or religious debates that have torn other organizations apart.
+
+## A.A.’s Unwavering Neutrality
+
+From its inception, A.A. has maintained a strict stance of neutrality when it comes to outside issues. The founders of A.A., particularly Bill W., understood that public controversies, whether political, religious, or social, could easily fracture the fellowship. Alcoholics, by nature, are passionate people, and many of us have strong opinions on a wide range of topics. It’s easy to see how discussions of these issues could lead to conflict within the fellowship. Tradition 10 was created to ensure that A.A. would never take sides or express an opinion on matters outside of its singular focus: helping alcoholics achieve and maintain sobriety.
+
+Imagine what would happen if A.A. were to take a stance on a controversial political issue. Immediately, members who disagreed with that stance might feel alienated or unwelcome. They might leave the fellowship, taking with them their experience, strength, and hope—resources that other alcoholics desperately need. Worse, public controversies could distract A.A. from its primary mission and erode the unity that is so essential to the fellowship’s success. Tradition 10 keeps A.A. free from these pitfalls, ensuring that the fellowship remains focused on what truly matters: carrying the message of recovery to the alcoholic who still suffers.
+
+## Learning from the Mistakes of the Past: The Washingtonians
+
+One of the most striking examples of why Tradition 10 is so important can be found in the history of the Washingtonians, a 19th-century temperance society that, at its peak, had over 150,000 members in the United States alone. Like A.A., the Washingtonians were founded to help alcoholics achieve sobriety. However, as the organization grew, its members became increasingly involved in political and social issues, including temperance reform, abolitionism, and other movements of the time.
+
+Initially, the Washingtonians were highly successful in helping alcoholics stay sober. But as they began to take public stances on controversial issues, divisions started to form within the organization. Members who disagreed with the group’s positions left, and the focus on sobriety was lost in the noise of political activism. Eventually, the Washingtonians disintegrated, and many of its members returned to drinking. While Bill W. and Dr. Bob, the founders of A.A., were unaware of the Washingtonians’ history when they started A.A., they later learned about the group and saw it as a cautionary tale. Tradition 10 was born out of this understanding, ensuring that A.A. would never repeat the mistakes of the Washingtonians.
+
+## The Wisdom of Staying Out of Public Controversy
+
+The decision to stay out of public controversies has been one of A.A.’s greatest strengths. In a world where social and political issues can spark heated debates and create deep divisions, A.A. has managed to stay above the fray, offering a safe space for alcoholics of all backgrounds to come together in pursuit of a common goal: sobriety. This doesn’t mean that A.A. members don’t have opinions on outside issues. Many of us care deeply about politics, religion, social justice, and other important matters. But Tradition 10 reminds us that A.A. is not the place to air those opinions.
+
+Personally, I’ve found that as I became more involved in A.A., I naturally began to step away from debates about outside issues. When I first got sober, I had strong opinions about politics and other controversial topics, and I would often get into heated discussions with friends and family. But as I worked the steps, attended meetings, and focused on my recovery, I realized that these debates weren’t serving me. They were draining my energy and distracting me from the work I needed to do on myself. Tradition 10 helped me see that I didn’t need to have an opinion on everything, and more importantly, I didn’t need to express those opinions in A.A. or allow them to influence my relationships within the fellowship.
+
+One of the greatest gifts of A.A. is the sense of unity it fosters. When I walk into a meeting, I know that I’m among people who share the same struggle, regardless of our differences in background, beliefs, or opinions. We are all there for the same reason: to stay sober and help others do the same. Tradition 10 preserves this unity by ensuring that A.A. remains neutral on outside issues. It allows us to focus on what brings us together, rather than what might divide us.
+
+## Applying Tradition 10 to Personal Life
+
+As my sponsor once told me, the traditions of A.A. are not just guidelines for the fellowship as a whole; they are also principles that we can apply to our personal lives. Tradition 10, in particular, has been transformative for me. In the past, I was quick to judge others and often felt compelled to have an opinion on everything. I would criticize my friends, family, neighbors, and even other A.A. members for their beliefs or actions. I would get caught up in debates about politics, religion, and social issues, and it left me feeling stressed and anxious.
+
+When I began to apply Tradition 10 to my personal life, I noticed an immediate change. I stopped feeling the need to have an opinion on everything, and I stopped passing judgment on others. I realized that I didn’t have to engage in debates about things that didn’t directly affect me or my recovery. By letting go of the need to be right or to convince others of my point of view, I found a sense of peace that had eluded me for years.
+
+This doesn’t mean that I stopped caring about the world around me. I still have opinions, and I still believe in certain causes. But I no longer feel the need to engage in every debate or to try to change the minds of others. Instead, I focus on my own recovery and the things I can control. By keeping my opinions to myself, especially when it comes to controversial issues, I’ve been able to maintain better relationships with the people around me, both inside and outside of A.A.
+
+## The Power of Unity Through Neutrality
+
+A.A.’s decision to remain neutral on outside issues is not just about avoiding conflict; it’s about preserving the unity that is essential to the fellowship’s survival. Alcoholics come from all walks of life, with diverse beliefs, values, and experiences. If A.A. were to take a stance on political or social issues, it could alienate members who disagree with that stance. This would weaken the fellowship, making it less effective in its mission to help alcoholics recover.
+
+Over the years, A.A. has faced challenges where it could have been drawn into public controversy. For example, during times of social and political upheaval, some members have suggested that A.A. take a public stance on issues like civil rights, the war on drugs, or even certain government policies. Each time, the fellowship has resisted the urge to get involved, recognizing that A.A.’s strength lies in its singular focus on recovery. Tradition 10 has protected A.A. from being pulled in multiple directions by outside forces, allowing the fellowship to stay true to its primary purpose.
+
+The neutrality of A.A. also allows for inclusivity. People of all political, religious, and social backgrounds are welcome in A.A., and they can participate in meetings without fear of being judged or alienated because of their beliefs. This inclusivity is one of the reasons A.A. has been able to grow and thrive for so many decades. By staying out of public controversies, A.A. has created a space where the only thing that matters is a desire to stop drinking and a commitment to recovery.
+
+## Conclusion: The Gift of Tradition 10
+
+Tradition 10 has been a gift to Alcoholics Anonymous, preserving the fellowship’s unity and allowing it to stay focused on its mission of helping alcoholics recover. By refusing to take sides in public debates or express opinions on outside issues, A.A. ensures that its members can come together in the spirit of recovery, regardless of their personal beliefs or backgrounds. This tradition has allowed A.A. to avoid the pitfalls that have plagued other organizations and to continue offering hope and healing to alcoholics around the world.
+
+On a personal level, Tradition 10 has brought me peace of mind. By letting go of the need to have an opinion on every issue and by focusing on my own recovery, I’ve been able to cultivate better relationships and a more balanced, peaceful life. A.A. has taught me that I don’t need to fix the world or take sides in every debate. I just need to stay sober, help others, and keep the focus on what truly matters: recovery.
+
+## Be curious, not judgmental!

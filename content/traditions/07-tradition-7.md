@@ -1,0 +1,56 @@
+---
+id: "traditions/07-tradition-7"
+title: "Tradition 7"
+collection: "traditions"
+order: 7
+subtitle: "Every A.A. group ought to be fully self-supporting, declining outside contributions."
+source: "android/guide/tradition7.html"
+---
+
+# Tradition 7: Every A.A. group ought to be fully self-supporting, declining outside contributions.
+
+Tradition 7 is a cornerstone of Alcoholics Anonymous (A.A.), not only because it safeguards the fellowship from financial entanglements but also because it fosters a culture of responsibility and self-reliance among its members and groups. This tradition reinforces the idea that A.A. must be financially independent, relying solely on its members to meet its needs and maintain its operations. By doing so, A.A. ensures that it remains free from outside influences and able to focus on its primary purpose—helping alcoholics achieve sobriety.
+
+## My First Experience with Tradition 7
+
+When I attended my first A.A. meeting, the concept of self-support didn’t even register with me. My mind was fogged by the chaos of my drinking days, and I didn’t pay attention when the 12 Traditions were read at the beginning of the meeting. But at the end of the meeting, when the pot was passed around, I was suspicious. I thought it was a money-making scheme, a scam disguised as recovery. At the time, I couldn’t comprehend the financial structure of A.A., and it took me years to fully understand how Tradition 7 functions to protect the fellowship.
+
+Early on, I learned that A.A. has a long history of grappling with the question of money. In 1941, A.A.’s co-founder Bill W. appealed to local groups to donate money to help the fellowship respond to the overwhelming number of letters they had received after an article about A.A. appeared in the *Saturday Evening Post*. People were desperate for help, and A.A. needed resources to respond. At the time, outside charitable agencies were willing to donate money to support A.A.’s cause, and it must have been tempting to accept the funds. But Bill understood that money from outside sources could come with strings attached, and he made the decision to keep A.A. self-sustaining.
+
+## Spirituality and Money: A Delicate Balance
+
+One of the profound insights Bill had was that spirituality and money can only mix in the hat—referring to the tradition of passing around a hat or pot to collect voluntary contributions from A.A. members at meetings. Bill recognized that money, if not handled carefully, could become a source of division, controversy, and corruption within the fellowship. By limiting A.A.’s financial support to its own members, the fellowship could avoid the dangers of outside influence, control, or expectations. In essence, Tradition 7 keeps A.A. spiritually pure by ensuring that its financial needs are met solely by those who benefit from its program.
+
+This principle came about through trial and error, as A.A. learned the hard way how money could cause problems. In the early days, when donations from outside sources were accepted, groups found themselves entangled in disputes over how to allocate the funds. There were arguments about who had control over the money, how it should be spent, and whether certain expenses were justified. Through these painful experiences, A.A. came to understand that accepting outside contributions was a slippery slope—one that could easily lead the fellowship away from its primary purpose of helping alcoholics.
+
+Ultimately, A.A. decided that it would forever remain poor, meaning that the fellowship would operate with only enough funds to meet its basic needs. Groups and the fellowship as a whole would maintain "prudent reserves" to cover operating costs, but they would never accumulate wealth or seek financial gain. This decision ensured that A.A. would never be distracted by issues of money, property, or prestige, and it would always remain focused on the spiritual principles that underpin the program.
+
+## The Importance of Self-Support in A.A. Groups
+
+Tradition 7 applies not only to the fellowship as a whole but also to individual A.A. groups. Each group is responsible for meeting its own operating costs, which typically include rent for the meeting space, literature, and refreshments like tea and coffee. These expenses are covered by the contributions collected during meetings—usually from passing the hat or pot around the room. Members are encouraged to give what they can, but there are no dues or fees for membership in A.A., ensuring that anyone, regardless of their financial situation, can participate.
+
+Groups are expected to be fully self-supporting, and this financial independence helps foster a sense of responsibility among members. It also ensures that groups are not beholden to outside interests or influences. In my early days, I didn’t fully appreciate this, but over time, I’ve come to see how this principle strengthens both the group and the individual members. When a group takes responsibility for its own finances, it fosters a culture of accountability, and members take pride in contributing to the success of the group.
+
+Of course, different groups handle their finances in different ways, as each group is autonomous under Tradition 4. Some groups use the money collected to cover only the basics—rent, literature, and refreshments—while others may allocate funds for special events or other activities. What matters is that the group remains self-sufficient and does not rely on outside contributions. This autonomy allows each group to operate according to its own needs while still upholding the core principles of A.A.
+
+## Applying Tradition 7 to Personal Life
+
+One of the most valuable lessons I learned from Tradition 7 is how it can be applied to my personal life. Just as A.A. groups are expected to be self-supporting, I realized that I needed to be self-supporting in my own life. In my early recovery, my sponsor pointed this out to me. After being sober for about three months, my sponsor encouraged me to return to work, reminding me that part of recovery is taking responsibility for myself—not just emotionally and spiritually, but also financially.
+
+This was a turning point for me. For years, I had relied on others—family, friends, or even employers—to bail me out when I got into financial trouble. I hadn’t taken responsibility for my own life, and my drinking had only made things worse. But as I worked the program and started applying the traditions to my life, I began to see the value in being self-supporting. Returning to work gave me a sense of purpose, pride, and independence. It helped me rebuild my life, not just in terms of sobriety but also in terms of financial stability.
+
+Being self-supporting in recovery doesn’t just mean paying the bills. It’s about taking responsibility for my own well-being—emotionally, physically, and financially. It’s about understanding that true success isn’t measured by material wealth but by how I feel about myself and my life. When I can look in the mirror and feel proud of the progress I’ve made, that’s when I know I’m on the right path.
+
+## Why A.A. Declines Outside Contributions
+
+A.A. declines outside contributions because financial independence is essential to maintaining the fellowship’s integrity and focus. Accepting money from outside sources could lead to expectations, obligations, or demands that could divert A.A. from its primary purpose. Imagine if A.A. accepted a large donation from a wealthy individual or corporation—how long would it be before that donor started making suggestions or even demands about how the money should be spent? This could create divisions within the fellowship, with some members feeling obligated to cater to the donor’s wishes, while others resist.
+
+By relying solely on its own members for financial support, A.A. avoids these potential conflicts. It remains free to operate according to its own principles, without interference from outside interests. This independence ensures that A.A. can continue to focus on helping alcoholics recover, without being distracted by financial pressures or obligations.
+
+## Conclusion: The Power of Self-Support
+
+Tradition 7 is more than just a financial guideline—it’s a principle that reinforces responsibility, independence, and humility. By being fully self-supporting, A.A. groups and members take ownership of their recovery and contribute to the health of the fellowship. The decision to decline outside contributions protects A.A. from the potential pitfalls of money, property, and prestige, ensuring that the fellowship remains focused on its primary purpose.
+
+For me, Tradition 7 has been a powerful reminder that success isn’t measured by how much money I have or how much I achieve. It’s about feeling good about the choices I make, taking responsibility for myself, and contributing to the world in a meaningful way. A.A.’s commitment to self-support has taught me the value of independence, both financially and spiritually.
+
+## An essential aspect of self-support is to remind yourself that success is not measurable, but a matter of feeling!

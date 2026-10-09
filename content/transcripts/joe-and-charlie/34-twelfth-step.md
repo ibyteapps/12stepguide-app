@@ -1,0 +1,82 @@
+---
+id: "transcripts-joe-and-charlie/34-twelfth-step"
+title: "Twelfth Step"
+collection: "transcripts-joe-and-charlie"
+order: 34
+album_id: 1
+track_id: 34
+audio_file: "joeandcharlie34.mp3"
+source: "ios/JoeAndCharlie/joeandcharlie34.html"
+---
+
+**Charlie**: OK we’re going to talk now just a little bit about Step 12 and then we’ll be done. We don’t want to go through this next chapter we don’t have the time, but I do want to look at two or three things in it very briefly. Let’s go to page 92. Now this is telling us how to work with other people, how to do our 12-Step call, how to sponsor and etc. The first paragraph says,
+
+Big Book, p. 92, line 1 "Tell him how baffled you were, how you finally learned that you were sick. Give him an account of the struggles you made to stop. Show him the mental twist which leads to the first drink of a spree. We suggest you do this as we have done it in the chapter on alcoholism. If he is alcoholic, he will understand you at once."
+
+See this is what Silkworth (Dr.) told Bill to do.
+
+Big Book, p. 92,par. 1&2 "He will match you mental inconsistencies with some of his own. If you are satisfied that he is a real alcoholic, begin to dwell on the hopeless feature of the malady. Show him, from your own experience, how the queer mental condition surrounding that first drink prevents normal functioning of the will power."
+
+In other words, we share our story and we show him our allergy, our obsession of the mind, our hopeless condition of the mind and body and if he’s a real alcoholic he’ll match it immediately. We get his attention that way, we tell him exactly what’s wrong with him. Page 93,
+
+Big Book, p. 93, line 2 "Let him ask you that question, if he will. Tell him exactly what happened to you. Stress the spiritual feature freely. If the man be agnostic or atheist, make it emphatic that he does not have to agree with your conception of God. He can choose any conception he likes, provided it makes sense to him. The main thing is that he be willing to believe in a Power greater than himself and that he live by spiritual principles."
+
+Sharing our story and telling him what happened and we get the idea of the need of a spiritual experience across to him, after we’ve got their attention, by talking about the problem.
+
+Big Book, p. 94, line 4 "Outline the program of action, explaining how you made a self-appraisal, how you straightened out your past and why you are now endeavouring to be helpful to him."
+
+Talk to him about the program of action. Take him by the hand and walk with him through the program of action. You see it is suggesting here that we do the same thing the first one hundred did. It’s suggesting here we do the same thing the Big Book does. See the Big Book was the Twelve Step in print. They could not go call on that person individually so the book had to tell him the problem, tell him the solution, show him the program of action. Now it’s just as valid today working with other alcoholics as it was in 1939. We need have no question about how to 12-Step. We need have no question about how to sponsor. This chapter tells us exactly how to do it.
+
+And I said to my sponsor one time, Charlie: I’m afraid to work with another person, I’m afraid I’ll hurt them. And he said you can't hurt them, they are going to die from alcoholism anyhow. There’s no way you can hurt them, and you might help yourself. So if you’re not working with others yet, for god’s sake start.
+
+The12th Step has three pieces in it. Very briefly, the first part is the greatest promise in Book. “Having had a spiritual awakening as THE result of these steps...” I think that promises to me that if I apply the first eleven steps in my life to the best of my ability I will have a spiritual awakening. Now what is a spiritual awakening? A personality change sufficient to recover from alcoholism. Bill tells us in the ‘Twelve and Twelve, there’s as many kinds of spiritual awakenings as there are people in AA, but they’ve all got certain things in common. That is, that we're able to feel, believe and do things that we could never do before on our own strength unaided. I feel things I’ve never felt before. I feel love, patience, tolerance, compassion and good will toward my fellow man. Before AA I could have cared less about you. Oh yeah you could have some, but I always got mine first. I don’t feel that way anymore.
+
+I believe things I never believed before. I believe God is a kind and a loving God. I believe He stands ready to help any human being anywhere in the world the instant they’re ready to give up on self-will and turn to Him. When I came here I thought He was hell, fire and brimstone. I thought He was a God of justice. Thank God He’s not a God of justice. If He was I wouldn’t be here today would I? Some of you guys wouldn’t be here either if He was. Surely, surely He is pure mercy, pure love, believe that with all my heart. I can do things I never could do before. By golly, I can stay sober. I never could do that before. And because of the fact I’m sober I’m allowed to do many, many, many things that I never dreamed that I could ever do. Like being here, going to Iceland, driving under the Channel going to Paris, France; things that I never could do before. So surely I’ve had some kind of spiritual awakening.
+
+Now I’m charged though with a responsibility. There really are no free rides; you do have to pay for what you receive. I am now charged with the responsibility of carrying THIS message to other alcoholics. - not ‘a’ message, not ‘the’ message, not ‘some’ message, ‘THIS’ message. What is THIS message? “Having had a spiritual awakening as the result of these steps, ...” . I’m not like I used to be. Now if you’re in AA today and you’re all screwed up and you don’t feel good; if you’ve been doing a little drinking or even thinking about doing a little drinking I know exactly where you’re coming from, that’s where I came from too. But I applied these first eleven steps and I had a spiritual awakening and I’m not that way anymore. If you don’t want to be that way anymore than you apply the first eleven steps and you won’t be that way anymore either, cause you’re going to have a spiritual awakening.
+
+It’s the only message that AA's got. Some of us start fancying ourselves as healers, miracle advisors, spiritual advisors, economic advisors. God I don’t know of anybody that’s screwed those things up worse than we have. No, we just know one thing. And let me tell you something, the one thing we know, we know it better than anybody alive. You and I know more about alcoholism than anybody alive, we’re the only people that’s only experienced it. We know more about recovery from alcoholism than anybody alive, we’re the only people that’s ever done it.
+
+I think we’re the luckiest people in the world. I think surely, surely, surely God got tired of seeing people like us die back in the 1930’s. I think he decided to do something about it, and He’s always worked with people through people. I believe He picked Bill and Bob and the first one hundred,. I think he picked Ebby Thatcher and Dr. Jung and Dr. Silkworth, the Oxford Groupers, that whole bunch, and put it together so we could have it today. If that’s true, and He picked people then, we’ve got to realize that those people are dead and gone; they’re no longer here. If He picked them then,why surely He’s still picking them today. There’s not an alcoholic in this room that ought to be here. Everyone of us ought to be dead, some of us two or three times. And we said, my wasn’t we lucky last night. I don’t think luck had anything to do with it. I think God picked you out, let you suffer your alcoholism so you would learn what he wants you to know. And then when He got ready to use you, He removed the obsession to drink.
+
+That’s the only reason we’re here today, to be able to help other alcoholics. They tell me that 97 out of 100 of us are going to die, never even knowing we’re alcoholic. If that’s true 3% of us are stumbling in the doors of AA Less than half of us are recovering. We’re talking about 1 out of 100. I used to say, God, why am I an alcoholic? Today I say, God why am I not one of those dying from alcoholism. He’s got a job for me; he’s got a job for you. It’s only when YOU fit into God’s plan for you, that you really become happy. I think every human being on earth today; God’s got a certain purpose for them, and I think ours is to carry this message of recovery to other alcoholics. We have the ability to avert death in countless thousands and thousands of people. Very few people have that opportunity.
+
+Carrying this message is very simple, just do it like the book says to do it and it always works for those that want it. If they don’t want it we can't do a thing about that. The final thing I have to do is practice these principles in all my affairs. Now what are the principles? We hear arguments about this all the time. The principle of 1 is this and the principle of 2 is that and no, no I think he’s referring to the steps.
+
+He said, “Having had a spiritual awakening as a result of these steps”... he already used ‘steps’ once in Step 12 so he’s not going to use it twice. So this time he’ll call them principles. In another place he’ll call them ‘proposals’. In the front of the Twelve and Twelve he says the 12 Steps of Alcoholics Anonymous are a set of principles. He is referring to the Steps. Now it’s easy for me to practice the 12 Steps of Alcoholics Anonymous in AA I love you, I hope you love me and we’re going to do our best not to hurt each other. But I’m only in AA at the most an average of one hour a day. What do I do the other twenty-three hours?
+
+Can I practice these principles, these Steps in my home with my spouse? Can I realize just how powerless I am over that lady? Can I realize the insanity in trying to control her knowing full well I can't? Can I make a decision and turn her will and her life over to the care of God, as I understand him? Can I inventory me and find those defects of character that keep me trying to control? Can I talk about that to another human being? Can I become willing to have God remove and ask Him to do so and take those away? Can I make amends quickly to her when I’ve harmed her? There’s time when I’m ashamed of me. There are times when I treat absolute strangers on the street with more courtesy than I treat my own wife in my own home. Just think, if I could practice these principles there with her and she with me, why we might pick up ten, twelve hours a day where we could be peaceful, happy and free in our home. If we don’t practice them we don’t stand a chance, we’ll be at each other’s throat continually.
+
+Can I practice them with my children? If I can do this with my children what little time I have left with them is good times. If I don’t, I try to control, they resist, we’ll have no good times at all. I might pick up another hour, two or three a day there. Can I do it on the job with my co-workers? If I can do it on the job with my co-workers why I might be peaceful, happy and free there for eight or nine or ten hours a day. Aren’t we really saying that we have a set of tools and if we practice them in all our affairs we can be peaceful, happy, free and serene twenty-four hours a day, 365 days a year if we wish to.
+
+My sponsor used to say Charlie, you can be just as happy as you want to be. And I’d say, you old fart you have no idea what you’re talking about. Today I hear myself saying, you can be just as happy as you want to be. You got the tools to do it with. Now make no mistake, God is not going to do this for you. Other people are not going to do this for you. But you, with God’s help and the help of other people, can do it for yourself. I think we are the luckiest people in the world, I really do. Joe?
+
+**Joe**: Now where does all this stuff come from? It comes from the best of medicine, psychology and religion. There’s a story in that other book about this fellow and he was walking around practicing these principles and carrying this message. And one night he told the people there, the things that I do you can do so also, even greater. A couple of guys heard this and they went back to their little village, they had a sick friend there, they brought him to the meeting the next night. Now I like to think they were alcoholics cause they went up on the roof and they chopped a hole in the roof, and they let the guy down in there. And He looked at that guy, and He looked up at them and he said, why it’s by your faith that this man was healed. See it was the faith of the people in the fellowship in alcoholics anonymous when I arrived that I was able to hang around ‘til I could come to believe, so I could come to take some decisions so that I too could come to have faith. The fellowship of alcoholics Anonymous is extremely important to me. It was by their faith for me.
+
+Later on He was in a little town called Sernan, and after the meeting that night and He was leaving the meeting/speaking at the meeting, and after the meeting they were standing around smoking cigarettes and drinking wine I guess, or coffee or whatever they were doing, and they were talking. And they told Him about a fellow they had locked in a cave on the side of a hill, now this might have been the first treatment centre I don’t know, and He said I want to go up and talk to this guy. They said, no you don't want to talk to this guy, he’s harmed a lot of people, we’ve got him chained to a wall up there so he won't harm himself or other people. You don’t want to talk to him, and he said, ‘Yeah I do. What’s his name? He said his name is Legion for he has many, many defects of character you see. So He went up there and talked to this guy for a little while and turned him loose. Cut loose of his resentment, cut loose of his fear. Cut loose his guilt, shame and remorse and set him free.
+
+He wrote a little step for us right here. The other people that he’d helped, those other twelve guys He’d helped, He took them with Him. And Legion wanted to go with him. He said, can I go with you and do what you do? He said, no Legion I want you to stay here and tell people what happened to you.
+
+**Charlie**: I think they call that Pass It On, that’s what Bill Wilson said. Is Barbara in the room. Barbara you here? Where are you hon. Yeah stand up. I want you all to meet Barbara, in case you haven’t got to meet her. You can tell by looking at her, why I’m in love with her, she really hit it.
+
+**Joe**: OK. Let’s go to page 164.
+
+Big Book, p. 164, par. 3 "Our book is meant to be suggestive only. We realize we know only a little. God will constantly disclose more to you and to us. Ask Him in your morning meditation what you can do each day for the man who is still sick. The answers will come, if your own house is in order. But obviously you cannot transmit something you haven't got. See to it that your relationship with Him is right."
+
+That’s the only relationship this book talks about by the way.
+
+Big Book, p. 164, par. 3/4 "See to it that your relationship with Him is right, and great events will come to pass for you and countless others. This is the Great Fact for us. Abandon yourself to God as you understand God.
+
+**Charlie**: We did that in Steps One, Two and Three
+
+**Joe**: "Admit your faults to Him and to your fellows."
+
+**Charlie**: We did that in Four, Five, Six and Seven.
+
+**Joe**: "Clear away the wreckage of your past."
+
+**Charlie**: We did that in Eight and Nine.
+
+**Joe**: "Give freely of what you find and join us. We do that in Ten, Eleven, and Twelve. We shall be with you in the Fellowship of the Spirit, and you will surely meet some of us as you trudge the Road of Happy Destiny. May God bless you and keep you - until then."
+
+**Charlie**: We love you all. Thanks for letting us be here.

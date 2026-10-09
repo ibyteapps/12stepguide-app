@@ -1,0 +1,11 @@
+---
+id: "readings/07-when-we-retire"
+title: "When We Retire"
+collection: "readings"
+order: 7
+aliases:
+  - "On Retiring"
+source: "android/aa/onretiring.html"
+---
+
+When we retire at night, we constructively review our day. Were we resentful, selfish, dishonest or afraid? Do we owe an apology? Have we kept something to ourselves which should be discussed with another person at once? Were we kind and loving toward all? What could we have done better? Were we thinking of ourselves most of the time? Or were we thinking of what we could do for others, of what we could pack into the stream of life? But we must be careful not to drift into worry, remorse or morbid reflection, for that would diminish our usefulness to others. After making our review we ask God's forgiveness and inquire what corrective measures should be taken.

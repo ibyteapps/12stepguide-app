@@ -1,0 +1,54 @@
+---
+id: "traditions/02-tradition-2"
+title: "Tradition 2"
+collection: "traditions"
+order: 2
+subtitle: "For our group purpose there is but one ultimate authority—a loving God as He may express Himself in our group conscience. Our leaders are but trusted servants; they do not govern."
+source: "android/guide/tradition2.html"
+---
+
+# Tradition 2: For our group purpose there is but one ultimate authority — a loving God as He may express Himself in our group conscience. Our leaders are but trusted servants; they do not govern.
+
+Tradition 2 serves as the backbone of how Alcoholics Anonymous (A.A.) operates as a fellowship. It underscores the idea that A.A. is not governed by any single person or group but is guided by a collective spiritual authority—a loving God, as He may express Himself in the group conscience. This tradition speaks to the heart of the democratic nature of A.A., where decisions are made collectively and leaders are entrusted with service rather than control. It fosters humility, mutual respect, and the understanding that no one is above the group.
+
+## Understanding Leadership in A.A.
+
+When I first entered A.A., I was surprised by the absence of hierarchy. There was no director, no president, no person in charge. As a newcomer, this baffled me. In the world outside of A.A., every organization seemed to have leaders who governed, gave orders, and made decisions for others. But in A.A., the concept of leadership was entirely different. I noticed that people just like me—ordinary individuals recovering from alcoholism—were the ones chairing meetings, organizing events, and fulfilling service roles. Over time, I came to understand that these individuals weren’t leaders in the traditional sense; they were trusted servants, carrying out the will of the group.
+
+The distinction between governing and serving is key to Tradition 2. In A.A., no one has the authority to make decisions on behalf of the group or dictate how things should be done. Instead, we look to the group conscience—our collective wisdom, often guided by a Higher Power—to make decisions that serve the common good. This ensures that personal egos and agendas are kept in check, and the focus remains on the primary purpose of staying sober and helping others achieve sobriety.
+
+## The Role of Group Conscience
+
+One of the most profound aspects of A.A. is the concept of the group conscience. A group conscience is the collective decision-making process that allows the group to hear the voice of a loving God through the wisdom of its members. It’s not about majority rule or winning an argument—it’s about seeking spiritual guidance and doing what’s best for the group as a whole.
+
+In my early recovery, I witnessed this process in action at various meetings. I saw how any member could call a group conscience if they felt an issue needed to be discussed, whether it was about meeting logistics, dealing with disruptive members, or electing new service representatives. But calling a group conscience is not something to be taken lightly—it must be done with sincerity and the intention of serving the group. It’s not about personal convenience or trivial matters. For example, I can’t call a group conscience because I’m unhappy with the parking situation outside the meeting venue. The purpose of the group conscience is to address matters that affect the welfare and unity of the group.
+
+Over the years, I’ve attended countless group conscience meetings. Some were routine, like deciding on the roles of secretary, treasurer, or GSR (Group Service Representative). Others were more challenging, such as how to handle nuisance members who were disrupting meetings. I’ve also seen heated arguments arise during group conscience meetings, especially when long-timers were set in their ways and resistant to new ideas. But despite these occasional conflicts, we always found a way to resolve the issues when we kept our primary purpose in mind. The group conscience, when guided by a loving God and focused on our common welfare, always led us to the right outcome.
+
+## Leaders as Trusted Servants
+
+A key element of Tradition 2 is the concept of leadership as trusted service. Our leaders are not there to control or govern—they are there to serve. This was a difficult concept for me to grasp in the beginning. I had a deep distrust of authority figures, and the idea of trusting other alcoholics to lead or make decisions made me uneasy. "How am I supposed to trust an alcoholic?" I once asked my sponsor. His response was simple: "What other people do is their business. Keep your side of the street clean, work the program to the best of your ability, and you’ll be fine."
+
+Over time, I learned to trust people in the fellowship, not because they were perfect, but because we were all in this together. A.A. operates on trust—trust in the process, trust in the group conscience, and trust in each other. It’s inevitable that sometimes people will make mistakes or let us down, but I’ve learned not to hold resentments or take things personally. A.A. is made up of imperfect people trying to recover from a deadly illness, and I’ve come to understand that everyone is doing the best they can.
+
+One area where this was particularly challenging for me was with money. I’ve seen money become a tricky issue in A.A. meetings, especially when it comes to managing group funds or lending money to other members. I’ve made it a personal rule not to lend money to fellow A.A. members. If I do decide to give, I do so without expecting anything in return. This way, I protect my peace of mind and avoid potential resentments. Trust in A.A. is not about expecting perfection from others—it’s about giving people room to make mistakes and trusting that the group conscience will guide us in the right direction.
+
+## The Power of Humility in Leadership
+
+One of the greatest lessons I’ve learned from Tradition 2 is the power of humility in leadership. Those who take on service positions in A.A. do so not for recognition or control, but to serve the group. They understand that they are not in charge—they are simply facilitators, entrusted with responsibilities to help the group function smoothly. This type of leadership requires humility, patience, and a willingness to listen.
+
+I’ve seen trusted servants who lead by example, not by force. They offer guidance when needed but never impose their will on the group. I’ve also seen situations where a group conscience meeting becomes contentious, and leaders have had to step back, listen, and allow the group to come to a decision together. In those moments, I’ve realized that true leadership in A.A. is about letting go of personal agendas and trusting in the wisdom of the group as a whole.
+
+## Group Conscience as Spiritual Practice
+
+In many ways, the group conscience is a spiritual practice. It’s a way of surrendering individual will to the collective wisdom of the group, and ultimately to a Higher Power. It teaches us patience, humility, and the importance of putting the welfare of others ahead of our own desires. This is not always easy, especially when we feel strongly about an issue or when our ego gets in the way. But Tradition 2 reminds us that we are not in control—our ultimate authority is a loving God, as He may express Himself in the group conscience.
+
+When I participate in a group conscience meeting, I try to remind myself of this principle. It’s not about getting my way or proving a point. It’s about being open to the spiritual guidance that comes through the group. Sometimes, the group conscience goes in a direction I didn’t expect or didn’t agree with, but I’ve learned to trust the process. In the end, the collective wisdom of the group is often more powerful than any one individual’s perspective.
+
+## Conclusion: Practicing Trust and Humility
+
+Tradition 2 has taught me invaluable lessons about trust, humility, and service. It has shown me that leadership in A.A. is not about control or authority—it’s about serving the group and trusting in the guidance of a Higher Power. Through the group conscience, we learn to let go of our personal agendas and seek what is best for the group as a whole.
+
+A.A. has no governing body, no single leader. It operates through the collective wisdom of its members, guided by the ultimate authority of a loving God. This tradition keeps the fellowship strong, united, and focused on its primary purpose: to help alcoholics achieve sobriety. As long as we continue to trust in this process and serve each other with humility, A.A. will continue to thrive.
+
+## Do not interfere in the God of others’ understanding.

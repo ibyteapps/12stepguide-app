@@ -1,0 +1,33 @@
+---
+id: "archive-ios-step-guides/03-step-3"
+title: "Step 3"
+collection: "archive-ios-step-guides"
+order: 3
+source: "ios/guide/gtape4.html"
+---
+
+# Step 3
+
+Made a decision to turn our will and our lives over to the care of God as we understood Him.
+
+Step 3 is a working step, it is the most important decision that you will make ***today***. I use the word ***today*** because this is a program for 24 hours and every single day I wake up, I make this decision and I live my life as a God of my own understanding would want me to.
+
+You need not worry about making a perfect decision. All you need is willingness and you will see that the decision comes easily. Let's briefly understand what this step means. There are two important words in this step. '**Will**' & '**Lives**'. Our will means our thinking and our life means our actions. So in effect, we need to turn over our thinking and our actions over to a higher power.
+
+As I've mentioned before, do not worry if you haven't understood or found your higher power. I was suggested that I should pray everyday and make this decision every morning and then try to follow it to the best of my ability. I've met old timers who say they do not understand their higher power but they still pray and it has worked for them.
+
+My personal experience was that my conscience was my higher power and when in doubt, I kept asking my conscience to do the next right thing. The answers kept coming and I kept acting on them. As a cumulative effect of all those actions, my life today has become a lot better than it was even before I had started drinking. I was well into my 20s when I had started drinking. I took this step with my sponsor. He asked me to go down on my knees and he did the same. We both said a prayer and I was then done with this step. How you take this step is entirely your wish, but all of these suggestions have help me stay sober, day at a time.
+
+A simple prayer is suggested in the AA Big Book which is as follows:
+
+God, I offer myself to Thee - to build with me and to do with me as Thou wilt.
+
+Relieve me of the bondage of self, that I may better do Thy will.
+
+Take away my difficulties, that victory over them may bear witness to those I would help of Thy Power, Thy Love, and Thy Way of life.
+
+May I do Thy will always!
+
+Then again, this is only a suggested prayer. God listens to the language of the heart. I remember saying a simple prayer on the first day of my recovery. It went like this 'Please help me God'.
+
+## God helps those who help themselves.

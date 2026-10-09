@@ -1,0 +1,48 @@
+---
+id: "traditions/01-tradition-1"
+title: "Tradition 1"
+collection: "traditions"
+order: 1
+subtitle: "Our common welfare should come first; personal recovery depends upon A.A. unity."
+source: "android/guide/tradition1.html"
+---
+
+# Tradition 1: Our common welfare should come first; personal recovery depends upon A.A. unity.
+
+The unity of Alcoholics Anonymous (A.A.) is the foundation upon which the entire fellowship is built. Without this unity, the survival of the program and its ability to help alcoholics recover would be in jeopardy. Tradition 1 teaches us that the collective welfare of the fellowship must always come before any individual desires or agendas. This tradition holds that while each member has their own personal journey of recovery, that journey is intertwined with the well-being of the group as a whole. Our personal recovery is dependent on the unity of the fellowship, and by safeguarding that unity, we help ourselves and others stay sober.
+
+## The Importance of A.A. Unity
+
+In the early days of my recovery, I was struck by the strength and togetherness I witnessed in A.A. meetings. I remember attending one of my first meetings, where there were around 150 recovering alcoholics, each sharing their stories, struggles, and hope. Seeing that many people in the same room, all with the shared goal of staying sober, was overwhelming in the best possible way. It made me realize that I wasn’t alone in this fight, and that there was power in numbers. Every one of those people was present to work on their own recovery, yet the atmosphere of unity made it feel like we were all in it together.
+
+This is the beauty of Tradition 1. It binds us all together in a common purpose—staying sober. No matter how different our backgrounds, experiences, or personalities may be, we come together in A.A. with one goal: to stay sober and help others do the same. Without this unity, A.A. would fracture into smaller groups, each pushing their own agendas, and the primary purpose of helping alcoholics recover would be lost. In fact, history shows us an example of this in the Washingtonian movement of the 19th century, which began with similar goals to A.A. but eventually disintegrated because the focus shifted away from its primary purpose. Tradition 1 is what keeps A.A. from meeting the same fate.
+
+## Selfishness in Recovery: A Paradox
+
+When I first heard the term "selfishness" used in the context of recovery, it seemed out of place. How could we be selfish in a spiritual program? But as I attended more meetings, I began to understand that there’s a healthy kind of selfishness in A.A. Every individual in the fellowship works the program for their own personal benefit. We don’t come to A.A. for our families, our bosses, or our friends—we come because we want to get sober for ourselves. As the Big Book says, if you’re working the program for someone else, it won’t work. It only works when you are doing it for your own recovery. This form of selfishness—focusing on your own recovery—helps ensure that you’re able to contribute to the unity and well-being of the group as a whole.
+
+But this healthy selfishness must always be balanced by the understanding that personal recovery is dependent on the collective recovery of the group. Tradition 1 asks us to put the common welfare of the fellowship above our own personal desires. This means that sometimes, we need to make sacrifices for the greater good of the group. For example, I’ve had to miss important family gatherings to ensure that my home group meeting was held as scheduled. It also means that groups stay open during holidays like Christmas or New Year’s Day, because for some alcoholics, that may be the only day they feel ready to walk into a meeting. By keeping meetings available for others, we are protecting the unity and strength of the fellowship, which in turn supports our own sobriety.
+
+## Practicing Humility and Sacrifice
+
+Alcoholics Anonymous is a fellowship of imperfect people striving toward a common goal: to stay sober, one day at a time. And like any group of people, there are times when personalities clash, resentments resurface, or egos get in the way. I’ve found myself in meetings where someone who had hurt me in the past was sitting just a few seats away. I’ve been in situations where I had to 12-step someone I still resented. In these moments, Tradition 1 becomes a powerful reminder to practice the principles of the program, especially humility and sacrifice. It’s not about me—it’s about the greater good of the group and the common goal of recovery.
+
+Carrying the message of recovery and showing up for others, even when it’s uncomfortable or inconvenient, is part of what Tradition 1 asks of us. I’ve learned that when I give away the program—when I offer support or share my experience, strength, and hope, even when I don’t feel like it—it’s helping me as much as it’s helping the other person. In fact, I’ve come to realize that the times I’ve been most reluctant to give of myself are often the times when I’ve needed to practice these principles the most. By putting the common welfare of the group ahead of my own ego or personal preferences, I’ve grown in ways I never imagined.
+
+## The Role of Service in Unity
+
+One of the ways we uphold Tradition 1 is through service. Service is at the heart of A.A. and is essential for maintaining the unity of the fellowship. When I first started attending meetings, I didn’t understand why people were so eager to take on roles like setting up chairs, making coffee, or leading meetings. But as I became more involved, I realized that these seemingly small acts of service are what keep A.A. running. Service work is a way to contribute to the common welfare of the group, and it’s also a way to practice humility and gratitude.
+
+By participating in service, we show that we are committed to the unity of the fellowship. Whether it’s volunteering to chair a meeting, sponsoring another alcoholic, or simply being there to support newcomers, these acts of service help strengthen the bonds between members and ensure that A.A. remains a place of hope and recovery for everyone who walks through the doors.
+
+## Unity, Recovery, and Safety in Numbers
+
+Tradition 1 also reminds us of the power of numbers. There is strength, safety, and recovery in numbers. When we come together as a unified fellowship, we create an environment where healing is possible. No one alcoholic can stay sober on their own, and no single group can survive without the unity of the larger fellowship. The more we work together, the stronger we become. This unity provides a safe space for each of us to grow, to share, and to heal.
+
+Unity doesn’t mean we all have to agree on everything or that we have to be best friends with everyone in the room. It means that we are united by our common goal—staying sober and helping others do the same. As long as we keep that goal in the forefront, we can weather any disagreements, resentments, or challenges that arise.
+
+## Conclusion: The Foundation of Personal Recovery
+
+In the end, my personal recovery depends on the unity of A.A. Without it, the fellowship would fracture, and the program would lose its ability to help alcoholics recover. Tradition 1 is the foundation that keeps us together, and it’s a tradition I’ve come to hold in high regard. I’ve learned that by putting the common welfare of the fellowship first, I’m not only helping others—I’m helping myself. Every time I show up for a meeting, participate in service, or support another alcoholic, I’m reinforcing the unity that makes A.A. so powerful and effective.
+
+*There is power in numbers. There is safety in numbers. There is recovery in numbers*.

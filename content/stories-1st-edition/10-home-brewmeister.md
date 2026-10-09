@@ -1,0 +1,82 @@
+---
+id: "stories-1st-edition/10-home-brewmeister"
+title: "Home Brewmeister"
+collection: "stories-1st-edition"
+order: 10
+pages: "274–281"
+source: "android/aa/stories1/stories1_10.html"
+---
+
+# Home Brewmeister
+
+<!-- page 274 -->
+
+STRANGELY enough, or by some queer quirk, I became acquainted with the "hilarious life just at the time in my life when I was beginning to really settle down to a common-sense, sane, domestic life. My wife became pregnant and the doctor recommended the use of Porter Ale . . . so . . . I bought a six gallon crock and a few bottles, listened to advice from amateur brewmeisters, and was off on my beer manufacturing career on a small scale (for the time being). Somehow or another, I must have misunderstood the doctor's instructions, for I not only made beer for my wife, I also drank it for her.
+
+As time went on, I found that it was customary to open a few bottles whenever visitors dropped in. That being the case, it didn't take long to figure out that my meager manufacturing facilities were entirely inadequate to the manufacture of beer for social and domestic consumption. From that point on, I secured crocks of ten gallon capacity and really took quite an active interest in the manufacture of home brew.
+
+We were having card parties with limburger and beer quite regularly. Eventually, of course, what with all the hilarity that could be provoked with a few gallons of beer, there seemed to be no need of bridge or poker playing for entertainment. Well . . . we all know how those things go. The parties waxed more liquid <!-- page 275 --> and hilarious as time went on, and eventually I discovered that a little shot of liquor now and then between beers had the tendency to put me in a whacky mood much quicker than having to down several quarts of beer to obtain the same results. The inevitable result of this discovery was that I soon learned that beer made a very good wash for whiskey. That discovery so intrigued me, that I stayed on that diet almost entirely for the balance of my extended drinking career. Yes sir, the old Boilermaker and his Helper. The last day of my drinking career, I drank 22 of them between 10 and 12 A.M. and I shall never know how many more followed them until I was poured into bed that night.
+
+I was getting along fairly well with my party drinking for quite some time however, but eventually I began to visit beer joints in between parties. A night or so a week in a joint, and a party or so a week at home or with friends, along with a little lone drinking, soon had me preparing for the existence of a top flight drunkard.
+
+Three years after I started on my drinking career, I lost my first job. At the time, I was living out of town, so I moved back to the home town and made a connection in a responsible position with one of the larger companies in the finance business. Up to this point I had spent six years in the business and had enjoyed the reputation of being very successful.
+
+My new duties were extremely confining and my liquor consumption began to increase at this time. Upon leaving the office in the evening, my first stop would be a saloon about a block from the office. However, as there happened to be several saloons within that dis-<!-- page 276 -->tance, I didn't find it necessary to patronize the same place each evening. It doesn't pay to be seen in the same place at the same hour every day, you know.
+
+The general procedure was to take 4 or 5 shots in the first place I stopped at. This would get me feeling fit, and then I would start for home and fireside, thirteen miles away. Well . . . on the way home numerous places must be passed. If I were alone I would stop at four or five of them, but only one or two in the event I had my mistrusting wife with me.
+
+Eventually I would arrive home for a late supper, for which, of course, I had absolutely no relish. I would make a feeble attempt at eating supper but never met with any howling success. I never enjoyed any meal, but I ate my lunch at noon for two reasons: first, to help get me out of the fog of the night before, and second, to furnish some measure of nourishment. (My enjoyment of meals now is an added feature to the Seven Wonders of the World to me. I can still hardly believe it). Eventually, the noon meal was also dispensed with.
+
+I cannot remember just when I became the victim of insomnia, but I do know that the last year and a half I never went to bed sober a single night. I couldn't sleep. I had a mortal fear of going to be and tossing all night. Evenings at home were an ordeal. As a result, I would fall off in a drunken stupor every night.
+
+How was I able to discharge my duties at the office during those horrible mornings, I will never be able to explain. Handling customers, dealers, insurance people, dictation, telephoning, directing new employees, answering to superiors, etc. However, it finally caught <!-- page 277 --> up with me, and when it did, I was a mental, physical and nervous wreck.
+
+I arrived at the stage where I couldn't quite make it to the office some mornings. Then I would send an excuse of illness. But the firm became violently ill with my drunkenness and their course of treatment was to remove their ulcer in the form of me from their payroll, amid much fanfare and very personal and slighting remarks and insinuations.
+
+During this time, I had been threatened, beaten, kissed, praised and damned alternately by relatives, family, friends and strangers, but of course it all went for naught. How many times I swore off in the morning and got drunk before sunset I don't know. I was on the toboggan and really making time.
+
+After being fired, I lined up with a new finance company that was just starting in business, and took the position of business promotion man, contacting automobile dealers. WOW . . . was that something??? While working in an office, there was some semblance of restraint, but, oh boy, when I got on the outside with this new company without supervision, did I go to town???
+
+I really worked for several weeks, and having had a fairly wide acceptance with the dealer trade, it was not difficult for me to line enough of them up to give me a very substantial volume of business with a minimum of effort.
+
+Now I was getting drunk all the time. It wasn't necessary to report in to the office in person every day, and when I did go in, it was just to make an appearance <!-- page 278 --> and bounce right out again. Was that a merry-go-round for the eight months that it lasted???
+
+Finally this company also became ill and I was once more looking for a job. Then I learned something else. I learned that person just can't find a job hanging in a dive or barroom all day and all night, as jobs don't seem to turn up in those places. I became convinced of that because I spent most if my time there and nary a job turned up. By this time, my chances of getting lined up in my chosen business were shot. Everyone had my number and wouldn't hire me at any price.
+
+I have omitted details of transgressions that I made when drunk for several reasons. One is that I don't remember too many of them, as I was one of those drunks who could be on his feet and attend a meeting or a party, engage in a conversation with people and do things that any nearly normal person would do, and the next day, not remember a thing about where I was, what I did, whom I saw, or how I got home. (That condition was a distinct handicap to me in trying to vindicate myself with the not so patient wife).
+
+I also committed other indiscretions of which I see no particular point in relating. Anyone who is a rummy or is close to rummies knows what all those things amount to without having to be told about them.
+
+Things eventually came to the point where I had no friends. I didn't care to go visiting unless the parties we might visit had plenty of liquor on hand and I could get stinking drunk. Fact is, that I was always well on my way before I would undertake to go visiting at all.
+
+<!-- page 279 -->
+
+(Naturally, this condition was also a source of great delight to my wife).
+
+After holding good positions, making better than average income for over ten years, I was in debt, had no clothes to speak of, no money, no friends, and no one any longer tolerating me but my wife. My son had absolutely no use fore me. Even some of the saloon-keepers where I had spent so much time and money, requested that I stay away from their places. Finally, an old business acquaintance of mine, who I hadn't seen for several years offered me a job. I was on that job a month and drunk most of the time.
+
+Just it this time my wife heard of a doctor in another city who had been very successful with drunks. She offered me the alternative of going to see him or her leaving me for good and all. Well . . . I had a job, and I really wanted desperately to stop drinking, but I couldn't, so I readily agreed to visit the doctor she recommended.
+
+That was the turning point of my life. My wife accompanied me on my visit and the doctor really told me some things that in my state of jitters nearly knocked me out of the chair. He talked about himself, but I was sure it was me. He mentioned lies, deceptions, etc. in the course of his story in the presence of the one person in the world I wouldn't want to know such things. How did he know all this? I had never seen him before, and at the time hoped to hell I would never see him again. However, he explained to me that he had been just such a rummy as I, only for a much longer period of time.
+
+<!-- page 280 -->
+
+He advised me to enter the particular hospital to which staff he was connected and I readily agreed. In all honesty though, I was skeptical, but I wanted so definitely to quit drinking that I would have welcomed any sort of physical torture or pain to accomplish the result.
+
+I made arrangements to enter the hospital three days later and promptly went out and got stiff for three days. It was with grim foreboding and advanced jitters that I checked in at the hospital. Of course, I had no hint or intimation as to what the treatment was to consist of. Was I to be surprised!
+
+After being in the hospital for several days, a plan of living was outlined to me. A very simple plan that I find much joy and happiness in following. It is impossible to put on paper all the benefits I have derived . . . physical, mental, domestic, spiritual, and monetary.
+
+This is no idle talk. It is the truth.
+
+From a physical standpoint, I gained 16 pounds in the first two months I was off liquor. I eat three good meals a day now, and really enjoy them. I sleep like a baby, and never give a thought to such a thing as insomnia. I feel as I did when I was fifteen years younger.
+
+Mentally . . . I know where I was last night, the night before, and the nights before that. Also, I have no fear of anything. I have self confidence and assurance that cannot be confused with the cockeyness or noise-making I once possessed. I can think clearly and am helped much in my thinking and judgment by my spiritual development which grows daily.
+
+From a domestic standpoint, we really have a home <!-- page 281 --> now. I am anxious to get home after dark. My wife is ever glad to see me come in. My youngster had adopted me. Our home is always full of friends and visitors (No home brew as an inducement).
+
+Spiritually . . . I have found a Friend who never lets me down and is ever eager to help. I can actually take my problems to Him and He does give me comfort, peace, and radiant happiness.
+
+From a monetary standpoint . . . in the last few years, I have reduced my reckless debts to almost nothing, and have had money to get along comfortably. I still have my job, and just prior to the writing of this narrative, I received an advancement.
+
+For all of these blessings, I thank Him.
