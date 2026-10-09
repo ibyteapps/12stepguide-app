@@ -90,3 +90,39 @@ is not used anywhere in the app, its icons or its store artwork.
 - The store listings should follow the same naming. That is done in App Store Connect and the
   Play Console, not in the app.
 - FEATURE_MATRIX rows F-010, F-020 and F-022 now cite D-005.
+
+## D-006 — Drop the non-working leftovers
+**Decided 2026-10-09 · Tushar** (was A-09)
+
+Nothing that does nothing in the native apps comes across: the hidden "My Account / Sign out"
+row (F-089), the sponsorship notification switches (F-095), the Google and LinkedIn URL schemes
+(F-114), the Face ID usage string and Sign in with Apple entitlement (F-115), and the iOS
+`ADMIN_MODE` / Android `subscribedMode` and `skuMode` switches (F-117, replaced by the dev flavour).
+The Android-only leftovers listed in CURRENT_APP_AUDIT.md (`accountid`, `tabno`,
+`READ_PROFILE`, `org.apache.http.legacy`, WorkManager, the sample tests) go too.
+
+*What this commits us to:*
+- No user loses anything: none of these was reachable or working (CURRENT_APP_AUDIT.md).
+- The migration runner does not read their legacy keys; they stay untouched on the device.
+- The 15 unused HTML pages (F-116) are not shipped. They stay converted in `content/archive/`
+  so nothing is lost and any of them can be brought back.
+
+## D-007 — One new app icon on both platforms
+**Decided 2026-10-09 · Tushar** (was A-22)
+
+> "build new icons if you can"
+
+2.0 gets a new icon, the same on iOS and Android, replacing the iOS "12 Step Guide" artwork and
+the Android "A.A. 12 Steps Guide" book. It follows D-005: no circle-and-triangle symbol and no
+"A.A." on the artwork.
+
+*What this commits us to:*
+- The icon is built from the brand anchors (UX_UI_SPEC §3.1), so existing users can still find
+  it on their home screen: the Android navy book, the iOS sky blue, and the coral both apps use.
+- The icon is drawn once in `tool/build_icons.py`, which writes the SVG masters to
+  `assets/branding/` and every platform image, so a change is one edit and one command
+  (UX_UI_SPEC §3.1.1).
+- iOS gets light, dark and tinted variants. Android gets an adaptive icon with a monochrome
+  layer for themed icons, plus classic images for Android 7.
+- dev and staging builds carry a marked icon, so they can't be mistaken for the store app.
+- The store listings need the new 1024 px icon too (App Store Connect, Play Console 512 px).

@@ -3,7 +3,8 @@
     <application
         android:label="${appLabel}"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round">
         <!-- MUST stay ".First": the native app's launcher component (see First.kt). -->
         <activity
             android:name=".First"
