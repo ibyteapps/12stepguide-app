@@ -22,7 +22,7 @@ lands after the screens exist (its gateways can be built in parallel). P7 needs 
 | Phase | Blocking decisions | Delivers |
 |---|---|---|
 | P0 | Repo created (done) | Flutter project, flavours, CI |
-| P1 | A-09 (A-08 and A-23 decided: D-002, D-003) | Design system, shell and drawer skeleton, prefs, logging, legacy bridge, migration runner, content pipeline |
+| P1 | — (A-08, A-23, A-09 decided: D-002, D-003, D-006) | Design system, shell and drawer skeleton, prefs, logging, legacy bridge, migration runner, content pipeline |
 | P2 | A-07, A-19, A-02 (A-01 and A-03 decided: D-001, D-005) | Steps, Traditions, Readings, Big Book, Reader, Aa sheet, recovery date, onboarding, welcome back, appearance |
 | P3 | A-05, A-24, A-20 | Audio library, album, player, mini-player, background audio, downloads |
 | P4 | A-04, A-06, A-10, A-11, A-15, A-25, A-26 | Purchases, entitlement, paywall, restore, consent, ads |
@@ -44,6 +44,8 @@ lands after the screens exist (its gateways can be built in parallel). P7 needs 
   build configurations and xcconfigs); one `lib/main.dart`; `config/*.example.json`;
   `.gitignore` for real configs, keys, Firebase files, `z.txt`.
 - GitHub Actions: `ci.yml`, `android.yml`, `ios.yml` (FLUTTER_ARCHITECTURE §14).
+- App icon (D-007): one drawing in `tool/build_icons.py` → iOS light/dark/tinted sets per
+  flavour, Android adaptive + themed + classic icons per flavour, store icons.
 
 **Acceptance criteria**
 - `flutter analyze` clean; `flutter test` passes (placeholder tests).

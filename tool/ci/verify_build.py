@@ -31,6 +31,7 @@ IOS_MIN_OS = "15.0"
 
 ANDROID_LABEL = {"dev": "12SG Dev", "staging": "12SG Staging", "prod": "12 Step Guide - AA"}
 IOS_NAME = {"dev": "12SG Dev", "staging": "12SG Staging", "prod": "12 Step Guide"}
+IOS_ICON = {"dev": "AppIcon-dev", "staging": "AppIcon-staging", "prod": "AppIcon"}
 ANDROID_NS = "{http://schemas.android.com/apk/res/android}"
 
 
@@ -98,6 +99,8 @@ def android_apk(path: str, flavor: str) -> int:
     c.eq("compileSdk", field(r"compileSdkVersion='(\d+)'"), ANDROID_TARGET_SDK)
     c.eq("launcher activity", field(r"^launchable-activity: name='([^']+)'"), LAUNCHER)
     c.eq("label", field(r"^application-label:'([^']*)'"), ANDROID_LABEL[flavor])
+    c.eq("adaptive icon", field(r"^application-icon-65534:'([^']*)'"),
+         "res/mipmap-anydpi-v26/ic_launcher.xml")
     return c.done()
 
 
@@ -131,6 +134,8 @@ def android_aab(path: str, flavor: str) -> int:
     c.eq("launcher activity", launcher, LAUNCHER)
     c.eq("label", app.get(ANDROID_NS + "label") if app is not None else None, ANDROID_LABEL[flavor])
     c.eq("debuggable", app.get(ANDROID_NS + "debuggable", "false") if app is not None else None, "false")
+    c.eq("icon set", bool(app is not None and app.get(ANDROID_NS + "icon")), True)
+    c.eq("round icon set", bool(app is not None and app.get(ANDROID_NS + "roundIcon")), True)
     return c.done()
 
 
@@ -145,6 +150,9 @@ def ios_app(path: str, flavor: str) -> int:
     c.eq("MinimumOSVersion", info.get("MinimumOSVersion"), IOS_MIN_OS)
     c.eq("CFBundleDisplayName", info.get("CFBundleDisplayName"), IOS_NAME[flavor])
     c.eq("ITSAppUsesNonExemptEncryption", info.get("ITSAppUsesNonExemptEncryption"), False)
+    icon = info.get("CFBundleIcons", {}).get("CFBundlePrimaryIcon", {}).get("CFBundleIconName")
+    c.eq("app icon set", icon, IOS_ICON[flavor])
+    c.eq("compiled asset catalog", (Path(path) / "Assets.car").exists(), True)
     return c.done()
 
 

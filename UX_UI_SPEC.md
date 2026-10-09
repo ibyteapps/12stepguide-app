@@ -54,6 +54,22 @@ Semantic roles, not colour names. All pairs used for text were checked against W
 | Coral | `#E5534B` | Both apps' `#F06C64`, deepened for UI contrast |
 | Paper | `#FBF8F1` | Book pages in the icon |
 
+### 3.1.1 App icon (D-007)
+The navy book of the old Android icon, with three paper-white steps on its cover and a coral
+bookmark, on the sky-to-guide-blue gradient of the old iOS icon. No text and no A.A. symbol
+(D-005). It is drawn once in `tool/build_icons.py`, which writes the SVG masters, the store
+icons and every platform image; `assets/branding/preview.png` shows all variants.
+
+| Variant | Where | Look |
+|---|---|---|
+| Light | iOS, App Store, Google Play | Navy book on sky → guide blue |
+| Dark | iOS dark mode | Guide-blue book on the system's dark background |
+| Tinted | iOS tinted mode | Greyscale; the system tints it |
+| Adaptive | Android 8+ | Book as the foreground layer, inside the 66 dp safe circle; gradient background layer |
+| Themed | Android 13+ | Monochrome book with the steps cut out |
+| Classic | Android 7 | Rounded square and round versions of the adaptive icon |
+| dev / staging | Test builds only | Same book on amber → coral (dev) or mint → teal (staging) |
+
 ### 3.2 Roles
 
 | Token | Light | Dark | Used for |

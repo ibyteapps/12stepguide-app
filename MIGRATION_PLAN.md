@@ -37,7 +37,7 @@ and how to back out if it goes wrong.
 | Ad units | existing banner/interstitial/app-open | existing (+ Meta placement ids) | Same units (via config) |
 | Products | `annual`; `…donatetier5/10/20` | `donatetier1/2/3` | Same; A-06 may add an Android `annual` |
 | Subscription group | unknown — needed for StoreKit testing and the "Manage" link | n/a | Q-S1 |
-| URL schemes / deep links | Google + LinkedIn schemes (unused) | none | Dropped (A-09); no inbound links exist |
+| URL schemes / deep links | Google + LinkedIn schemes (unused) | none | Dropped (D-006); no inbound links exist |
 | Notification channel ids | n/a | none existed | New ids (no legacy settings to preserve) |
 | Min OS | 12.1 → **15.0** | 23 → **24** | §8 |
 | Launcher activity | n/a | `com.ibyteapps.aa12stepguide.First` | Keep: the Flutter activity is named `First`, so home-screen icons that point at this component survive the update (some launchers delete an icon whose activity disappears) |
@@ -223,6 +223,7 @@ the Reminders page). Android 13+ asks for `POST_NOTIFICATIONS` at that moment.
 | Play Data safety: device ids (ads, analytics), crash logs, app interactions; "data can't be deleted" stays (no server data) | Android | Update before rollout |
 | Android naming brought in line with AAWS compliance (D-005) | Android users | "What's new" mentions the new look |
 | Play app name (A-02) | Android | Listing change |
+| New app icon on both platforms (D-007) | Everyone | It keeps the navy book (Android) and sky blue (iOS) so users still find it; "What's new" and the store screenshots show it. Upload `assets/branding/store/` icons to both store listings |
 
 ---
 
