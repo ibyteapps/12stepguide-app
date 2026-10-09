@@ -6,6 +6,8 @@ import 'package:twelve_step_guide/features/audio/data/audio_engine.dart';
 import 'package:twelve_step_guide/features/audio/data/download_gateway.dart';
 import 'package:twelve_step_guide/features/audio/domain/catalogue.dart';
 import 'package:twelve_step_guide/features/premium/purchase_gateway.dart';
+import 'package:twelve_step_guide/features/reminders/notifications_gateway.dart';
+import 'package:twelve_step_guide/features/reminders/reminder_schedule.dart';
 
 /// An audio engine that plays nothing and records what it was asked to do.
 class FakeAudioEngine implements AudioEngine {
@@ -226,4 +228,52 @@ class FakeAdGateway implements AdGateway {
 
   @override
   void dropStaleAppOpen(Duration maxAge) {}
+}
+
+/// Notifications that record what was scheduled and cancelled.
+class FakeNotifications implements NotificationsGateway {
+  FakeNotifications({this.granted = true, this.grantOnRequest = true});
+
+  bool granted;
+  bool grantOnRequest;
+  String zone = 'Europe/London';
+  String? launchedWith;
+  void Function(String? payload)? onTap;
+  final scheduled = <int, PlannedReminder>{};
+  final cancelled = <int>[];
+  int scheduleCalls = 0;
+  int permissionRequests = 0;
+  int settingsOpened = 0;
+
+  @override
+  Future<void> init({required void Function(String? payload) onTap}) async => this.onTap = onTap;
+  @override
+  Future<String?> launchPayload() async => launchedWith;
+  @override
+  Future<bool> permissionGranted() async => granted;
+  @override
+  Future<String> currentZone() async => zone;
+  @override
+  Future<bool> requestPermission() async {
+    permissionRequests++;
+    granted = grantOnRequest;
+    return granted;
+  }
+
+  @override
+  Future<Set<int>> pendingIds() async => scheduled.keys.toSet();
+  @override
+  Future<void> schedule(PlannedReminder reminder) async {
+    scheduleCalls++;
+    scheduled[reminder.id] = reminder;
+  }
+
+  @override
+  Future<void> cancel(int id) async {
+    cancelled.add(id);
+    scheduled.remove(id);
+  }
+
+  @override
+  Future<void> openSettings() async => settingsOpened++;
 }

@@ -106,6 +106,13 @@ final scenarios = <Scenario>[
     act: (tester, app) => play(app, 9, 1, seconds: 1622),
   ),
   (name: 'premium', location: '/premium', prefs: {}, act: null),
+  (
+    name: 'reminders',
+    location: '/reminders',
+    prefs: {PrefKeys.hourlyEnabled: true, PrefKeys.hourlyStart: '08:00'},
+    act: null,
+  ),
+  (name: 'quote', location: '/quote', prefs: {}, act: null),
   (name: 'premium-lifetime', location: '/premium', prefs: _premium, act: null),
   (name: 'paywall', location: '/paywall', prefs: {}, act: null),
   (

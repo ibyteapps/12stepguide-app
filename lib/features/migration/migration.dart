@@ -272,6 +272,51 @@ class ReviewStep extends MigrationStep {
   }
 }
 
+/// m007: the native iOS app's reminders (MIGRATION_PLAN §6). The setting follows what users
+/// actually receive — hourly is on only if hourly requests are pending (A-12, BUG-03) — and the
+/// stored window is kept. The native requests are then cancelled so nothing arrives twice. If
+/// cancelling fails, nothing is written and the new app schedules nothing until a later launch
+/// succeeds.
+class RemindersStep extends MigrationStep {
+  const RemindersStep();
+  @override
+  String get id => 'm007';
+  @override
+  Set<LegacyPlatform> get platforms => {LegacyPlatform.ios};
+
+  /// Every identifier the native app could have used (MIGRATION_PLAN §6).
+  static List<String> legacyIds() => [
+    for (var h = 0; h < 24; h++) 'HourNotification$h$h',
+    IosKeys.morningTime,
+    IosKeys.nightTime,
+    '3days',
+    '7days',
+  ];
+
+  @override
+  Future<void> run(MigrationContext ctx) async {
+    final s = ctx.snapshot;
+    final pending = await ctx.bridge.pendingNotifications();
+    final hourlyOn = pending.any((n) => n.id.startsWith('HourNotification'));
+    final start = _time(s.string_(IosKeys.hourlyStart)) ?? '08:00';
+    final end = _time(s.string_(IosKeys.hourlyEnd)) ?? '22:00';
+    // Morning and night reminders were unreachable (A-18): anything found is cancelled.
+    await ctx.bridge.cancelNotifications({...legacyIds(), for (final n in pending) n.id}.toList());
+    await ctx.store.setString(PrefKeys.hourlyStart, start);
+    await ctx.store.setString(PrefKeys.hourlyEnd, end);
+    await ctx.store.setBool(PrefKeys.hourlyEnabled, hourlyOn);
+    ctx.summary.reminders = hourlyOn;
+  }
+
+  static String? _time(String? v) {
+    final m = RegExp(r'^(\d{1,2}):(\d{2})$').firstMatch(v?.trim() ?? '');
+    if (m == null) return null;
+    final h = int.parse(m[1]!), min = int.parse(m[2]!);
+    if (h > 23 || min > 59) return null;
+    return '${h.toString().padLeft(2, '0')}:${m[2]}';
+  }
+}
+
 /// m008: recordings the native iOS app downloaded into `Documents` (MIGRATION_PLAN §7). They stay
 /// where they are and are marked downloaded, so nobody downloads them twice; from now on they are
 /// kept out of iCloud backups. Anything that is not a catalogue file (`main.db`, unknown files) is

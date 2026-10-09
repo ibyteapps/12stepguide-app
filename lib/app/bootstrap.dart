@@ -28,6 +28,9 @@ import '../features/migration/migration.dart';
 import '../features/premium/entitlement_controller.dart';
 import '../features/premium/purchase_gateway.dart';
 import '../features/premium/purchase_service.dart';
+import '../features/reminders/notifications_gateway.dart';
+import '../features/reminders/reminder_schedule.dart';
+import '../features/reminders/reminders_controller.dart';
 import 'app.dart';
 import 'providers.dart';
 import 'router.dart';
@@ -77,10 +80,26 @@ Future<void> bootstrap() async {
     bridge: const MethodChannelLegacyBridge(),
     steps: migrationSteps(catalogue),
   );
-  final audio = await startAudio();
-  final router = buildRouter(initialLocation: initialLocation(store));
-
   final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
+  final audio = await startAudio();
+  final start = initialLocation(store);
+  final router = buildRouter(initialLocation: start);
+
+  // Reminders: a tap while the app runs opens the quote; a tap that launched the app opens it
+  // over the first screen (UJ-9, "even from a cold start").
+  final notifications = LocalNotificationsGateway(isIOS: isIOS);
+  String? launchPayload;
+  try {
+    await notifications.init(
+      onTap: (payload) {
+        if (payload == ReminderSchedule.quotePayload) router.push(Routes.quote);
+      },
+    );
+    launchPayload = await notifications.launchPayload();
+  } on Object catch (error, stack) {
+    Log.e('Notifications failed to start', error, stack);
+  }
+
   final units = AdUnits.forBuild(config.env, isIOS: isIOS);
   if (config.env == AppEnv.prod && !units.isComplete) {
     Log.w('Some AdMob units are missing from config/prod.json; those formats stay off.');
@@ -99,6 +118,7 @@ Future<void> bootstrap() async {
       artworkProvider.overrideWithValue(audio.artwork),
       purchaseGatewayProvider.overrideWithValue(InAppPurchaseGateway(isIOS: isIOS)),
       consentGatewayProvider.overrideWithValue(const UmpConsentGateway()),
+      notificationsGatewayProvider.overrideWithValue(notifications),
       adUnitsProvider.overrideWithValue(units),
       adGatewayProvider.overrideWithValue(GoogleAdGateway(units)),
       currentLocationProvider.overrideWithValue(
@@ -126,6 +146,14 @@ Future<void> bootstrap() async {
   // After the first frame: the store check (Premium may change), then consent, then adverts.
   container.listen(purchaseServiceProvider, (_, _) {});
   unawaited(startAds(container));
+
+  // Reminders are re-armed on every open ("we miss you" counts from the last one).
+  final reminders = container.read(remindersProvider.notifier);
+  unawaited(reminders.onAppOpen());
+  AppLifecycleListener(onResume: () => unawaited(reminders.onAppOpen()));
+  if (launchPayload == ReminderSchedule.quotePayload && start != Routes.onboarding) {
+    WidgetsBinding.instance.addPostFrameCallback((_) => router.push(Routes.quote));
+  }
 }
 
 /// Consent first (A-11), and the advert SDK only for free users who may see adverts.
@@ -178,6 +206,7 @@ List<MigrationStep> migrationSteps(Catalogue catalogue) => [
   const PremiumStep(),
   const AdPacingStep(),
   const ReviewStep(),
+  const RemindersStep(),
   DownloadsStep(catalogue),
   const CoachMarkStep(),
 ];

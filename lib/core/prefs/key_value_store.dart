@@ -145,6 +145,9 @@ abstract final class PrefKeys {
   static const hourlyEnd = 'reminders.hourly.end';
   static const nudgesEnabled = 'reminders.nudges.enabled';
 
+  /// What the scheduler last scheduled (id → signature), to diff against.
+  static const remindersScheduled = 'reminders.scheduled';
+
   // Audio (transcripts use the reading text size, as the native player did)
   static const trackPositions = 'audio.positions';
   static const wifiOnly = 'downloads.wifiOnly';

@@ -18,6 +18,7 @@ import 'package:twelve_step_guide/features/audio/data/download_gateway.dart';
 import 'package:twelve_step_guide/features/audio/domain/catalogue.dart';
 import 'package:twelve_step_guide/features/content/domain/content_index.dart';
 import 'package:twelve_step_guide/features/premium/purchase_service.dart';
+import 'package:twelve_step_guide/features/reminders/reminders_controller.dart';
 import 'package:twelve_step_guide/features/shell/shell_scaffold_key.dart';
 import 'package:twelve_step_guide/features/sobriety/cheer.dart';
 
@@ -86,6 +87,7 @@ typedef TestApp = ({
   FakeDownloadGateway downloads,
   String audioDir,
   FakePurchaseGateway purchases,
+  FakeNotifications notifications,
 });
 
 /// Pumps the whole app at [location] with in-memory storage and fakes.
@@ -106,6 +108,7 @@ Future<TestApp> pumpApp(
   String? audioDir,
   FakePurchaseGateway? purchases,
   int launchCount = 5,
+  FakeNotifications? notifications,
 }) async {
   tester.view.physicalSize = size * ratio;
   tester.view.devicePixelRatio = ratio;
@@ -123,6 +126,7 @@ Future<TestApp> pumpApp(
   final gateway = downloads ?? FakeDownloadGateway();
   final dir = audioDir ?? tempAudioDir();
   final shop = purchases ?? FakePurchaseGateway();
+  final notes = notifications ?? FakeNotifications();
   final container = ProviderContainer(
     overrides: [
       appConfigProvider.overrideWithValue(AppConfig(env: env)),
@@ -139,6 +143,7 @@ Future<TestApp> pumpApp(
       audioFilesProvider.overrideWithValue(AudioFiles(dir)),
       purchaseGatewayProvider.overrideWithValue(shop),
       purchaseSettleDelayProvider.overrideWithValue(Duration.zero),
+      notificationsGatewayProvider.overrideWithValue(notes),
       launchInfoProvider.overrideWithValue(
         LaunchInfo(
           launchCount: launchCount,
@@ -172,6 +177,7 @@ Future<TestApp> pumpApp(
     downloads: gateway,
     audioDir: dir,
     purchases: shop,
+    notifications: notes,
   );
 }
 

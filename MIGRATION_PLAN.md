@@ -185,8 +185,10 @@ flag says on, which would start ~15 notifications a day for users who have never
 them. Not recommended.
 
 Legacy hourly notifications already delivered and sitting in Notification Centre mostly carry
-`userInfo.action`. The native channel maps a tap on one of those to `/quote`, so the old behaviour
-still works on the first day. The start-hour notification (BUG-02) and the "we miss you" ones
+`userInfo.action`. **As built:** m007 removes them from Notification Centre on the first launch
+of 2.0 (with the pending ones), so there is nothing left to tap afterwards. A legacy notification
+tapped to *launch* 2.0 for the first time opens the app at its normal first screen rather than
+the quote; mapping that one tap natively was judged not worth the extra native code (R-14, low). The start-hour notification (BUG-02) and the "we miss you" ones
 carry no `action`; a tap on them just opens the app (the new app never force-unwraps payloads).
 
 **Android:** nothing to migrate. Reminders are off until the user turns them on (onboarding or
@@ -246,7 +248,7 @@ the Reminders page). Android 13+ asks for `POST_NOTIFICATIONS` at that moment.
 | R-11 | "150+ hours" claim vs ~94 h catalogue | Certain | Low | Correct listing copy |
 | R-12 | Upload key or Apple team access unavailable | Unknown | Blocking | Q-T2 early |
 | R-13 | Background audio rejected by review if no audio is playing on launch | Low | Medium | Session activated only on play; no silent audio |
-| R-14 | Legacy notification tap from Notification Centre after update | Low | Low | Native mapping to `/quote` (§6) |
+| R-14 | Legacy notification tap from Notification Centre after update | Low | Low | m007 clears delivered legacy notifications on the first launch (§6) |
 
 ---
 

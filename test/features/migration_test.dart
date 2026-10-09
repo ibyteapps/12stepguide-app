@@ -244,7 +244,8 @@ void main() {
       final bridge = FixtureBridge(prefs);
       await migrate(MemoryStore(), bridge, LegacyPlatform.ios);
       expect(bridge.prefs, prefs);
-      expect(bridge.cancelled, isEmpty);
+      // The one deliberate change: the native app's own reminder requests (m007).
+      expect(bridge.cancelled.toSet(), RemindersStep.legacyIds().toSet());
     });
   });
 

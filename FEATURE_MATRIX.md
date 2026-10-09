@@ -137,15 +137,15 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-090 | Hourly consciousness reminder | Start/end hour, at start minute; default 08:00–22:00 | — | iOS | | Both platforms. Same defaults, same text. iOS state migrated from what is actually scheduled (BUG-03); Android starts off | A-12 | ☐ |
-| F-091 | Quote reveal screen | Random line from `quotes.txt` (only 60 of 61 reachable; possible blank — BUG-24), banner | — | iOS | | All 61 quotes, never blank; banner for free users | — | ☐ |
-| F-092 | On-awakening reminder | Implemented ("Time For Your Morning Inventory") but the cell is **hidden**, so no user can enable it | — | BROKEN | Unreachable | Not built unless A-18 approves (then: both platforms, tap opens "On Awakening") | A-18 | ☐ |
-| F-093 | Night-time reminder | Implemented ("Time For Your Night Inventory") but the cell is **hidden** | — | BROKEN | Unreachable | Not built unless A-18 approves (then: tap opens "When We Retire") | A-18 | ☐ |
-| F-094 | "We miss you" (3 and 7 days) | Fresh installs only; fires once at 00:00; tap likely crashes (BUG-22) | — | iOS · BROKEN | | Re-armed on every open so it fires after 3/7 days without use, at a daytime hour; switch in Reminders | A-13 | ☐ |
+| F-090 | Hourly consciousness reminder | Start/end hour, at start minute; default 08:00–22:00 | — | iOS | | Both platforms. Same defaults, same text. iOS state migrated from what is actually scheduled (BUG-03); Android starts off | A-12 | ◐ |
+| F-091 | Quote reveal screen | Random line from `quotes.txt` (only 60 of 61 reachable; possible blank — BUG-24), banner | — | iOS | | All 61 quotes, never blank; banner for free users | — | ◐ |
+| F-092 | On-awakening reminder | Implemented ("Time For Your Morning Inventory") but the cell is **hidden**, so no user can enable it | — | BROKEN | Unreachable | Not built unless A-18 approves (then: both platforms, tap opens "On Awakening") | A-18 | ✖ |
+| F-093 | Night-time reminder | Implemented ("Time For Your Night Inventory") but the cell is **hidden** | — | BROKEN | Unreachable | Not built unless A-18 approves (then: tap opens "When We Retire") | A-18 | ✖ |
+| F-094 | "We miss you" (3 and 7 days) | Fresh installs only; fires once at 00:00; tap likely crashes (BUG-22) | — | iOS · BROKEN | | Re-armed on every open so it fires after 3/7 days without use, at a daytime hour; switch in Reminders | A-13 | ◐ |
 | F-095 | Sponsorship notification switches | Implemented, cells hidden, no feature behind them | — | BROKEN | | Not built | D-006 | ✖ |
-| F-096 | Remote push (FCM) | None in practice: APNs registration only, no FCM SDK; Toolkit handlers unreachable | SDK with default display of console notifications (Android ≤ 12) | BROKEN · NATIVE | | Keep FCM display-only on both if campaigns are used; otherwise remove | **A-17** | ☐ |
-| F-097 | Permission request | At every launch, no context | Never | DIFF · NATIVE | | Primed in onboarding (F-002) and when a reminder is first switched on; Android 13+ `POST_NOTIFICATIONS` | — | ☐ |
-| F-098 | Hourly window changes | Narrowing the window leaves old hours scheduled (BUG-23) | — | BROKEN | | Scheduler diffs the wanted set against pending requests | — | ☐ |
+| F-096 | Remote push (FCM) | None in practice: APNs registration only, no FCM SDK; Toolkit handlers unreachable | SDK with default display of console notifications (Android ≤ 12) | BROKEN · NATIVE | | Keep FCM display-only on both if campaigns are used; otherwise remove | **A-17** | ✖ |
+| F-097 | Permission request | At every launch, no context | Never | DIFF · NATIVE | | Primed in onboarding (F-002) and when a reminder is first switched on; Android 13+ `POST_NOTIFICATIONS` | — | ◐ |
+| F-098 | Hourly window changes | Narrowing the window leaves old hours scheduled (BUG-23) | — | BROKEN | | Scheduler diffs the wanted set against pending requests | — | ◐ |
 
 ## 11. Appearance, accessibility, devices
 
