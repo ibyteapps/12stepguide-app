@@ -10,8 +10,10 @@ behaviour.
 **Decision:** `D-xxx` means the owner has decided (`DECISIONS.md`). `A-xx` means the unified
 behaviour shown is a recommendation that still needs approval (`OPEN_QUESTIONS.md` §3). Rows without a decision follow directly from the brief (keep
 everything, give Android the iOS extras).
-**Status:** ☐ not started · ◐ in progress · ✅ built, tested on both platforms, cross-checked
-against this row · ✖ dropped by owner decision (the row stays).
+**Status:** ☐ not started · ◐ built: covered by unit and widget tests, both builds green in CI,
+and the main paths run on an iOS simulator and an Android emulator (smoke test), but not yet
+checked by the owner on real devices · ✅ built, tested on both platforms on real devices,
+cross-checked against this row · ✖ dropped by owner decision (the row stays).
 
 Source references are given as `File:line` or the class name. The audit (`CURRENT_APP_AUDIT.md`)
 has the detail.
@@ -22,7 +24,7 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-001 | Launch screen | Launch image storyboard | `BrandedLaunch` theme on `First` | DIFF · NATIVE | Different artwork | Native splash (flutter_native_splash) in brand colours, light and dark, then straight to the shell. No artificial delay. Uses the new icon mark | D-007 | ☐ |
+| F-001 | Launch screen | Launch image storyboard | `BrandedLaunch` theme on `First` | DIFF · NATIVE | Different artwork | Native splash (flutter_native_splash) in brand colours, light and dark, then straight to the shell. No artificial delay. Uses the new icon mark | D-007 | ◐ |
 | F-002 | First-run onboarding | 6 pages: Welcome, Audiobooks ×2, Big Book, Ad-supported, All set | 3 pages: Hey there, Support us, Ad-supported | DIFF | Content and length | One 4-page flow on both: Welcome → What's inside (steps, Big Book, audio) → Reminders (primes notification permission, F-064) → Ad-supported/Premium note. Skippable; shown once | — | ◐ |
 | F-003 | "App updated" onboarding for upgraders | 5 pages when `FLAG_ONBOARDING_UPDATE_SHOWN` is false | — | iOS | | One "Welcome to the new 12 Step Guide" screen for **every** upgrading user on both platforms, saying their date, reminders, downloads and purchases came across. Shown once after migration | — | ◐ |
 | F-004 | Launch counter | `launchcount` (counts the first launch twice) | `…launchCount…` key | DIFF | Keys differ; iOS value is launches + 1 | One counter, seeded from the legacy value so prompt cadences continue | — | ◐ |
@@ -73,7 +75,7 @@ has the detail.
 | F-042 | Dark mode in reader | White text injected | — | iOS | | Full light/dark reader surfaces from tokens | — | ◐ |
 | F-043 | Font-size tooltip | — | "Change font size from here", max 2 times | AND | | One-time coach mark on the Aa button the first time a reader opens | — | ◐ |
 | F-044 | Links inside content | Open inside the reader (BUG-12) | Open in the browser | DIFF | | External → in-app browser tab; `mailto:` → mail; `#anchor` → scroll; store links → store | — | ◐ |
-| F-045 | Banner ad in reader | Bottom | Bottom | BOTH | | Adaptive banner at the bottom, never covering text; free users only | A-10 | ☐ |
+| F-045 | Banner ad in reader | Bottom | Bottom | BOTH | | Adaptive banner at the bottom, never covering text; free users only | A-10 | ◐ |
 | F-046 | Reading position | — | — | — | | Remembers the scroll position per document; "Continue reading" chip at the top of Big Book | A-19 | ◐ |
 
 ## 6. Sobriety
@@ -152,10 +154,10 @@ has the detail.
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
 | F-100 | Dark mode | Follows system | Light only | DIFF | | Light / Dark / System (default System) in Appearance | — | ◐ |
-| F-101 | Tablet / iPad layout | Universal, all orientations | Large-screen dimens | BOTH · NATIVE | | Responsive: 2-pane where it helps (lists + reader on wide screens), navigation rail on tablets | — | ☐ |
+| F-101 | Tablet / iPad layout | Universal, all orientations | Large-screen dimens | BOTH · NATIVE | | Responsive: 2-pane where it helps (lists + reader on wide screens), navigation rail on tablets | — | ◐ |
 | F-102 | Orientation | All | All | BOTH | | All on tablets; phones portrait + landscape | — | ◐ |
 | F-103 | Screen reader & text scaling | Minimal | Minimal | BROKEN | | Full semantics and Dynamic Type / font scale support (UX spec §9) | — | ◐ |
-| F-104 | Mac (Apple silicon) and visionOS availability | Offered by the store | — | iOS · NATIVE | | Keep "iPad apps on Mac" availability unless the owner opts out; smoke-test once | Q-P6 | ☐ |
+| F-104 | Mac (Apple silicon) and visionOS availability | Offered by the store | — | iOS · NATIVE | | Keep "iPad apps on Mac" availability unless the owner opts out; smoke-test once. Nothing to build: it is an App Store Connect setting, on by default (D-008) | D-008 | ☐ |
 
 ## 12. Platform services
 

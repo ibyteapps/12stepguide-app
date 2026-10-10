@@ -31,6 +31,22 @@ lands after the screens exist (its gateways can be built in parallel). P7 needs 
 | P7 | — | Accessibility, tablets, performance, integration tests, device upgrade tests, store assets |
 | P8 | Q-T2 (signing) | Internal → beta → phased production release |
 
+### Progress (10 Oct 2026)
+
+| Phase | State | Where |
+|---|---|---|
+| P0 | ✅ Done | PR #1 |
+| P1 + P2 | ✅ Built; owner review on devices pending | PR #3 |
+| P3 | ✅ Built; real-device background playback check pending | PR #4 |
+| P4 | ✅ Built; sandbox purchase run-through pending (needs the owner's sandbox / licence-tester accounts) | PR #5 |
+| P5 | ✅ Built; 24-hour reminder soak on devices pending | PR #6 |
+| P6 | ✅ Built; Firebase switches on when the owner adds the config values (Q-T1) | PR #7 |
+| P7 | ◐ In CI: tablet list-detail layout, launch screen, iOS privacy manifest, on-device smoke tests on an iPhone simulator and an Android emulator, store screenshots, feature graphic, listing and privacy drafts. Left for the owner: VoiceOver/TalkBack passes, cold-start timing on a mid-range phone, device upgrade tests from the live store builds | PR #8 |
+| P8 | ☐ Needs signing (Q-T2), Firebase config, AdMob unit ids, sandbox accounts | — |
+
+Every built feature row is ◐ in `FEATURE_MATRIX.md` until the owner has checked it on a
+device (then ✅). Decisions taken while the owner was away are D-008 and D-009 (provisional).
+
 ---
 
 ## 2. Phases in detail
@@ -170,6 +186,13 @@ privacy label and Data safety drafts; release notes.
 - Upgrade tests pass for every fixture scenario on real devices.
 
 **Checkpoint:** release candidate builds on both platforms.
+
+**Done in CI (PR #8):** list-detail layout on expanded widths (F-101); native launch screen
+(F-001); `PrivacyInfo.xcprivacy`; `integration_test/smoke_test.dart` on an iPhone simulator and
+an Android 14 emulator; store screenshots for iPhone 6.9", iPad 13", Android phone, 7" and
+10" tablets, the Play feature graphic, and listing and privacy drafts (`store/`).
+**Needs the owner's devices:** VoiceOver and TalkBack passes, cold-start and scrolling timing,
+upgrade tests from the live store builds (MIGRATION_PLAN §11), real purchases in sandbox.
 
 ### P8 — Release
 Internal → closed beta → iOS phased release / Android staged rollout with the gates in

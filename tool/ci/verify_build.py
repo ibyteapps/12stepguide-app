@@ -76,6 +76,12 @@ class Checker:
         self.lines.append(line)
         print("  " + line)
 
+    def note(self, label: str, value: str) -> None:
+        """A measured value for the record (P7 size budget), not a check."""
+        line = f"· {label}: {value}"
+        self.lines.append(line)
+        print("  " + line)
+
     def done(self) -> int:
         verdict = "OK" if not self.failures else f"{self.failures} problem(s)"
         print(f"{self.what}: {verdict}")
@@ -173,6 +179,7 @@ def android_aab(path: str, flavor: str) -> int:
     }
     c.eq("AdMob app id", meta.get("com.google.android.gms.ads.APPLICATION_ID"),
          ADMOB_APP_ID["android"][flavor])
+    c.note("bundle size (all ABIs; Play delivers less)", f"{os.path.getsize(path) / 1e6:.1f} MB")
     return c.done()
 
 
@@ -195,6 +202,8 @@ def ios_app(path: str, flavor: str) -> int:
     c.eq("AdMob app id", info.get("GADApplicationIdentifier"), ADMOB_APP_ID["ios"][flavor])
     c.eq("SKAdNetwork ids", len(info.get("SKAdNetworkItems", [])) > 0, True)
     c.eq("no tracking prompt (A-11)", "NSUserTrackingUsageDescription" in info, False)
+    app_bytes = sum(f.stat().st_size for f in Path(path).rglob("*") if f.is_file())
+    c.note("app size on disk", f"{app_bytes / 1e6:.1f} MB")
     return c.done()
 
 
