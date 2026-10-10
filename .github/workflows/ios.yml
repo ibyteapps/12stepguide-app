@@ -72,4 +72,5 @@ jobs:
           xcrun simctl bootstatus "$UDID" -b
 
       - name: Smoke test on the simulator
-        run: tool/ci/run_logged.sh "iOS smoke test" flutter test integration_test/smoke_test.dart --flavor dev --dart-define-from-file=config/dev.json -d ${{ steps.sim.outputs.udid }}
+        # A time limit inside the step, so a hang still reports the output's last lines.
+        run: python3 tool/ci/run_logged.py --timeout 1200 "iOS smoke test" flutter test integration_test/smoke_test.dart --flavor dev --dart-define-from-file=config/dev.json -d ${{ steps.sim.outputs.udid }}

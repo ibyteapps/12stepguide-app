@@ -124,4 +124,5 @@ jobs:
           profile: pixel_6
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: tool/ci/run_logged.sh "Android smoke test" flutter test integration_test/smoke_test.dart --flavor dev --dart-define-from-file=config/dev.json
+          # A time limit inside the step, so a hang still reports the output's last lines.
+          script: python3 tool/ci/run_logged.py --timeout 1500 "Android smoke test" flutter test integration_test/smoke_test.dart --flavor dev --dart-define-from-file=config/dev.json

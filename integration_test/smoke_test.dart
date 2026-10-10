@@ -43,6 +43,11 @@ Finder tab(String label) => find.descendant(
   matching: find.text(label),
 );
 
+final _clock = Stopwatch()..start();
+
+/// Progress in the device log, so a hang on CI shows the last step reached.
+void step(String name) => debugPrint('SMOKE ${_clock.elapsed.inSeconds}s ▸ $name');
+
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
@@ -50,7 +55,9 @@ void main() {
     tester,
   ) async {
     final errors = <FlutterErrorDetails>[];
+    step('bootstrap');
     await bootstrap();
+    step('bootstrap done');
     // bootstrap installs the app's own handler (logging); keep it and collect as well.
     final appHandler = FlutterError.onError;
     FlutterError.onError = (details) {
@@ -59,20 +66,25 @@ void main() {
     };
 
     // A fresh install starts with onboarding (S-02).
+    step('onboarding');
     await tapAndWait(tester, find.text('Skip'), find.text('Introduction'));
 
     // Steps (S-10) → a reading (S-11) and back.
+    step('Steps → Step 1');
     await tapAndWait(tester, find.text('Step 1'), find.textContaining('strong chance'));
     await back(tester);
 
     // Traditions segment.
+    step('Traditions');
     await tapAndWait(tester, find.text('Traditions'), find.text('Tradition 1'));
 
     // Readings (S-20).
+    step('Readings');
     await tapAndWait(tester, tab('Readings'), find.text('Daily Reflections'));
     expect(find.text('Serenity Prayer'), findsOneWidget);
 
     // Big Book (S-30) → Chapter 5.
+    step('Big Book → Chapter 5');
     await tapAndWait(tester, tab('Big Book'), find.text('Chapter 5: How It Works'));
     await tapAndWait(
       tester,
@@ -83,11 +95,13 @@ void main() {
 
     // Audio (S-40) → an album (S-41) → play the first recording, which streams from the audio
     // server through the background media service, then pause it.
+    step('Audio → album → play');
     await tapAndWait(tester, tab('Audio'), find.text('Joe & Charlie - Big Book Study'));
     await tapAndWait(tester, find.text('Joe & Charlie - Big Book Study'), find.text('Play all'));
     await tapAndWait(tester, find.text('AA History - Part 1'), find.byTooltip('Close player'));
     await tester.pump(const Duration(seconds: 5));
     // Down to the mini-player, which stops playback and closes.
+    step('mini-player');
     await tapAndWait(
       tester,
       find.byTooltip('Close player'),
@@ -98,6 +112,7 @@ void main() {
     await back(tester);
 
     // Drawer pages (S-50…S-57).
+    step('drawer pages');
     for (final (item, expected) in [
       ('Reminders', 'Hourly reminder'),
       ('Appearance', 'READING TEXT SIZE'),
@@ -105,6 +120,7 @@ void main() {
       ('Downloads', 'Download over Wi-Fi only'),
       ('Our other apps', '12 Step Toolkit'),
     ]) {
+      step('drawer → $item');
       await tester.tap(find.byTooltip('Menu').first);
       await tester.pump(const Duration(milliseconds: 600));
       final entry = find.descendant(of: find.byType(Drawer), matching: find.text(item));
@@ -117,11 +133,14 @@ void main() {
       await back(tester);
     }
 
+    step('done');
     FlutterError.onError = appHandler;
     expect(
       errors.map((e) => e.exceptionAsString()).toList(),
       isEmpty,
       reason: 'Flutter errors while using the app on a ${defaultTargetPlatform.name} device',
     );
-  });
+    // A time limit: a frame that never comes (the app covered, or not drawing) would otherwise
+    // keep the test waiting until the CI job is killed.
+  }, timeout: const Timeout(Duration(minutes: 8)));
 }
