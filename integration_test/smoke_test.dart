@@ -5,7 +5,9 @@
 //     --dart-define-from-file=config/dev.json -d <device>
 //
 // CI runs it in ios.yml (simulator) and android.yml (emulator). It fails on any Flutter error,
-// so a plugin that breaks at start-up or a layout overflow on a real screen shows up here.
+// so a plugin that breaks at start-up or a layout overflow on a real screen shows up here. It
+// found one already: stopping from the mini-player while the player was closing also closed
+// the album page (audio_flow_test has the regression test).
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -54,15 +56,17 @@ void main() {
   testWidgets('first launch: onboarding, every tab, a reading, an album, the drawer pages', (
     tester,
   ) async {
-    final errors = <FlutterErrorDetails>[];
+    // The test framework's handler fails the test on any Flutter error and prints its stack.
+    // bootstrap replaces it with the app's own (logging), so chain the two.
+    final testHandler = FlutterError.onError;
     step('bootstrap');
     await bootstrap();
     step('bootstrap done');
-    // bootstrap installs the app's own handler (logging); keep it and collect as well.
     final appHandler = FlutterError.onError;
     FlutterError.onError = (details) {
-      errors.add(details);
+      debugPrint('SMOKE error: ${details.exceptionAsString()}');
       appHandler?.call(details);
+      testHandler?.call(details);
     };
 
     // A fresh install starts with onboarding (S-02).
@@ -133,13 +137,8 @@ void main() {
       await back(tester);
     }
 
-    step('done');
-    FlutterError.onError = appHandler;
-    expect(
-      errors.map((e) => e.exceptionAsString()).toList(),
-      isEmpty,
-      reason: 'Flutter errors while using the app on a ${defaultTargetPlatform.name} device',
-    );
+    step('done on ${defaultTargetPlatform.name}');
+    FlutterError.onError = testHandler;
     // A time limit: a frame that never comes (the app covered, or not drawing) would otherwise
     // keep the test waiting until the CI job is killed.
   }, timeout: const Timeout(Duration(minutes: 8)));

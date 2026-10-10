@@ -13,17 +13,50 @@ from __future__ import annotations
 import argparse
 import collections
 import os
+import re
 import signal
 import subprocess
 import sys
 import threading
 import time
 
-TAIL_LINES = 80
+TAIL_LINES = 400
+
+# GitHub cuts an annotation's message at about 4 KB, so the tail goes out in several parts.
+PART_CHARS = 3500
+MAX_PARTS = 6
+
+# Download and unzip progress bars: only the latest one is worth keeping.
+PROGRESS = re.compile(r"^\s*\[[=> ]*\]\s*\d+%|Unzipping\.\.\.|Downloading\.\.\.")
 
 
 def escape(text: str) -> str:
     return text.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+
+
+def escape_property(text: str) -> str:
+    """Property values (the title) also need their separators escaped."""
+    return escape(text).replace(":", "%3A").replace(",", "%2C")
+
+
+def parts(lines: list[str]) -> list[str]:
+    """The last lines, newest kept, split into annotation-sized parts in reading order."""
+    chunks: list[str] = []
+    current: list[str] = []
+    size = 0
+    for line in reversed(lines):
+        line = line[:400]
+        if size + len(line) + 1 > PART_CHARS and current:
+            chunks.append("\n".join(reversed(current)))
+            if len(chunks) == MAX_PARTS:
+                break
+            current, size = [], 0
+        current.append(line)
+        size += len(line) + 1
+    else:
+        if current:
+            chunks.append("\n".join(reversed(current)))
+    return list(reversed(chunks))
 
 
 def main() -> int:
@@ -51,7 +84,12 @@ def main() -> int:
             elapsed = int(time.monotonic() - started)
             sys.stdout.write(line)
             sys.stdout.flush()
-            tail.append(f"[{elapsed // 60:02d}:{elapsed % 60:02d}] {line.rstrip()}")
+            text = line.rstrip().split("\r")[-1]
+            if not text.strip():
+                continue
+            if PROGRESS.search(text) and tail and PROGRESS.search(tail[-1]):
+                tail.pop()
+            tail.append(f"[{elapsed // 60:02d}:{elapsed % 60:02d}] {text}")
 
     reader = threading.Thread(target=pump, daemon=True)
     reader.start()
@@ -77,7 +115,10 @@ def main() -> int:
 
     if status != 0:
         why = f"timed out after {args.timeout} s" if timed_out else f"exit {status}"
-        print(f"::error title={args.title} failed ({why})::{escape(chr(10).join(tail))}", flush=True)
+        chunks = parts(list(tail))
+        for i, chunk in enumerate(chunks, 1):
+            title = f"{args.title} failed ({why}), output {i}/{len(chunks)}"
+            print(f"::error title={escape_property(title)}::{escape(chunk)}", flush=True)
     return status
 
 

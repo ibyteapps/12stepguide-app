@@ -63,6 +63,25 @@ void main() {
     expect(find.byTooltip('Stop and close player'), findsNothing);
   });
 
+  // Found by the on-device smoke test: the stop closed the player a second time, and since it
+  // was already on its way out, that took the album page with it.
+  testWidgets('stopping from the mini-player while the player is still closing leaves the '
+      'album open', (tester) async {
+    await pumpApp(tester, location: '/audio/album/1');
+    await tester.tap(find.text('AA History - Part 2'));
+    await tester.pumpAndSettle();
+    await waitForTranscript(tester);
+
+    await tester.tap(find.byTooltip('Close player').first);
+    await tester.pump(const Duration(milliseconds: 100)); // still sliding down
+    await tester.tap(find.byTooltip('Stop and close player').first, warnIfMissed: false);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Play all'), findsOneWidget);
+    expect(find.byTooltip('Back'), findsOneWidget);
+    expect(find.byTooltip('Stop and close player'), findsNothing);
+  });
+
   testWidgets('albums without transcripts show the artwork', (tester) async {
     final app = await pumpApp(tester, location: '/audio/album/3');
     await tester.tap(find.text('Play all'));

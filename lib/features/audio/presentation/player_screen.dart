@@ -57,7 +57,11 @@ class _PlayerScreenState extends ConsumerState<PlayerScreen> {
     }
   }
 
-  void _close() => Navigator.of(context).maybePop();
+  void _close() {
+    // Already on its way out (✕ was tapped, then playback stopped): nothing to close.
+    if (!(ModalRoute.of(context)?.isCurrent ?? true)) return;
+    Navigator.of(context).maybePop();
+  }
 
   @override
   Widget build(BuildContext context) {
