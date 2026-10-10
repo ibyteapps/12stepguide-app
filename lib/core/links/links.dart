@@ -46,6 +46,36 @@ abstract interface class LinkOpener {
   Future<bool> email({required String to, required String subject, required String body});
 }
 
+/// Web pages need a connection: offline, [onOffline] tells the user instead of opening a blank
+/// browser tab (F-112, UNIFIED_PRODUCT_SPEC §6). Mail links go straight through.
+class OfflineAwareLinkOpener implements LinkOpener {
+  const OfflineAwareLinkOpener({
+    required this.inner,
+    required this.isOffline,
+    required this.onOffline,
+  });
+
+  final LinkOpener inner;
+  final bool Function() isOffline;
+  final void Function() onOffline;
+
+  static const message = "You're offline. Connect to the internet to open this page.";
+
+  @override
+  Future<bool> open(String url) async {
+    final scheme = Uri.tryParse(url)?.scheme;
+    if ((scheme == 'http' || scheme == 'https') && isOffline()) {
+      onOffline();
+      return false;
+    }
+    return inner.open(url);
+  }
+
+  @override
+  Future<bool> email({required String to, required String subject, required String body}) =>
+      inner.email(to: to, subject: subject, body: body);
+}
+
 class UrlLauncherOpener implements LinkOpener {
   const UrlLauncherOpener();
 

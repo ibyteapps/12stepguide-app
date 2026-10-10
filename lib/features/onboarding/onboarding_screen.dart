@@ -43,7 +43,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       _finish();
       return;
     }
-    _pages.nextPage(duration: Motion.of(context, Motion.medium), curve: Motion.standard);
+    _pages.showPage(context, _page + 1);
   }
 
   @override

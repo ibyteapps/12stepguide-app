@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/providers.dart';
+import '../../app/routes.dart';
 import '../../core/prefs/key_value_store.dart';
 import '../../design/components/app_icons.dart';
 import '../../design/components/list_row.dart';
@@ -9,6 +10,8 @@ import '../../design/components/segmented_tabs.dart';
 import '../../design/tokens/spacing.dart';
 import '../content/domain/content_index.dart';
 import '../reader/content_opener.dart';
+import '../reader/reader_screen.dart';
+import '../shell/list_detail.dart';
 import '../shell/tab_page.dart';
 
 /// Steps tab (S-10): Steps | Traditions (D-001), remembering the last segment.
@@ -33,7 +36,7 @@ class _StepsScreenState extends ConsumerState<StepsScreen> {
     setState(() => _segment = i);
     ref.read(kvStoreProvider).setInt(PrefKeys.stepsSegment, i);
     if (animate && _pages.hasClients) {
-      _pages.animateToPage(i, duration: Motion.of(context, Motion.medium), curve: Motion.standard);
+      _pages.showPage(context, i);
     }
   }
 
@@ -42,32 +45,38 @@ class _StepsScreenState extends ConsumerState<StepsScreen> {
     final index = ref.watch(contentIndexProvider);
     return TabPage(
       title: 'Steps',
-      body: Column(
-        children: [
-          ContentWidth(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(Space.l, Space.xs, Space.l, Space.s),
-              child: SegmentedTabs(
-                labels: const ['Steps', 'Traditions'],
-                selected: _segment,
-                onChanged: _select,
+      body: ListDetail(
+        placeholderIcon: AppIcons.steps,
+        placeholderMessage: 'Choose a step or a tradition to read it here.',
+        detail: (context, id) => ReaderScreen(docId: id, embedded: true),
+        pageRoute: Routes.read,
+        list: Column(
+          children: [
+            ContentWidth(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(Space.l, Space.xs, Space.l, Space.s),
+                child: SegmentedTabs(
+                  labels: const ['Steps', 'Traditions'],
+                  selected: _segment,
+                  onChanged: _select,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: PageView(
-              controller: _pages,
-              onPageChanged: (i) => _select(i, animate: false),
-              children: [
-                _DocList(entries: index.inCollection(Collections.steps), kind: _Kind.steps),
-                _DocList(
-                  entries: index.inCollection(Collections.traditions),
-                  kind: _Kind.traditions,
-                ),
-              ],
+            Expanded(
+              child: PageView(
+                controller: _pages,
+                onPageChanged: (i) => _select(i, animate: false),
+                children: [
+                  _DocList(entries: index.inCollection(Collections.steps), kind: _Kind.steps),
+                  _DocList(
+                    entries: index.inCollection(Collections.traditions),
+                    kind: _Kind.traditions,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -96,6 +105,7 @@ class _DocList extends ConsumerWidget {
                   title: e.title,
                   subtitle: _subtitle(e),
                   leading: _badge(e),
+                  selected: ListDetailScope.isSelected(context, e.id),
                   onTap: () => opener.open(context, e),
                 ),
             ],

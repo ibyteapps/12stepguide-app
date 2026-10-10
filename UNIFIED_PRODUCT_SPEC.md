@@ -58,7 +58,7 @@ on iOS; Play `queryPurchases` on Android) **plus** the flag migrated from the na
 |---|---|---|---|
 | Interstitial | Before opening a guide, reading, Big Book document, or starting a track | Every 3rd content open, counted across sessions; the counter restarts after an app-open ad | On first launch, external links, store links, Daily Reflections, closing a screen, or while audio plays |
 | Banner (adaptive) | Reader bottom, full player, quote screen | Always for free users | Over text or controls; in onboarding, paywall, drawer pages |
-| App-open | Returning to the app | ≥ 45 s since the last app-open ad (persisted), loaded ad < 4 h old | First launch, onboarding, paywall/purchase flow, full player, a notification tap that opens a quote |
+| App-open | Returning to the app (after it left the screen; a system dialog over it, such as the notification permission prompt, is not a return) | ≥ 45 s since the last app-open ad (persisted), loaded ad < 4 h old | First launch, onboarding, paywall/purchase flow, full player, a notification tap that opens a quote, Reminders |
 
 All video ads are muted. Ads load only after consent is resolved [A-11].
 

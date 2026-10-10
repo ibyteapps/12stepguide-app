@@ -253,14 +253,19 @@ class PurchaseService extends Notifier<PurchaseState> {
     final lifetime = _owned.keys.any(ProductIds.lifetime.contains);
     final annualOwned = _owned.containsKey(ProductIds.annual);
     final expires = _owned[ProductIds.annual];
-    final annualActive = annualOwned && (expires == null || expires.isAfter(now));
+    // The store's own list of what the user owns (a refresh or a restore) is the truth: StoreKit
+    // 2 keeps a subscription in billing grace in it although its last paid period has ended.
+    // Single events arriving on their own (merge) still need a future expiry date.
+    final annualActive = annualOwned && (!merge || expires == null || expires.isAfter(now));
     final knewLifetime =
         current.kind == PremiumKind.lifetime && current.lifetimeSource == LifetimeSource.store;
     final knewAnnual = current.kind == PremiumKind.annual;
     await controller.applyStore(
       storeLifetime: lifetime || (merge && knewLifetime),
       subscriptionActive: annualActive || (merge && !annualOwned && knewAnnual),
-      renewsAt: annualActive ? expires : (merge && knewAnnual ? current.renewsAt : null),
+      renewsAt: annualActive && expires != null && expires.isAfter(now)
+          ? expires
+          : (merge && knewAnnual ? current.renewsAt : null),
       pending: current.pending,
     );
   }

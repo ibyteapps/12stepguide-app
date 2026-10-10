@@ -11,10 +11,12 @@ import '../../../design/components/states.dart';
 import '../../../design/theme/app_colors.dart';
 import '../../../design/tokens/spacing.dart';
 import '../../../design/tokens/typography.dart';
+import '../../shell/list_detail.dart';
 import '../../shell/tab_page.dart';
 import '../application/downloads_controller.dart';
 import '../application/player_controller.dart';
 import '../domain/catalogue.dart';
+import 'album_screen.dart';
 import 'audio_widgets.dart';
 
 /// Audio tab (S-40, F-060): the 11 albums with length, downloads and what is playing.
@@ -37,26 +39,32 @@ class AudioScreen extends ConsumerWidget {
           onPressed: () => context.push(Routes.downloads),
         ),
       ],
-      body: ContentWidth(
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: Space.xxl),
-          children: [
-            if (offline)
-              const Padding(
-                padding: EdgeInsets.only(left: Space.l, top: Space.s, right: Space.l),
-                child: InlineBanner(
-                  icon: AppIcons.offline,
-                  tone: BannerTone.warning,
-                  message: "You're offline — downloaded tracks still play.",
+      body: ListDetail(
+        placeholderIcon: AppIcons.audio,
+        placeholderMessage: 'Choose an album to see its recordings here.',
+        detail: (context, id) => AlbumScreen(albumId: int.parse(id), embedded: true),
+        pageRoute: (id) => Routes.album(int.parse(id)),
+        list: ContentWidth(
+          child: ListView(
+            padding: const EdgeInsets.only(bottom: Space.xxl),
+            children: [
+              if (offline)
+                const Padding(
+                  padding: EdgeInsets.only(left: Space.l, top: Space.s, right: Space.l),
+                  child: InlineBanner(
+                    icon: AppIcons.offline,
+                    tone: BannerTone.warning,
+                    message: "You're offline — downloaded tracks still play.",
+                  ),
                 ),
+              SectionHeader('${catalogue.albums.length} albums · about $hours hours'),
+              RowGroup(
+                children: [
+                  for (final album in catalogue.albums) _AlbumRow(album: album, offline: offline),
+                ],
               ),
-            SectionHeader('${catalogue.albums.length} albums · about $hours hours'),
-            RowGroup(
-              children: [
-                for (final album in catalogue.albums) _AlbumRow(album: album, offline: offline),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -87,6 +95,7 @@ class _AlbumRow extends ConsumerWidget {
         ? 'Downloaded'
         : 'Downloaded $downloaded/$total';
     final dim = offline && downloaded == 0;
+    final selected = ListDetailScope.isSelected(context, '${album.id}');
 
     return Opacity(
       opacity: dim ? 0.55 : 1,
@@ -99,48 +108,59 @@ class _AlbumRow extends ConsumerWidget {
           if (playing != null) playing ? 'now playing' : 'paused',
           if (dim) 'not available offline',
         ].join(', '),
+        selected: selected,
         excludeSemantics: true,
-        child: InkWell(
-          onTap: () => context.push(Routes.album(album.id)),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Space.l, vertical: Space.m),
-            child: Row(
-              children: [
-                AlbumArt(album: album, size: Space.x5 + Space.l),
-                const SizedBox(width: Space.l),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        album.title,
-                        style: TypeScale.body.copyWith(
-                          color: c.textPrimary,
-                          fontWeight: FontWeight.w600,
+        child: Material(
+          color: selected ? c.primaryContainer : c.surface.withAlpha(0),
+          child: InkWell(
+            onTap: () {
+              final pane = ListDetailScope.find(context);
+              if (pane != null) {
+                pane.select('${album.id}');
+              } else {
+                context.push(Routes.album(album.id));
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Space.l, vertical: Space.m),
+              child: Row(
+                children: [
+                  AlbumArt(album: album, size: Space.x5 + Space.l),
+                  const SizedBox(width: Space.l),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          album.title,
+                          style: TypeScale.body.copyWith(
+                            color: c.textPrimary,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: Space.xxs),
-                      Text(details, style: TypeScale.bodySmall.copyWith(color: c.textSecondary)),
-                      if (badge != null) ...[
-                        const SizedBox(height: Space.xs),
-                        Row(
-                          children: [
-                            Icon(AppIcons.downloaded, size: IconSizes.s * 0.8, color: c.success),
-                            const SizedBox(width: Space.xs),
-                            Text(badge, style: TypeScale.label.copyWith(color: c.success)),
-                          ],
-                        ),
+                        const SizedBox(height: Space.xxs),
+                        Text(details, style: TypeScale.bodySmall.copyWith(color: c.textSecondary)),
+                        if (badge != null) ...[
+                          const SizedBox(height: Space.xs),
+                          Row(
+                            children: [
+                              Icon(AppIcons.downloaded, size: IconSizes.s * 0.8, color: c.success),
+                              const SizedBox(width: Space.xs),
+                              Text(badge, style: TypeScale.label.copyWith(color: c.success)),
+                            ],
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
-                ),
-                if (playing != null) ...[
+                  if (playing != null) ...[
+                    const SizedBox(width: Space.s),
+                    NowPlayingMark(playing: playing),
+                  ],
                   const SizedBox(width: Space.s),
-                  NowPlayingMark(playing: playing),
+                  Icon(AppIcons.chevron, color: c.textTertiary, size: IconSizes.m),
                 ],
-                const SizedBox(width: Space.s),
-                Icon(AppIcons.chevron, color: c.textTertiary, size: IconSizes.m),
-              ],
+              ),
             ),
           ),
         ),

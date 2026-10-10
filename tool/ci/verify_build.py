@@ -36,7 +36,8 @@ ANDROID_MIN_SDK = "24"
 ANDROID_TARGET_SDK = "36"
 IOS_MIN_OS = "15.0"
 
-ANDROID_LABEL = {"dev": "12SG Dev", "staging": "12SG Staging", "prod": "12 Step Guide"}
+# prod: today's Play name until the owner decides A-02 (DECISIONS.md D-009).
+ANDROID_LABEL = {"dev": "12SG Dev", "staging": "12SG Staging", "prod": "12 Step Guide - AA"}
 ADMOB_APP_ID = {
     "android": {"dev": "ca-app-pub-3940256099942544~3347511713",
                 "staging": "ca-app-pub-3935706727993760~6070100472",
@@ -72,6 +73,12 @@ class Checker:
         ok = actual == expected
         self.failures += 0 if ok else 1
         line = f"{'✓' if ok else '✗'} {label}: {actual!r}" + ("" if ok else f" (expected {expected!r})")
+        self.lines.append(line)
+        print("  " + line)
+
+    def note(self, label: str, value: str) -> None:
+        """A measured value for the record (P7 size budget), not a check."""
+        line = f"· {label}: {value}"
         self.lines.append(line)
         print("  " + line)
 
@@ -154,6 +161,12 @@ def android_aab(path: str, flavor: str) -> int:
     c.eq("debuggable", app.get(ANDROID_NS + "debuggable", "false") if app is not None else None, "false")
     c.eq("icon set", bool(app is not None and app.get(ANDROID_NS + "icon")), True)
     c.eq("round icon set", bool(app is not None and app.get(ANDROID_NS + "roundIcon")), True)
+    c.eq(
+        "backup rules (recordings left out, F-113)",
+        bool(app is not None and app.get(ANDROID_NS + "fullBackupContent")
+             and app.get(ANDROID_NS + "dataExtractionRules")),
+        True,
+    )
     perms = {e.get(ANDROID_NS + "name") for e in root.findall("uses-permission")}
     for perm in REQUIRED_PERMISSIONS:
         c.eq(f"permission {perm.rsplit('.', 1)[-1]}", perm in perms, True)
@@ -172,6 +185,7 @@ def android_aab(path: str, flavor: str) -> int:
     }
     c.eq("AdMob app id", meta.get("com.google.android.gms.ads.APPLICATION_ID"),
          ADMOB_APP_ID["android"][flavor])
+    c.note("bundle size (all ABIs; Play delivers less)", f"{os.path.getsize(path) / 1e6:.1f} MB")
     return c.done()
 
 
@@ -186,6 +200,7 @@ def ios_app(path: str, flavor: str) -> int:
     c.eq("MinimumOSVersion", info.get("MinimumOSVersion"), IOS_MIN_OS)
     c.eq("CFBundleDisplayName", info.get("CFBundleDisplayName"), IOS_NAME[flavor])
     c.eq("ITSAppUsesNonExemptEncryption", info.get("ITSAppUsesNonExemptEncryption"), False)
+    c.eq("privacy manifest", (Path(path) / "PrivacyInfo.xcprivacy").exists(), True)
     icon = info.get("CFBundleIcons", {}).get("CFBundlePrimaryIcon", {}).get("CFBundleIconName")
     c.eq("app icon set", icon, IOS_ICON[flavor])
     c.eq("compiled asset catalog", (Path(path) / "Assets.car").exists(), True)
@@ -193,6 +208,8 @@ def ios_app(path: str, flavor: str) -> int:
     c.eq("AdMob app id", info.get("GADApplicationIdentifier"), ADMOB_APP_ID["ios"][flavor])
     c.eq("SKAdNetwork ids", len(info.get("SKAdNetworkItems", [])) > 0, True)
     c.eq("no tracking prompt (A-11)", "NSUserTrackingUsageDescription" in info, False)
+    app_bytes = sum(f.stat().st_size for f in Path(path).rglob("*") if f.is_file())
+    c.note("app size on disk", f"{app_bytes / 1e6:.1f} MB")
     return c.done()
 
 

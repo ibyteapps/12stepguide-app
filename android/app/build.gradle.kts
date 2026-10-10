@@ -67,8 +67,9 @@ android {
         }
         create("prod") {
             dimension = "env"
-            // A-02 (provisional, D-008): "12 Step Guide" on both platforms.
-            manifestPlaceholders["appLabel"] = "12 Step Guide"
+            // Today's Play name until the owner decides A-02 (D-009). The recommendation is
+            // "12 Step Guide", as on iOS.
+            manifestPlaceholders["appLabel"] = "12 Step Guide - AA"
             // The existing AdMob app, for reporting continuity (MIGRATION_PLAN §2).
             manifestPlaceholders["admobAppId"] = "ca-app-pub-3935706727993760~6070100472"
         }

@@ -417,11 +417,35 @@ def write_preview() -> None:
     save_png(sheet, BRANDING / "preview.png")
 
 
+
+# --- Launch screen (F-001) --------------------------------------------------------------------
+# flutter_native_splash reads these (pubspec.yaml, flutter_native_splash:). Colours are the app
+# background tokens (UX_UI_SPEC §3.2) so the hand-over to the first screen is seamless.
+SPLASH_BG_LIGHT = "#F6F7FB"
+SPLASH_BG_DARK = "#0E1017"
+# Android 12+ draws the splash icon on a circle of this colour (the middle of the icon gradient).
+SPLASH_ICON_CIRCLE = "#4F9FEA"
+
+
+def write_splash() -> None:
+    """The icon tile for iOS and Android 7-11 (192 dp at 4x = 768 px), and the book alone for
+    Android 12+, whose splash API masks the icon to a circle (288 dp at 4x = 1152 px, content
+    inside the middle 192 dp)."""
+    out = BRANDING / "splash"
+    tile = render(svg(LIGHT, IOS_SCALE, BACKGROUNDS["prod"]), 768)
+    rounded = Image.new("RGBA", (768, 768), (0, 0, 0, 0))
+    rounded.paste(tile, (0, 0), squircle_mask(768))
+    save_png(rounded, out / "splash-icon.png")
+    # Android 12+: 1152 px canvas, the mark scaled to sit inside the 768 px safe circle.
+    save_png(render(svg(LIGHT, android_scale(), None), 1152), out / "splash-android12.png")
+
+
 def main() -> int:
     write_masters()
     write_ios()
     write_android()
     write_notification_icon()
+    write_splash()
     write_preview()
     print("Icons written; see assets/branding/preview.png")
     return 0

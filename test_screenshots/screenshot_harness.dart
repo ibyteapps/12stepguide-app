@@ -99,7 +99,8 @@ Future<void> settleForCapture(WidgetTester tester) async {
   for (var i = 0; i < 80; i++) {
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 80)));
     await tester.pump(const Duration(milliseconds: 50));
-    if (i >= 2 && find.byType(SkeletonLines).evaluate().isEmpty) break;
+    // A few rounds first: a tap may still be on its way to opening a reading.
+    if (i >= 6 && find.byType(SkeletonLines).evaluate().isEmpty) break;
   }
   final images = find.byType(Image).evaluate().toList();
   await tester.runAsync(() async {

@@ -10,8 +10,10 @@ behaviour.
 **Decision:** `D-xxx` means the owner has decided (`DECISIONS.md`). `A-xx` means the unified
 behaviour shown is a recommendation that still needs approval (`OPEN_QUESTIONS.md` §3). Rows without a decision follow directly from the brief (keep
 everything, give Android the iOS extras).
-**Status:** ☐ not started · ◐ in progress · ✅ built, tested on both platforms, cross-checked
-against this row · ✖ dropped by owner decision (the row stays).
+**Status:** ☐ not started · ◐ built: covered by unit and widget tests, both builds green in CI,
+and the main paths run on an iOS simulator and an Android emulator (smoke test), but not yet
+checked by the owner on real devices · ✅ built, tested on both platforms on real devices,
+cross-checked against this row · ✖ dropped by owner decision (the row stays).
 
 Source references are given as `File:line` or the class name. The audit (`CURRENT_APP_AUDIT.md`)
 has the detail.
@@ -22,7 +24,7 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-001 | Launch screen | Launch image storyboard | `BrandedLaunch` theme on `First` | DIFF · NATIVE | Different artwork | Native splash (flutter_native_splash) in brand colours, light and dark, then straight to the shell. No artificial delay. Uses the new icon mark | D-007 | ☐ |
+| F-001 | Launch screen | Launch image storyboard | `BrandedLaunch` theme on `First` | DIFF · NATIVE | Different artwork | Native splash (flutter_native_splash) in brand colours, light and dark, then straight to the shell. No artificial delay. Uses the new icon mark | D-007 | ◐ |
 | F-002 | First-run onboarding | 6 pages: Welcome, Audiobooks ×2, Big Book, Ad-supported, All set | 3 pages: Hey there, Support us, Ad-supported | DIFF | Content and length | One 4-page flow on both: Welcome → What's inside (steps, Big Book, audio) → Reminders (primes notification permission, F-064) → Ad-supported/Premium note. Skippable; shown once | — | ◐ |
 | F-003 | "App updated" onboarding for upgraders | 5 pages when `FLAG_ONBOARDING_UPDATE_SHOWN` is false | — | iOS | | One "Welcome to the new 12 Step Guide" screen for **every** upgrading user on both platforms, saying their date, reminders, downloads and purchases came across. Shown once after migration | — | ◐ |
 | F-004 | Launch counter | `launchcount` (counts the first launch twice) | `…launchCount…` key | DIFF | Keys differ; iOS value is launches + 1 | One counter, seeded from the legacy value so prompt cadences continue | — | ◐ |
@@ -73,7 +75,7 @@ has the detail.
 | F-042 | Dark mode in reader | White text injected | — | iOS | | Full light/dark reader surfaces from tokens | — | ◐ |
 | F-043 | Font-size tooltip | — | "Change font size from here", max 2 times | AND | | One-time coach mark on the Aa button the first time a reader opens | — | ◐ |
 | F-044 | Links inside content | Open inside the reader (BUG-12) | Open in the browser | DIFF | | External → in-app browser tab; `mailto:` → mail; `#anchor` → scroll; store links → store | — | ◐ |
-| F-045 | Banner ad in reader | Bottom | Bottom | BOTH | | Adaptive banner at the bottom, never covering text; free users only | A-10 | ☐ |
+| F-045 | Banner ad in reader | Bottom | Bottom | BOTH | | Adaptive banner at the bottom, never covering text; free users only | A-10 | ◐ |
 | F-046 | Reading position | — | — | — | | Remembers the scroll position per document; "Continue reading" chip at the top of Big Book | A-19 | ◐ |
 
 ## 6. Sobriety
@@ -106,11 +108,11 @@ has the detail.
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
 | F-070 | Premium definition | No ads + downloads | No ads | DIFF | | **Premium** = no ads + audio downloads, on both | A-05 | ◐ |
-| F-071 | Annual subscription `annual` (7-day trial) | Sold | — | iOS | | Sold on iOS, same product id, StoreKit 2 | A-06 | ◐ |
-| F-072 | Donation tiers | Old iOS tiers (`…donatetier5/10/20`): restore only, lifetime | `donatetier1/2/3`: sold, consumed, "remove ads for life" | DIFF | | iOS: legacy tiers keep lifetime Premium. Android: tiers keep being sold as "Support the app" and give lifetime Premium | A-04, A-06 | ◐ |
+| F-071 | Annual subscription `annual` (7-day trial) | Sold | — | iOS | | Sold on iOS, same product id, StoreKit 2. Premium stays on through Apple's billing grace period | A-06 | ◐ |
+| F-072 | Donation tiers | Old iOS tiers (`…donatetier5/10/20`): restore only, lifetime | `donatetier1/2/3`: sold, consumed, "remove ads for life" | DIFF | | iOS: legacy tiers keep lifetime Premium. Android: tiers keep being sold as "Support the app" and give lifetime Premium once paid (a purchase waiting for payment shows as pending, not owned) | A-04, A-06 | ◐ |
 | F-073 | Interstitial pacing | Every 2nd counted tap (also counts non-content taps — BUG-31); AdMob only | Every 3rd open incl. the Daily Reflection link, persisted; AdMob → Meta fallback | DIFF | | Every 3rd content open, persisted, reset after an app-open ad; never before external links; AdMob only (Meta via AdMob mediation if wanted) | A-10 | ◐ |
-| F-074 | App-open ads | ≥ 45 s since last, not on cold start, not over paywall | Every foreground, ≥ 20 s (in memory) | DIFF | | ≥ 45 s since last (persisted); never on first launch, onboarding, paywall, purchase flow or full player | A-10 | ◐ |
-| F-075 | Banner ads | Reader, player, quote screen | Reader | DIFF | | Reader, player, quote screen | A-10 | ◐ |
+| F-074 | App-open ads | ≥ 45 s since last, not on cold start, not over paywall | Every foreground, ≥ 20 s (in memory) | DIFF | | ≥ 45 s since last (persisted); only after the app really left the screen (not after a system dialog such as the notification permission prompt); never on first launch, onboarding, paywall, purchase flow, full player or Reminders | A-10 | ◐ |
+| F-075 | Banner ads | Reader, player, quote screen | Reader | DIFF | | Reader, player, quote screen; adaptive to the pane it sits in (tablet reader pane) | A-10 | ◐ |
 | F-076 | Mute video ads | — | `setAppVolume(0)` | AND | | Kept on both (and never duck playing audio) | — | ◐ |
 | F-077 | Ad consent | None | None (changelog says UMP; code doesn't) | BROKEN | | Google UMP consent at first launch for UK/EEA; "Privacy & ad choices" in the drawer; no ATT on iOS | A-11 | ◐ |
 | F-078 | Paywall | Auto at launch 2, 20, 50; benefits list; price; terms/privacy links | Store list of tiers | DIFF | | One paywall screen per platform's products (§3 of the spec); auto-shown on iOS cadence on both, never on first launch | A-25 | ◐ |
@@ -152,10 +154,10 @@ has the detail.
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
 | F-100 | Dark mode | Follows system | Light only | DIFF | | Light / Dark / System (default System) in Appearance | — | ◐ |
-| F-101 | Tablet / iPad layout | Universal, all orientations | Large-screen dimens | BOTH · NATIVE | | Responsive: 2-pane where it helps (lists + reader on wide screens), navigation rail on tablets | — | ☐ |
+| F-101 | Tablet / iPad layout | Universal, all orientations | Large-screen dimens | BOTH · NATIVE | | Responsive: 2-pane where it helps (lists + reader on wide screens), navigation rail on tablets. The list keeps its state across rotation/Split View, and an item open in the pane carries over as a page when the panes collapse | — | ◐ |
 | F-102 | Orientation | All | All | BOTH | | All on tablets; phones portrait + landscape | — | ◐ |
 | F-103 | Screen reader & text scaling | Minimal | Minimal | BROKEN | | Full semantics and Dynamic Type / font scale support (UX spec §9) | — | ◐ |
-| F-104 | Mac (Apple silicon) and visionOS availability | Offered by the store | — | iOS · NATIVE | | Keep "iPad apps on Mac" availability unless the owner opts out; smoke-test once | Q-P6 | ☐ |
+| F-104 | Mac (Apple silicon) and visionOS availability | Offered by the store | — | iOS · NATIVE | | Keep "iPad apps on Mac" availability unless the owner opts out; smoke-test once. Nothing to build: it is an App Store Connect setting, on by default (D-008) | D-008 | ☐ |
 
 ## 12. Platform services
 
@@ -163,8 +165,8 @@ has the detail.
 |---|---|---|---|---|---|---|---|---|
 | F-110 | Firebase Analytics | Automatic | Automatic | BOTH | | Same project, same apps → continuity. No new custom events without approval | — | ◐ |
 | F-111 | Crashlytics | ✓ | ✓ (with breadcrumbs) | BOTH | | ✓; breadcrumbs carry no personal data | — | ◐ |
-| F-112 | Network reachability | `Reachability` before streaming | — | iOS | | Connectivity-aware audio and links, with offline banners | — | ◐ |
-| F-113 | Backups | iCloud backs up Documents (downloads too) | `allowBackup=true` | NATIVE | | Downloads excluded from iCloud backup (re-downloadable); preferences backed up on both | — | ◐ |
+| F-112 | Network reachability | `Reachability` before streaming | — | iOS | | Connectivity-aware audio and links, with offline banners; web links say "You're offline" instead of opening; the paywall asks for a connection instead of prices | — | ◐ |
+| F-113 | Backups | iCloud backs up Documents (downloads too) | `allowBackup=true` | NATIVE | | Downloads excluded from iCloud backup (re-downloadable); preferences backed up on both. Android: `backup_rules.xml` / `data_extraction_rules.xml` leave `audio/` out of Google's cloud backup (25 MB cap); device-to-device transfer keeps it | — | ◐ |
 | F-114 | URL schemes (Google, LinkedIn) | Declared, unused | — | BROKEN | | Not carried over | D-006 | ✖ |
 | F-115 | Face ID string, Sign in with Apple entitlement | Declared, unused | — | BROKEN | | Not carried over | D-006 | ✖ |
 | F-116 | Unused HTML pages | 10 files | 5 files | BROKEN | | Converted to Markdown in `content/archive/` for reference, not shipped | D-006 | ✖ |

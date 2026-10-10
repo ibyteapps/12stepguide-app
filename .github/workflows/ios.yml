@@ -55,3 +55,22 @@ jobs:
 
       - name: Verify dev
         run: tool/ci/run_logged.sh "Verify iOS dev" python3 tool/ci/verify_build.py ios-app build/ios/iphonesimulator/Runner.app dev
+
+      # P7: the real app with its real plugins on a simulator, as a first-time user would use it
+      # (integration_test/smoke_test.dart).
+      - name: Start an iPhone simulator
+        id: sim
+        run: |
+          UDID=$(xcrun simctl list devices available -j | python3 -c '
+          import json, re, sys
+          devices = json.load(sys.stdin)["devices"]
+          ios = sorted((k for k in devices if "iOS" in k), key=lambda k: [int(n) for n in re.findall(r"\d+", k)])
+          phones = [d for d in devices[ios[-1]] if d["name"].startswith("iPhone")]
+          print(phones[0]["udid"])')
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+
+      - name: Smoke test on the simulator
+        # A time limit inside the step, so a hang still reports the output's last lines.
+        run: python3 tool/ci/run_logged.py --timeout 1200 "iOS smoke test" flutter test integration_test/smoke_test.dart --flavor dev --dart-define-from-file=config/dev.json -d ${{ steps.sim.outputs.udid }}

@@ -4,9 +4,11 @@ The unified Flutter rebuild of **12 Step Guide** (iOS `com.ibyteapps.aa12stepgui
 id 1238097883; Android `com.ibyteapps.aa12stepguide`), shipping to both stores as version 2.0
 in place of the two native apps.
 
-**Status (9 Oct 2026):** planning complete; owner decisions D-001 to D-005 recorded in
-[DECISIONS.md](DECISIONS.md); all literature converted to Markdown in
-[content/](content/README.md). **P0 (project, flavours, CI) in place**; P1 (foundations) is next.
+**Status (10 Oct 2026):** P0–P7 built and merged. Everything is tested in CI (unit, widget and
+accessibility tests) and smoke-tested on an iPhone simulator and an Android emulator on every
+pull request, and is waiting for the owner's checks on real devices before release (P8). See the progress table in
+[IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md). Store screenshots and listing text are in
+[store/](store/README.md).
 
 | Document | What it is |
 |---|---|
@@ -20,6 +22,7 @@ in place of the two native apps.
 | [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md) | Uncertainties, what's needed from the owner, decisions awaiting approval |
 | [DECISIONS.md](DECISIONS.md) | Owner decisions, dated, with what each commits the build to |
 | [content/README.md](content/README.md) | The literature as Markdown: folders, file format, known source issues |
+| [store/README.md](store/README.md) | Store screenshots, feature graphic, listing text and privacy answers |
 
 ## Build and run
 
@@ -36,11 +39,12 @@ flutter test
 |---|---|---|---|---|
 | `dev` | `com.ibyteapps.aa12stepguide.dev` (installs beside the store app) | 12SG Dev | Google test ads | Your devices, CI |
 | `staging` | `com.ibyteapps.aa12stepguide` | 12SG Staging | Google test ads | TestFlight internal, Play internal testing |
-| `prod` | `com.ibyteapps.aa12stepguide` | "12 Step Guide" on both (A-02, provisional D-008) | Live | The stores |
+| `prod` | `com.ibyteapps.aa12stepguide` | iOS "12 Step Guide"; Android "12 Step Guide - AA" until A-02 is decided (D-009) | Live | The stores |
 
 CI (GitHub Actions, free on this public repository) runs on every push to `main`: format,
-analyze, tests and the literature check (`ci.yml`); Android dev APK and prod bundle (`android.yml`);
-iOS prod and dev builds (`ios.yml`). The two build workflows check the app ids, version
+analyze, tests and the literature check (`ci.yml`); Android dev APK and prod bundle, and a smoke test on
+an Android emulator (`android.yml`); iOS prod and dev builds and a smoke test on an iPhone
+simulator (`ios.yml`). The two build workflows check the app ids, version
 and minimum OS inside the built apps (`tool/ci/verify_build.py`).
 
 **Folders:** `content/` (literature, Markdown) · `content-source/` (original HTML and the legacy

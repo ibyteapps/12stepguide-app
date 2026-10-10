@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Google backup on Android 6-11 (F-113). Everything is backed up except downloaded
+     recordings: they can be downloaded again, and an app over 25 MB is not backed up at all,
+     which would lose the preferences that carry a supporter's ad-free status
+     (MIGRATION_PLAN §5.2) and the recovery date. -->
+<full-backup-content>
+    <exclude domain="file" path="audio/" />
+</full-backup-content>

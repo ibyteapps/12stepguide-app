@@ -57,8 +57,22 @@ abstract final class Motion {
   static const Curve emphasised = Curves.easeInOutCubicEmphasized;
 
   /// A duration that collapses to zero when the user asks the system to reduce motion.
+  /// Scroll animations can't take zero: move pages with [MotionPages.showPage] instead.
   static Duration of(BuildContext context, Duration d) =>
       MediaQuery.maybeDisableAnimationsOf(context) ?? false ? Duration.zero : d;
+}
+
+extension MotionPages on PageController {
+  /// Slides to [page], or jumps there when the user has turned animations off (a scroll
+  /// animation of zero length is an error).
+  Future<void> showPage(BuildContext context, int page) async {
+    final duration = Motion.of(context, Motion.medium);
+    if (duration == Duration.zero) {
+      jumpToPage(page);
+    } else {
+      await animateToPage(page, duration: duration, curve: Motion.standard);
+    }
+  }
 }
 
 /// Layout breakpoints (UX_UI_SPEC.md §8).

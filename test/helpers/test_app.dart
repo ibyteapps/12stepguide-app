@@ -134,7 +134,7 @@ Future<TestApp> pumpApp(
       contentIndexProvider.overrideWithValue(testIndex),
       catalogueProvider.overrideWithValue(testCatalogue),
       quotesProvider.overrideWithValue(testQuotes),
-      linkOpenerProvider.overrideWithValue(links),
+      platformLinkOpenerProvider.overrideWithValue(links),
       clockProvider.overrideWithValue(() => now ?? testNow),
       cheerPlayerProvider.overrideWithValue(FakeCheer()),
       onlineProvider.overrideWith((ref) => Stream.value(online)),
