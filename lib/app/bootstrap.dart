@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -10,9 +11,11 @@ import 'package:path_provider/path_provider.dart';
 import '../core/config/ad_units.dart';
 import '../core/config/app_config.dart';
 import '../core/config/app_env.dart';
+import '../core/config/firebase_config.dart';
 import '../core/logging/log.dart';
 import '../core/platform/legacy_bridge.dart';
 import '../core/prefs/key_value_store.dart';
+import '../core/telemetry/telemetry.dart';
 import '../features/ads/ad_coordinator.dart';
 import '../features/ads/ad_gateway.dart';
 import '../features/ads/consent_controller.dart';
@@ -46,7 +49,12 @@ Future<void> bootstrap() async {
     Log.e('Flutter error: ${details.exceptionAsString()}', details.exception, details.stack);
   };
   PlatformDispatcher.instance.onError = (error, stack) {
-    Log.e('Uncaught error', error, stack);
+    final sink = Log.sink;
+    if (sink is Telemetry) {
+      sink.fatal(error, stack);
+    } else {
+      Log.e('Uncaught error', error, stack);
+    }
     return true;
   };
 
@@ -59,6 +67,8 @@ Future<void> bootstrap() async {
     return;
   }
 
+  final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
+  final telemetry = await startTelemetry(config, isIOS: isIOS);
   final store = await SharedPrefsStore.create();
   final results = await Future.wait([
     rootBundle.loadString('assets/content_index.json'),
@@ -74,13 +84,13 @@ Future<void> bootstrap() async {
       .where((q) => q.isNotEmpty)
       .toList();
   final package = results[3] as PackageInfo;
+  unawaited(telemetry.setAppVersion('${package.version} (${package.buildNumber})'));
 
   final launch = await prepareLaunch(
     store: store,
     bridge: const MethodChannelLegacyBridge(),
     steps: migrationSteps(catalogue),
   );
-  final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
   final audio = await startAudio();
   final start = initialLocation(store);
   final router = buildRouter(initialLocation: start);
@@ -119,6 +129,7 @@ Future<void> bootstrap() async {
       purchaseGatewayProvider.overrideWithValue(InAppPurchaseGateway(isIOS: isIOS)),
       consentGatewayProvider.overrideWithValue(const UmpConsentGateway()),
       notificationsGatewayProvider.overrideWithValue(notifications),
+      telemetryProvider.overrideWithValue(telemetry),
       adUnitsProvider.overrideWithValue(units),
       adGatewayProvider.overrideWithValue(GoogleAdGateway(units)),
       currentLocationProvider.overrideWithValue(
@@ -143,6 +154,20 @@ Future<void> bootstrap() async {
     ),
   );
 
+  // Screen views (paths only, never document text), entitlement type, consent mode.
+  router.routerDelegate.addListener(
+    () => telemetry.screen(router.routerDelegate.currentConfiguration.uri.path),
+  );
+  container
+    ..listen(
+      entitlementProvider,
+      (_, e) => unawaited(telemetry.setEntitlement(e.analyticsType)),
+      fireImmediately: true,
+    )
+    ..listen(consentProvider, (_, c) {
+      if (c.resolved) unawaited(telemetry.setAdConsent(granted: c.canRequestAds));
+    });
+
   // After the first frame: the store check (Premium may change), then consent, then adverts.
   container.listen(purchaseServiceProvider, (_, _) {});
   unawaited(startAds(container));
@@ -153,6 +178,26 @@ Future<void> bootstrap() async {
   AppLifecycleListener(onResume: () => unawaited(reminders.onAppOpen()));
   if (launchPayload == ReminderSchedule.quotePayload && start != Routes.onboarding) {
     WidgetsBinding.instance.addPostFrameCallback((_) => router.push(Routes.quote));
+  }
+}
+
+/// Firebase Analytics and Crashlytics when this build has Firebase values (FirebaseConfig);
+/// otherwise nothing is collected. Staging keeps analytics off; debug builds report no crashes.
+Future<Telemetry> startTelemetry(AppConfig config, {required bool isIOS}) async {
+  final options = FirebaseConfig.forPlatform(isIOS: isIOS);
+  if (options == null) return const NoTelemetry();
+  try {
+    await Firebase.initializeApp(options: options);
+    final telemetry = FirebaseTelemetry(
+      analyticsOn: config.env != AppEnv.staging,
+      crashesOn: FirebaseTelemetry.crashesAllowed,
+    );
+    await telemetry.start(flavor: config.env.name);
+    Log.sink = telemetry;
+    return telemetry;
+  } on Object catch (error, stack) {
+    Log.e('Firebase failed to start', error, stack);
+    return const NoTelemetry();
   }
 }
 

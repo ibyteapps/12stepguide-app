@@ -1,10 +1,17 @@
 {
-  "_comment": "Copy to config/prod.json (gitignored) and fill in. Build with --flavor prod --dart-define-from-file=config/prod.json. The ADMOB_* values are the existing live AdMob ad unit ids (AdMob console, app 12 Step Guide; the native apps had them in _Constants.swift / _Constants.java and strings.xml). Leave a value empty and that advert format stays off. They stay out of git because a value baked into a release cannot be changed without another release. Dev and staging always use Google's test units.",
+  "_comment": "Copy to config/prod.json (gitignored) and fill in. Build with --flavor prod --dart-define-from-file=config/prod.json. The ADMOB_* values are the existing live AdMob ad unit ids (AdMob console, app 12 Step Guide; the native apps had them in _Constants.swift / _Constants.java and strings.xml). Leave a value empty and that advert format stays off. They stay out of git because a value baked into a release cannot be changed without another release. Dev and staging always use Google's test units. FIREBASE_* values come from the Firebase console (project aa-12-step-guide, Project settings > Your apps; or `flutterfire configure` output): they are public identifiers kept out of git by choice (Q-T1). Leave them empty and analytics and crash reporting stay off.",
   "ENV": "prod",
   "ADMOB_ANDROID_BANNER": "",
   "ADMOB_ANDROID_INTERSTITIAL": "",
   "ADMOB_ANDROID_APP_OPEN": "",
   "ADMOB_IOS_BANNER": "",
   "ADMOB_IOS_INTERSTITIAL": "",
-  "ADMOB_IOS_APP_OPEN": ""
+  "ADMOB_IOS_APP_OPEN": "",
+  "FIREBASE_PROJECT_ID": "",
+  "FIREBASE_SENDER_ID": "",
+  "FIREBASE_STORAGE_BUCKET": "",
+  "FIREBASE_ANDROID_API_KEY": "",
+  "FIREBASE_ANDROID_APP_ID": "",
+  "FIREBASE_IOS_API_KEY": "",
+  "FIREBASE_IOS_APP_ID": ""
 }

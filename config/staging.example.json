@@ -1,4 +1,11 @@
 {
-  "_comment": "Copy to config/staging.json (gitignored). Build with --flavor staging --dart-define-from-file=config/staging.json. Staging uses the production app ids with Google's test ads and analytics off; it goes to TestFlight internal and Play internal testing only and is never promoted to production.",
-  "ENV": "staging"
+  "_comment": "Copy to config/staging.json (gitignored). Build with --flavor staging --dart-define-from-file=config/staging.json. Staging uses the production app ids with Google's test ads and analytics off; it goes to TestFlight internal and Play internal testing only and is never promoted to production. FIREBASE_* values come from the Firebase console (project aa-12-step-guide, Project settings > Your apps; or `flutterfire configure` output): they are public identifiers kept out of git by choice (Q-T1). Leave them empty and analytics and crash reporting stay off.",
+  "ENV": "staging",
+  "FIREBASE_PROJECT_ID": "",
+  "FIREBASE_SENDER_ID": "",
+  "FIREBASE_STORAGE_BUCKET": "",
+  "FIREBASE_ANDROID_API_KEY": "",
+  "FIREBASE_ANDROID_APP_ID": "",
+  "FIREBASE_IOS_API_KEY": "",
+  "FIREBASE_IOS_APP_ID": ""
 }

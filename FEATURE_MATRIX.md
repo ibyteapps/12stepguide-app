@@ -123,10 +123,10 @@ has the detail.
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
 | F-080 | Settings location | Tab | Tab | BOTH | | Drawer (all tabs); opens full pages | D-001 | ◐ |
-| F-081 | Rate the app | Row + auto prompt at launch 7/15/30 | Row + custom dialog at launch 5/11/30/40… | DIFF | | Drawer row opens the store page. Auto prompt uses the system review API on iOS cadence, never over content | A-26 | ☐ |
+| F-081 | Rate the app | Row + auto prompt at launch 7/15/30 | Row + custom dialog at launch 5/11/30/40… | DIFF | | Drawer row opens the store page. Auto prompt uses the system review API on iOS cadence, never over content | A-26 | ◐ |
 | F-082 | More apps from developer | App Store developer page | Play developer search | BOTH | | Inside "Our other apps" | — | ◐ |
 | F-083 | Facebook page | Row | — | iOS | | "Follow us on Facebook" in Help & support | — | ◐ |
-| F-084 | Contact developers | In-app form → Toolkit `mail.php` | Email app → `ibyteappsuk@gmail.com` | DIFF | Mechanism and address | See A-14 | **A-14** | ☐ |
+| F-084 | Contact developers | In-app form → Toolkit `mail.php` | Email app → `ibyteappsuk@gmail.com` | DIFF | Mechanism and address | See A-14 | **A-14** | ◐ |
 | F-085 | Tell a friend | Share text with both store links | Share text with Play link | DIFF | | Share sheet with both store links | — | ◐ |
 | F-086 | Privacy policy | `…/privacy-policy-ibyte/` | `…/privacy` | DIFF | URL | One URL (iOS one) | Q-P5 | ◐ |
 | F-087 | Terms of use | Settings + paywall | — | iOS | | Drawer + paywall, both | — | ◐ |
@@ -161,8 +161,8 @@ has the detail.
 
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
-| F-110 | Firebase Analytics | Automatic | Automatic | BOTH | | Same project, same apps → continuity. No new custom events without approval | — | ☐ |
-| F-111 | Crashlytics | ✓ | ✓ (with breadcrumbs) | BOTH | | ✓; breadcrumbs carry no personal data | — | ☐ |
+| F-110 | Firebase Analytics | Automatic | Automatic | BOTH | | Same project, same apps → continuity. No new custom events without approval | — | ◐ |
+| F-111 | Crashlytics | ✓ | ✓ (with breadcrumbs) | BOTH | | ✓; breadcrumbs carry no personal data | — | ◐ |
 | F-112 | Network reachability | `Reachability` before streaming | — | iOS | | Connectivity-aware audio and links, with offline banners | — | ◐ |
 | F-113 | Backups | iCloud backs up Documents (downloads too) | `allowBackup=true` | NATIVE | | Downloads excluded from iCloud backup (re-downloadable); preferences backed up on both | — | ◐ |
 | F-114 | URL schemes (Google, LinkedIn) | Declared, unused | — | BROKEN | | Not carried over | D-006 | ✖ |

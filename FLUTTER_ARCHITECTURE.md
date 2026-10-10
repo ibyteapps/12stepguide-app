@@ -357,6 +357,15 @@ disk are re-checked at every start, so a file removed behind the app's back neve
   album/track ids, entitlement *type* (free/annual/lifetime).
 - No new custom events in 2.0 without approval. Purchase events come from Firebase's automatic
   in-app purchase logging.
+- As built (P6): Firebase is initialised from Dart options supplied by `config/<env>.json`
+  (`FIREBASE_*` keys, `FirebaseConfig`), so no `google-services.json`, `GoogleService-Info.plist`
+  or `firebase_options.dart` is needed in git (Q-T1). Without the keys, `NoTelemetry` runs and
+  nothing is collected. Staging keeps analytics collection off; debug builds report no crashes.
+  `Telemetry` is the app's `LogSink`: warnings become breadcrumbs, errors non-fatals, uncaught
+  errors fatals, all as `RedactedError` text (emails and dates removed). Screen views carry the
+  route path only (`/read`, `/audio/album/3`), never document text or query strings. The
+  entitlement type is a user property and a crash key; UMP's answer sets consent mode. dSYM and
+  R8 mapping upload (Crashlytics run script / Gradle plugin) is an owner step before release.
 
 ### 10.7 Other packages
 `url_launcher` (links, stores, mail), `share_plus` (tell a friend), `in_app_review` (system
