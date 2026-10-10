@@ -47,6 +47,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
   flutter_lints: ^6.0.0
   # Writes the native launch screens from flutter_native_splash: below (F-001). Re-run after a
   # change: dart run flutter_native_splash:create
