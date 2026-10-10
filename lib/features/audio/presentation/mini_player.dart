@@ -18,11 +18,15 @@ class MiniPlayer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final item = ref.watch(playerProvider.select((s) => s.current));
+    final child = item == null ? const SizedBox(width: double.infinity) : const _Bar();
+    final duration = Motion.of(context, Motion.medium);
+    // Animations turned off: AnimatedSize can't run with a zero duration, so no animation.
+    if (duration == Duration.zero) return child;
     return AnimatedSize(
-      duration: Motion.of(context, Motion.medium),
+      duration: duration,
       curve: Motion.standard,
       alignment: Alignment.topCenter,
-      child: item == null ? const SizedBox(width: double.infinity) : const _Bar(),
+      child: child,
     );
   }
 }

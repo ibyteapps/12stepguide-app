@@ -4,9 +4,9 @@ The unified Flutter rebuild of **12 Step Guide** (iOS `com.ibyteapps.aa12stepgui
 id 1238097883; Android `com.ibyteapps.aa12stepguide`), shipping to both stores as version 2.0
 in place of the two native apps.
 
-**Status (10 Oct 2026):** P0–P6 built and merged; P7 (hardening and store assets) in PR #8.
-Everything is tested in CI and on a simulator and an emulator, and is waiting for the owner's
-checks on real devices before release (P8). See the progress table in
+**Status (10 Oct 2026):** P0–P7 built and merged. Everything is tested in CI (unit, widget and
+accessibility tests) and smoke-tested on an iPhone simulator and an Android emulator on every
+pull request, and is waiting for the owner's checks on real devices before release (P8). See the progress table in
 [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md). Store screenshots and listing text are in
 [store/](store/README.md).
 

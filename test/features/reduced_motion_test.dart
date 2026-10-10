@@ -5,7 +5,7 @@ import '../helpers/test_app.dart';
 
 /// With "Remove animations" (Android) or Reduce Motion (iOS) on, paged screens jump instead of
 /// sliding. Found by the Android emulator smoke test, which runs with animations off: a
-/// zero-length page animation is an error.
+/// zero-length page animation or AnimatedSize is an error.
 void main() {
   const prefs = {PrefKeys.coachMarkSeen: true};
 
@@ -39,6 +39,24 @@ void main() {
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
     expect(find.text("What's inside"), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Audio: play, close the player, stop from the mini-player', (tester) async {
+    await pumpApp(tester, location: '/audio/album/1');
+    await tester.tap(find.text('AA History - Part 2'));
+    for (var i = 0; i < 20; i++) {
+      await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 30)));
+      await tester.pump();
+    }
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.byTooltip('Close player').first);
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('Stop and close player'), findsOneWidget);
+    await tester.tap(find.byTooltip('Stop and close player'));
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('Stop and close player'), findsNothing);
     expect(tester.takeException(), isNull);
   });
 }

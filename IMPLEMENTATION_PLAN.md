@@ -41,7 +41,7 @@ lands after the screens exist (its gateways can be built in parallel). P7 needs 
 | P4 | ✅ Built; sandbox purchase run-through pending (needs the owner's sandbox / licence-tester accounts) | PR #5 |
 | P5 | ✅ Built; 24-hour reminder soak on devices pending | PR #6 |
 | P6 | ✅ Built; Firebase switches on when the owner adds the config values (Q-T1) | PR #7 |
-| P7 | ◐ In CI: tablet list-detail layout, launch screen, iOS privacy manifest, on-device smoke tests on an iPhone simulator and an Android emulator, store screenshots, feature graphic, listing and privacy drafts. Left for the owner: VoiceOver/TalkBack passes, cold-start timing on a mid-range phone, device upgrade tests from the live store builds | PR #8 |
+| P7 | ✅ Built: tablet list-detail layout, launch screen, iOS privacy manifest, on-device smoke tests on an iPhone simulator and an Android emulator, store screenshots, feature graphic, listing and privacy drafts. Left for the owner: VoiceOver/TalkBack passes, cold-start timing on a mid-range phone, device upgrade tests from the live store builds. An independent review's 7 findings and 2 bugs found by the smoke tests are fixed | PR #8 |
 | P8 | ☐ Needs signing (Q-T2), Firebase config, AdMob unit ids, sandbox accounts | — |
 
 Every built feature row is ◐ in `FEATURE_MATRIX.md` until the owner has checked it on a
@@ -197,8 +197,10 @@ waiting for payment were treated as owned; Premium dropped during Apple's billin
 period; downloaded audio went into Android's cloud backup; banners were sized to the screen
 rather than the tablet pane; an app-open advert could follow the notification permission
 prompt; rotating a tablet reset the Steps segment and dropped the open reading; links and
-the paywall had no offline message. The simulator smoke test found an eighth: stopping from
-the mini-player while the player was closing also closed the album page.
+the paywall had no offline message. The smoke tests found two more: stopping from the
+mini-player while the player was closing also closed the album page (iOS simulator), and with
+animations turned off the Steps and Big Book segments and onboarding's Next threw an error
+(Android emulator; the mini-player too).
 **Needs the owner's devices:** VoiceOver and TalkBack passes, cold-start and scrolling timing,
 upgrade tests from the live store builds (MIGRATION_PLAN §11), real purchases in sandbox.
 
