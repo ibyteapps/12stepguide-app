@@ -39,7 +39,7 @@ class _BigBookScreenState extends ConsumerState<BigBookScreen> {
     setState(() => _segment = i);
     ref.read(kvStoreProvider).setInt(PrefKeys.bigBookSegment, i);
     if (animate && _pages.hasClients) {
-      _pages.animateToPage(i, duration: Motion.of(context, Motion.medium), curve: Motion.standard);
+      _pages.showPage(context, i);
     }
   }
 

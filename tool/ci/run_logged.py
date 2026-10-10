@@ -27,7 +27,7 @@ PART_CHARS = 3500
 MAX_PARTS = 6
 
 # Download and unzip progress bars: only the latest one is worth keeping.
-PROGRESS = re.compile(r"^\s*\[[=> ]*\]\s*\d+%|Unzipping\.\.\.|Downloading\.\.\.")
+PROGRESS = re.compile(r"^\s*\[[=> ]*\]\s*\d+%")
 
 
 def escape(text: str) -> str:
@@ -80,6 +80,7 @@ def main() -> int:
 
     def pump() -> None:
         assert proc.stdout is not None
+        last_was_progress = False
         for line in proc.stdout:
             elapsed = int(time.monotonic() - started)
             sys.stdout.write(line)
@@ -87,8 +88,10 @@ def main() -> int:
             text = line.rstrip().split("\r")[-1]
             if not text.strip():
                 continue
-            if PROGRESS.search(text) and tail and PROGRESS.search(tail[-1]):
+            progress = bool(PROGRESS.search(text))
+            if progress and last_was_progress and tail:
                 tail.pop()
+            last_was_progress = progress
             tail.append(f"[{elapsed // 60:02d}:{elapsed % 60:02d}] {text}")
 
     reader = threading.Thread(target=pump, daemon=True)

@@ -190,7 +190,15 @@ privacy label and Data safety drafts; release notes.
 **Done in CI (PR #8):** list-detail layout on expanded widths (F-101); native launch screen
 (F-001); `PrivacyInfo.xcprivacy`; `integration_test/smoke_test.dart` on an iPhone simulator and
 an Android 14 emulator; store screenshots for iPhone 6.9", iPad 13", Android phone, 7" and
-10" tablets, the Play feature graphic, and listing and privacy drafts (`store/`).
+10" tablets, the Play feature graphic, and listing and privacy drafts (`store/`);
+accessibility guideline tests (labels, tap-target sizes, contrast) on 15 screens in both themes.
+An independent review of P0–P7 found seven issues, all fixed with tests: Play purchases
+waiting for payment were treated as owned; Premium dropped during Apple's billing grace
+period; downloaded audio went into Android's cloud backup; banners were sized to the screen
+rather than the tablet pane; an app-open advert could follow the notification permission
+prompt; rotating a tablet reset the Steps segment and dropped the open reading; links and
+the paywall had no offline message. The simulator smoke test found an eighth: stopping from
+the mini-player while the player was closing also closed the album page.
 **Needs the owner's devices:** VoiceOver and TalkBack passes, cold-start and scrolling timing,
 upgrade tests from the live store builds (MIGRATION_PLAN §11), real purchases in sandbox.
 
