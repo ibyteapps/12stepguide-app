@@ -25,9 +25,12 @@ import 'reading_positions.dart';
 /// The reader (S-11): native text from the Markdown source (D-003), the Aa sheet, the printed
 /// page indicator, the saved reading position, previous/next at the end, and the banner slot.
 class ReaderScreen extends ConsumerWidget {
-  const ReaderScreen({required this.docId, super.key});
+  const ReaderScreen({required this.docId, this.embedded = false, super.key});
 
   final String docId;
+
+  /// Shown beside a list on a tablet (F-101): no back button.
+  final bool embedded;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,6 +42,7 @@ class ReaderScreen extends ConsumerWidget {
       backgroundColor: c.surfaceReader,
       appBar: AppBar(
         backgroundColor: c.surfaceReader,
+        automaticallyImplyLeading: !embedded,
         title: Text(entry?.title ?? ''),
         actions: [
           IconButton(
@@ -199,7 +203,13 @@ class _ReaderBodyState extends ConsumerState<_ReaderBody> {
     final c = context.colors;
     final step = _step = ref.watch(appearanceProvider).textStep;
     final blocks = widget.document.blocks;
-    final width = MediaQuery.sizeOf(context).width;
+    return LayoutBuilder(
+      builder: (context, constraints) => _build(context, c, step, blocks, constraints.maxWidth),
+    );
+  }
+
+  Widget _build(BuildContext context, AppColors c, int step, List<DocBlock> blocks, double width) {
+    // Measured from the reader's own width, which is narrower than the screen beside a list.
     final side = math.max(
       width >= Breakpoints.medium ? Space.gutterWide : Space.gutterCompact,
       (width - Space.readerMaxWidth) / 2,

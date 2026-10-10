@@ -163,3 +163,15 @@ entry stays as history.
 | Q-P4 | "Our other apps" lists exactly what each app lists today, Meeting Finder included |
 | Q-P5 | Privacy policy `https://www.12steptoolkit.com/privacy-policy-ibyte/`, terms `https://www.12steptoolkit.com/terms-of-service/` (today's iOS links) |
 | Q-P6 | The iOS app stays available on Apple-silicon Macs (store default; nothing to build) |
+
+## D-009 — Provisional: the Android name stays as it is until A-02 is decided
+**Taken 2026-10-10 · Claude, while the owner was away.** **Not yet confirmed by the owner.**
+
+Supersedes the A-02 line of D-008. The Android build keeps today's name under the icon,
+"12 Step Guide - AA", until the owner decides A-02; iOS keeps "12 Step Guide". The brief says
+the existing app name changes only with approval, and the owner was told on 10 Oct that the
+Android name would stay.
+
+*What this commits us to:* one line in `android/app/build.gradle.kts` (prod `appLabel`) and the
+matching check in `tool/ci/verify_build.py`. The recommendation is unchanged: "12 Step Guide" on
+both, which also removes "AA" from the Android name (D-005).

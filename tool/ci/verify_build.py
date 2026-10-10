@@ -36,7 +36,8 @@ ANDROID_MIN_SDK = "24"
 ANDROID_TARGET_SDK = "36"
 IOS_MIN_OS = "15.0"
 
-ANDROID_LABEL = {"dev": "12SG Dev", "staging": "12SG Staging", "prod": "12 Step Guide"}
+# prod: today's Play name until the owner decides A-02 (DECISIONS.md D-009).
+ANDROID_LABEL = {"dev": "12SG Dev", "staging": "12SG Staging", "prod": "12 Step Guide - AA"}
 ADMOB_APP_ID = {
     "android": {"dev": "ca-app-pub-3940256099942544~3347511713",
                 "staging": "ca-app-pub-3935706727993760~6070100472",
@@ -186,6 +187,7 @@ def ios_app(path: str, flavor: str) -> int:
     c.eq("MinimumOSVersion", info.get("MinimumOSVersion"), IOS_MIN_OS)
     c.eq("CFBundleDisplayName", info.get("CFBundleDisplayName"), IOS_NAME[flavor])
     c.eq("ITSAppUsesNonExemptEncryption", info.get("ITSAppUsesNonExemptEncryption"), False)
+    c.eq("privacy manifest", (Path(path) / "PrivacyInfo.xcprivacy").exists(), True)
     icon = info.get("CFBundleIcons", {}).get("CFBundlePrimaryIcon", {}).get("CFBundleIconName")
     c.eq("app icon set", icon, IOS_ICON[flavor])
     c.eq("compiled asset catalog", (Path(path) / "Assets.car").exists(), True)

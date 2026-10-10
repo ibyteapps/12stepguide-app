@@ -34,9 +34,12 @@ Future<void> playAndOpen(BuildContext context, WidgetRef ref, Album album, int i
 /// An album (S-41, F-061): Play all, Download all, Remove downloads, and the tracks with their
 /// download state. The native ⋯ menu's actions are visible buttons here.
 class AlbumScreen extends ConsumerWidget {
-  const AlbumScreen({required this.albumId, super.key});
+  const AlbumScreen({required this.albumId, this.embedded = false, super.key});
 
   final int albumId;
+
+  /// Shown beside the album list on a tablet (F-101): no back button.
+  final bool embedded;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -52,7 +55,7 @@ class AlbumScreen extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: c.bg,
-      appBar: AppBar(title: Text(album.shortName)),
+      appBar: AppBar(automaticallyImplyLeading: !embedded, title: Text(album.shortName)),
       body: ContentWidth(
         child: ListView(
           padding: const EdgeInsets.only(bottom: Space.x3),

@@ -3,6 +3,7 @@
 // Output: test_screenshots/review/<device>/<screen>.png (not committed).
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:twelve_step_guide/core/prefs/key_value_store.dart';
 import 'package:twelve_step_guide/features/audio/application/downloads_controller.dart';
@@ -41,6 +42,12 @@ void downloads(TestApp app, int albumId, {int done = 3}) {
       ..emit(DownloadEvent(album.tracks[done].id, DownloadEventKind.progress, progress: 0.62))
       ..emit(DownloadEvent(album.tracks[done + 1].id, DownloadEventKind.queued));
   }
+}
+
+/// Taps the first widget showing [text], then lets it settle.
+Future<void> tapText(WidgetTester tester, String text) async {
+  await tester.tap(find.text(text).first);
+  await settleForCapture(tester);
 }
 
 final scenarios = <Scenario>[
@@ -125,6 +132,28 @@ final scenarios = <Scenario>[
     },
   ),
   (name: 'onboarding', location: '/onboarding', prefs: {PrefKeys.onboardingDone: false}, act: null),
+  (
+    name: 'steps-pane',
+    location: '/steps',
+    prefs: {PrefKeys.coachMarkSeen: true},
+    act: (tester, _) => tapText(tester, 'Step 4'),
+  ),
+  (
+    name: 'big-book-pane',
+    location: '/big-book',
+    prefs: {PrefKeys.coachMarkSeen: true},
+    act: (tester, _) => tapText(tester, 'Chapter 5: How It Works'),
+  ),
+  (
+    name: 'audio-pane',
+    location: '/audio',
+    prefs: _premium,
+    act: (tester, app) async {
+      downloads(app, 1);
+      await play(app, 1, 1, seconds: 312);
+      await tapText(tester, 'Joe & Charlie - Big Book Study');
+    },
+  ),
   (name: 'about', location: '/about', prefs: {}, act: null),
   (name: 'other-apps', location: '/other-apps', prefs: {}, act: null),
 ];
@@ -133,8 +162,11 @@ void main() {
   setUpAll(() async {
     await loadFonts();
   });
+  // Cached asset futures belong to the previous test's fake-async zone and never complete in
+  // the next test, so each test loads its documents afresh.
+  setUp(rootBundle.clear);
 
-  for (final device in [androidPhone, iphone, tablet10]) {
+  for (final device in [androidPhone, iphone, tablet10, ipad]) {
     for (final mode in [ThemeMode.light, ThemeMode.dark]) {
       for (final s in scenarios) {
         testWidgets('${device.id} ${mode.name} ${s.name}', (tester) async {

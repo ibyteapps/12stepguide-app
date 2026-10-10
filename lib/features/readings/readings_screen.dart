@@ -8,6 +8,8 @@ import '../../design/components/list_row.dart';
 import '../../design/tokens/spacing.dart';
 import '../content/domain/content_index.dart';
 import '../reader/content_opener.dart';
+import '../reader/reader_screen.dart';
+import '../shell/list_detail.dart';
 import '../shell/tab_page.dart';
 import '../sobriety/recovery_card.dart';
 
@@ -25,39 +27,51 @@ class ReadingsScreen extends ConsumerWidget {
       RowGroup(
         children: [
           for (final e in index.inCollection(collection))
-            ListRow(title: e.title, leading: IconTile(icon), onTap: () => opener.open(context, e)),
+            Builder(
+              builder: (context) => ListRow(
+                title: e.title,
+                leading: IconTile(icon),
+                selected: ListDetailScope.isSelected(context, e.id),
+                onTap: () => opener.open(context, e),
+              ),
+            ),
         ],
       ),
     ];
 
     return TabPage(
       title: 'Readings',
-      body: ContentWidth(
-        child: ListView(
-          padding: const EdgeInsets.only(top: Space.s, bottom: Space.x3),
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: Space.l),
-              child: RecoveryCard(),
-            ),
-            const SizedBox(height: Space.l),
-            RowGroup(
-              children: [
-                // No advert before an external link (F-020, BUG-31).
-                ListRow(
-                  title: 'Daily Reflections',
-                  subtitle: 'Opens the official aa.org page',
-                  leading: const IconTile(AppIcons.dailyReflections),
-                  trailing: const Icon(AppIcons.openExternal, size: IconSizes.s),
-                  semanticsLabel: 'Daily Reflections, opens the official aa.org page',
-                  onTap: () => ref.read(linkOpenerProvider).open(AppLinks.dailyReflections),
-                ),
-              ],
-            ),
-            ...section('Prayers', Collections.prayers, AppIcons.prayer),
-            ...section('Readings', Collections.readings, AppIcons.reading),
-            ...section('Sobriety tips', Collections.sobrietyTips, AppIcons.tip),
-          ],
+      body: ListDetail(
+        placeholderIcon: AppIcons.readings,
+        placeholderMessage: 'Choose a prayer or a reading to read it here.',
+        detail: (context, id) => ReaderScreen(docId: id, embedded: true),
+        list: ContentWidth(
+          child: ListView(
+            padding: const EdgeInsets.only(top: Space.s, bottom: Space.x3),
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: Space.l),
+                child: RecoveryCard(),
+              ),
+              const SizedBox(height: Space.l),
+              RowGroup(
+                children: [
+                  // No advert before an external link (F-020, BUG-31).
+                  ListRow(
+                    title: 'Daily Reflections',
+                    subtitle: 'Opens the official aa.org page',
+                    leading: const IconTile(AppIcons.dailyReflections),
+                    trailing: const Icon(AppIcons.openExternal, size: IconSizes.s),
+                    semanticsLabel: 'Daily Reflections, opens the official aa.org page',
+                    onTap: () => ref.read(linkOpenerProvider).open(AppLinks.dailyReflections),
+                  ),
+                ],
+              ),
+              ...section('Prayers', Collections.prayers, AppIcons.prayer),
+              ...section('Readings', Collections.readings, AppIcons.reading),
+              ...section('Sobriety tips', Collections.sobrietyTips, AppIcons.tip),
+            ],
+          ),
         ),
       ),
     );

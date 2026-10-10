@@ -10,7 +10,9 @@ import '../../design/tokens/spacing.dart';
 import '../../design/tokens/typography.dart';
 import '../content/domain/content_index.dart';
 import '../reader/content_opener.dart';
+import '../reader/reader_screen.dart';
 import '../reader/reading_positions.dart';
+import '../shell/list_detail.dart';
 import '../shell/tab_page.dart';
 
 /// Big Book tab (S-30): Big Book · Stories, 1st ed. · Stories, 2nd ed., as card grids, with
@@ -54,39 +56,44 @@ class _BigBookScreenState extends ConsumerState<BigBookScreen> {
 
     return TabPage(
       title: 'The Big Book',
-      body: Column(
-        children: [
-          ContentWidth(
-            maxWidth: 960,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(Space.l, Space.xs, Space.l, Space.s),
-              child: Column(
-                children: [
-                  SegmentedTabs(
-                    labels: const ['Big Book', 'Stories, 1st ed.', 'Stories, 2nd ed.'],
-                    shortLabels: const ['Big Book', '1st ed.', '2nd ed.'],
-                    selected: _segment,
-                    onChanged: _select,
-                  ),
-                  if (resume != null) ...[
-                    const SizedBox(height: Space.s),
-                    _ContinueChip(entry: resume),
+      body: ListDetail(
+        placeholderIcon: AppIcons.bigBook,
+        placeholderMessage: 'Choose a chapter or a story to read it here.',
+        detail: (context, id) => ReaderScreen(docId: id, embedded: true),
+        list: Column(
+          children: [
+            ContentWidth(
+              maxWidth: 960,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(Space.l, Space.xs, Space.l, Space.s),
+                child: Column(
+                  children: [
+                    SegmentedTabs(
+                      labels: const ['Big Book', 'Stories, 1st ed.', 'Stories, 2nd ed.'],
+                      shortLabels: const ['Big Book', '1st ed.', '2nd ed.'],
+                      selected: _segment,
+                      onChanged: _select,
+                    ),
+                    if (resume != null) ...[
+                      const SizedBox(height: Space.s),
+                      _ContinueChip(entry: resume),
+                    ],
                   ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: PageView(
+                controller: _pages,
+                onPageChanged: (i) => _select(i, animate: false),
+                children: [
+                  for (final c in Collections.bigBookTabs)
+                    _Grid(key: PageStorageKey(c), entries: index.inCollection(c)),
                 ],
               ),
             ),
-          ),
-          Expanded(
-            child: PageView(
-              controller: _pages,
-              onPageChanged: (i) => _select(i, animate: false),
-              children: [
-                for (final c in Collections.bigBookTabs)
-                  _Grid(key: PageStorageKey(c), entries: index.inCollection(c)),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -151,8 +158,14 @@ class _Grid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final width = MediaQuery.sizeOf(context).width;
     final textScale = MediaQuery.textScalerOf(context).scale(1);
+    return LayoutBuilder(
+      // Columns follow the grid's own width, which is narrower beside a reading (F-101).
+      builder: (context, constraints) => _grid(context, constraints.maxWidth, textScale),
+    );
+  }
+
+  Widget _grid(BuildContext context, double width, double textScale) {
     final columns = textScale >= 1.6
         ? 1
         : width >= Breakpoints.expanded
@@ -188,15 +201,17 @@ class _Card extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final c = context.colors;
     final pages = entry.pages;
+    final selected = ListDetailScope.isSelected(context, entry.id);
     return Semantics(
       button: true,
+      selected: selected,
       label: '${entry.title}${pages != null ? ', pages $pages' : ''}',
       excludeSemantics: true,
       child: Material(
-        color: c.surface,
+        color: selected ? c.primaryContainer : c.surface,
         shape: RoundedRectangleBorder(
           borderRadius: Radii.mdAll,
-          side: BorderSide(color: c.strokeAt(index, count), width: 1.5),
+          side: BorderSide(color: c.strokeAt(index, count), width: selected ? 2.5 : 1.5),
         ),
         child: InkWell(
           borderRadius: Radii.mdAll,
