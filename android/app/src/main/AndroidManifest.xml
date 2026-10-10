@@ -5,6 +5,10 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+    <!-- Reminders: asked when a reminder is first switched on (Android 13+), and re-armed
+         after a restart. No exact-alarm permission: reminders are inexact (UNIFIED_PRODUCT_SPEC §7). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <!-- appLabel comes from the product flavour (android/app/build.gradle.kts). -->
     <application
         android:label="${appLabel}"
@@ -48,6 +52,20 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON"/>
+            </intent-filter>
+        </receiver>
+        <!-- Scheduled reminders (flutter_local_notifications), re-armed after a reboot or update. -->
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"/>
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
             </intent-filter>
         </receiver>
         <!-- AdMob app id per flavour (android/app/build.gradle.kts). -->

@@ -336,7 +336,17 @@ disk are re-checked at every start, so a file removed behind the app's back neve
   plugin's boot receiver).
 - "We miss you" uses two one-shot notifications that are re-armed on every app open.
 - `firebase_messaging` is included only if A-17 keeps remote campaigns. The app would then
-  display them, with no custom handling.
+  display them, with no custom handling. (A-17, provisional D-008: not included.)
+- As built (P5): `ReminderSchedule` (pure) gives hourly ids 100–123 (100 + hour) and nudge ids
+  200/201. `RemindersController.reschedule` compares the wanted set with the plugin's pending
+  ids and with a record of what it last scheduled (`reminders.scheduled`, id → signature that
+  includes the time zone), so unchanged reminders are left alone, changed ones replaced,
+  unwanted ones in its own id range cancelled, and a new time zone re-anchors everything. It
+  runs on start and on every resume (which also re-arms the nudges). Permission is asked when a
+  reminder is first switched on; Android "Open settings" uses a small `…/system` method channel
+  in `First.kt`, iOS the `app-settings:` URL. A tap on an hourly reminder opens `/quote`, also
+  from a cold start (pushed over the first screen after the first frame). Android uses core
+  library desugaring for the plugin.
 
 ### 10.6 Analytics and crash reporting — Firebase
 - `firebase_core`, `firebase_analytics` (automatic events + screen views from the router
@@ -465,7 +475,7 @@ flutter build ipa --flavor prod --dart-define-from-file=config/prod.json
 | share_plus | 13.3.1 | Share | — |
 | in_app_review | 2.0.12 | Review prompt | — |
 | package_info_plus | 10.2.2 | Version | — |
-| connectivity_plus | 7.3.2 | Offline state | — |
+| connectivity_plus | 7.3.1 | Offline state (7.3.2 needs a dbus that flutter_local_notifications 22 cannot share) | — |
 | path_provider | 2.1.6 | Paths | — |
 | intl | 0.20.3 | Dates, l10n | — |
 | material_symbols_icons | 4.2960.0 | Icon set | — |

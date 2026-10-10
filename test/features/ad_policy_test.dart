@@ -125,6 +125,8 @@ void main() {
   });
 
   group('AdCoordinator', () {
+    setUp(() => AdCoordinator.resumeSettle = Duration.zero);
+
     ({ProviderContainer container, MemoryStore store, FakeAdGateway ads}) setUpCoordinator({
       Map<String, Object> prefs = const {},
       bool consent = true,

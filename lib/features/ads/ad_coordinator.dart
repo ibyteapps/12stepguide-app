@@ -30,6 +30,11 @@ class AdCoordinator {
   /// A stuck advert never holds navigation for longer than this.
   static const showTimeout = Duration(minutes: 2);
 
+  /// On a return to the app, a tapped reminder opens its quote first; the app-open check waits
+  /// this long so it sees the quote screen and stays away from it.
+  @visibleForTesting
+  static Duration resumeSettle = const Duration(milliseconds: 600);
+
   AdGateway get _gateway => _ref.read(adGatewayProvider);
   KeyValueStore get _store => _ref.read(kvStoreProvider);
   DateTime _now() => _ref.read(clockProvider)();
@@ -80,6 +85,8 @@ class AdCoordinator {
 
   /// On returning to the app (never on a cold start).
   Future<void> maybeShowAppOpen() async {
+    if (!_eligible) return;
+    await Future<void>.delayed(resumeSettle);
     if (!_eligible) return;
     _gateway.dropStaleAppOpen(AdPolicy.appOpenMaxAge);
     final saved = _store.getInt(PrefKeys.lastAppOpenAt);

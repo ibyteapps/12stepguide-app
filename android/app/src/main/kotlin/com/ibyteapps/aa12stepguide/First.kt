@@ -1,7 +1,10 @@
 package com.ibyteapps.aa12stepguide
 
+import android.content.Intent
+import android.provider.Settings
 import com.ryanheise.audioservice.AudioServiceActivity
 import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugin.common.MethodChannel
 
 /**
  * The one Flutter activity.
@@ -19,5 +22,27 @@ class First : AudioServiceActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         LegacyMigrationPlugin.register(flutterEngine, this)
+        // "Open settings" on the Reminders page when notifications are blocked.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, SYSTEM_CHANNEL)
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "openNotificationSettings" -> {
+                        val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                            .putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        try {
+                            startActivity(intent)
+                            result.success(null)
+                        } catch (e: Exception) {
+                            result.error("unavailable", e.message, null)
+                        }
+                    }
+                    else -> result.notImplemented()
+                }
+            }
+    }
+
+    private companion object {
+        const val SYSTEM_CHANNEL = "com.ibyteapps.aa12stepguide/system"
     }
 }
