@@ -45,7 +45,8 @@ abstract final class AdPolicy {
   static const appOpenMaxAge = Duration(hours: 4);
 
   /// Screens an app-open advert never covers: onboarding, the welcome-back screen, the paywall
-  /// and Premium page (purchase flow), the full player, and a quote opened from a notification.
+  /// and Premium page (purchase flow), the full player, a quote opened from a notification, and
+  /// Reminders (people come back to it from the system's notification settings).
   static const appOpenBlocked = {
     Routes.onboarding,
     Routes.welcomeBack,
@@ -53,6 +54,7 @@ abstract final class AdPolicy {
     Routes.premium,
     Routes.player,
     Routes.quote,
+    Routes.reminders,
   };
 
   static bool _eligible(AdFacts f) => !f.premium && f.canRequestAds;

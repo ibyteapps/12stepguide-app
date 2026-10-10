@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:in_app_purchase/in_app_purchase.dart' show PurchaseStatus;
 import 'package:twelve_step_guide/app/providers.dart';
 import 'package:twelve_step_guide/core/prefs/key_value_store.dart';
 import 'package:twelve_step_guide/features/premium/entitlement.dart';
@@ -77,6 +78,25 @@ void main() {
       expect(shop.entitlement.renewsAt, until);
       expect(shop.state.products.single.id, ProductIds.annual);
       expect(shop.state.trialEligible, isTrue);
+    });
+
+    test('a subscription in billing grace keeps Premium (StoreKit 2 still lists it)', () async {
+      final shop = _Shop(
+        ios: true,
+        gateway: FakePurchaseGateway(
+          owned: [restored(ProductIds.annual, expires: now.subtract(const Duration(days: 2)))],
+        ),
+      );
+      await shop.start();
+      expect(shop.entitlement.kind, PremiumKind.annual);
+      expect(shop.entitlement.renewsAt, isNull, reason: 'no renewal date to show while in grace');
+    });
+
+    test('a Play purchase waiting for payment is pending, not owned', () {
+      expect(eventKindFor(PurchaseStatus.restored, playPending: true), PurchaseEventKind.pending);
+      expect(eventKindFor(PurchaseStatus.purchased, playPending: true), PurchaseEventKind.pending);
+      expect(eventKindFor(PurchaseStatus.restored), PurchaseEventKind.restored);
+      expect(eventKindFor(PurchaseStatus.canceled, playPending: true), PurchaseEventKind.canceled);
     });
 
     test('an old iOS tip restores lifetime Premium', () async {

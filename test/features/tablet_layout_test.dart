@@ -67,6 +67,35 @@ void main() {
     expect(find.byType(BackButton), findsNothing);
   });
 
+  testWidgets('when the window narrows, the list keeps its segment and the open tradition '
+      'stays open as a page', (tester) async {
+    await pumpApp(tester, size: tablet, ratio: 2, prefs: prefs);
+    await tester.tap(find.text('Traditions'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Tradition 2'));
+    await settle(tester);
+    expect(tester.widget<ReaderScreen>(find.byType(ReaderScreen)).embedded, isTrue);
+
+    // A rotation or Split View makes the window too narrow for two panes.
+    tester.view.physicalSize = const Size(700, 1366) * 2;
+    await settle(tester);
+    final page = tester.widget<ReaderScreen>(find.byType(ReaderScreen));
+    expect(page.embedded, isFalse);
+    expect(page.docId, 'traditions/02-tradition-2');
+
+    // Back to the list: still on Traditions, not Steps.
+    await tester.tap(find.byType(BackButton));
+    await settle(tester);
+    expect(find.text('Tradition 1'), findsOneWidget);
+    expect(find.text('Step 1'), findsNothing);
+
+    // Wide again: two panes, still on Traditions.
+    tester.view.physicalSize = tablet * 2;
+    await settle(tester);
+    expect(find.text('Tradition 1'), findsOneWidget);
+    expect(find.text('Choose a step or a tradition to read it here.'), findsOneWidget);
+  });
+
   testWidgets('a phone keeps one pane and opens readings as pages', (tester) async {
     await pumpApp(tester, prefs: prefs);
     expect(find.byType(ListDetailScope), findsNothing);

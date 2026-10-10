@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Google backup and device-to-device transfer on Android 12+ (F-113). Cloud backup leaves
+     out downloaded recordings (re-downloadable, and over the 25 MB limit they would stop the
+     whole backup); a transfer to a new phone over cable or Wi-Fi keeps them. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="file" path="audio/" />
+    </cloud-backup>
+</data-extraction-rules>

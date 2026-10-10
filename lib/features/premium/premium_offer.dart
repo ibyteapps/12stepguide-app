@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/providers.dart';
 import '../../core/links/links.dart';
+import '../../core/platform/connectivity.dart';
 import '../../design/components/app_icons.dart';
 import '../../design/components/states.dart';
 import '../../design/theme/app_colors.dart';
@@ -95,8 +96,23 @@ class PremiumPurchasePanel extends ConsumerWidget {
     final s = ref.watch(purchaseServiceProvider);
     final service = ref.read(purchaseServiceProvider.notifier);
     final isIOS = ref.watch(isIOSStoreProvider);
+    final offline = ref.watch(isOfflineProvider);
+    // Back online with no prices yet: ask the store again.
+    ref.listen(isOfflineProvider, (was, now) {
+      if (was == true && !now && ref.read(purchaseServiceProvider).status != StoreStatus.ready) {
+        ref.read(purchaseServiceProvider.notifier).loadProducts();
+      }
+    });
 
     final Widget offer = switch (s.status) {
+      // The store can't be reached without a connection (UNIFIED_PRODUCT_SPEC §6).
+      StoreStatus.loading || StoreStatus.unavailable when offline => InlineBanner(
+        icon: AppIcons.offline,
+        tone: BannerTone.warning,
+        message: 'Connect to the internet to see prices.',
+        actionLabel: 'Retry',
+        onAction: service.loadProducts,
+      ),
       StoreStatus.loading => const _PriceSkeleton(),
       StoreStatus.unavailable => InlineBanner(
         icon: AppIcons.error,

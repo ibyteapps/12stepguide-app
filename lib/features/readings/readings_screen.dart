@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/providers.dart';
+import '../../app/routes.dart';
 import '../../core/links/links.dart';
 import '../../design/components/app_icons.dart';
 import '../../design/components/list_row.dart';
@@ -45,6 +46,7 @@ class ReadingsScreen extends ConsumerWidget {
         placeholderIcon: AppIcons.readings,
         placeholderMessage: 'Choose a prayer or a reading to read it here.',
         detail: (context, id) => ReaderScreen(docId: id, embedded: true),
+        pageRoute: Routes.read,
         list: ContentWidth(
           child: ListView(
             padding: const EdgeInsets.only(top: Space.s, bottom: Space.x3),

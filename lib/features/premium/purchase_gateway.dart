@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:in_app_purchase_android/billing_client_wrappers.dart';
+import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:in_app_purchase_platform_interface/in_app_purchase_platform_interface.dart';
 import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
 import 'package:in_app_purchase_storekit/store_kit_2_wrappers.dart';
@@ -111,6 +113,22 @@ abstract interface class PurchaseGateway {
   Future<bool> isTrialEligible(String productId);
 }
 
+/// The event kind for a store purchase. A Google Play purchase whose payment is still pending is
+/// `pending` whatever the plugin calls it, so it never grants Premium (UNIFIED_PRODUCT_SPEC §8).
+@visibleForTesting
+PurchaseEventKind eventKindFor(PurchaseStatus status, {bool playPending = false}) {
+  if (playPending && status != PurchaseStatus.canceled && status != PurchaseStatus.error) {
+    return PurchaseEventKind.pending;
+  }
+  return switch (status) {
+    PurchaseStatus.purchased => PurchaseEventKind.purchased,
+    PurchaseStatus.restored => PurchaseEventKind.restored,
+    PurchaseStatus.pending => PurchaseEventKind.pending,
+    PurchaseStatus.canceled => PurchaseEventKind.canceled,
+    PurchaseStatus.error => PurchaseEventKind.error,
+  };
+}
+
 class InAppPurchaseGateway implements PurchaseGateway {
   InAppPurchaseGateway({required this.isIOS});
 
@@ -123,13 +141,14 @@ class InAppPurchaseGateway implements PurchaseGateway {
       .asBroadcastStream();
 
   PurchaseEvent _event(PurchaseDetails p) {
-    final kind = switch (p.status) {
-      PurchaseStatus.purchased => PurchaseEventKind.purchased,
-      PurchaseStatus.restored => PurchaseEventKind.restored,
-      PurchaseStatus.pending => PurchaseEventKind.pending,
-      PurchaseStatus.canceled => PurchaseEventKind.canceled,
-      PurchaseStatus.error => PurchaseEventKind.error,
-    };
+    final kind = eventKindFor(
+      p.status,
+      // Play lists a purchase still waiting for payment among the owned ones, and the plugin
+      // reports everything from restorePurchases() as "restored". It is not paid yet.
+      playPending:
+          p is GooglePlayPurchaseDetails &&
+          p.billingClientPurchase.purchaseState == PurchaseStateWrapper.pending,
+    );
     DateTime? expires;
     if (p is SK2PurchaseDetails) {
       final ms = int.tryParse(p.expirationDate ?? '');

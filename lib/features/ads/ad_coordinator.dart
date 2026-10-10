@@ -27,6 +27,11 @@ class AdCoordinator {
   AppLifecycleListener? _lifecycle;
   DateTime? _lastInterstitialAt;
 
+  /// Set when the app really left the screen. A system dialog over the app (the notification
+  /// permission prompt, Control Centre, the notification shade) only makes it inactive for a
+  /// moment, and coming back from one is not a return to the app.
+  bool _leftApp = false;
+
   /// A stuck advert never holds navigation for longer than this.
   static const showTimeout = Duration(minutes: 2);
 
@@ -61,7 +66,14 @@ class AdCoordinator {
       Log.e('Advert SDK failed to start', error, stack);
       return;
     }
-    _lifecycle ??= AppLifecycleListener(onResume: () => unawaited(maybeShowAppOpen()));
+    _lifecycle ??= AppLifecycleListener(
+      onHide: () => _leftApp = true,
+      onResume: () {
+        if (!_leftApp) return;
+        _leftApp = false;
+        unawaited(maybeShowAppOpen());
+      },
+    );
   }
 
   void dispose() => _lifecycle?.dispose();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/providers.dart';
+import '../../app/routes.dart';
 import '../../core/prefs/key_value_store.dart';
 import '../../design/components/app_icons.dart';
 import '../../design/components/list_row.dart';
@@ -48,6 +49,7 @@ class _StepsScreenState extends ConsumerState<StepsScreen> {
         placeholderIcon: AppIcons.steps,
         placeholderMessage: 'Choose a step or a tradition to read it here.',
         detail: (context, id) => ReaderScreen(docId: id, embedded: true),
+        pageRoute: Routes.read,
         list: Column(
           children: [
             ContentWidth(

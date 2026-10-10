@@ -141,6 +141,16 @@ class InlineBanner extends StatelessWidget {
 void showMessage(BuildContext context, String message, {String? action, VoidCallback? onAction}) {
   final messenger = ScaffoldMessenger.maybeOf(context);
   if (messenger == null) return;
+  showMessageOn(messenger, message, action: action, onAction: onAction);
+}
+
+/// [showMessage] for code that holds the messenger rather than a `BuildContext`.
+void showMessageOn(
+  ScaffoldMessengerState messenger,
+  String message, {
+  String? action,
+  VoidCallback? onAction,
+}) {
   messenger
     ..hideCurrentSnackBar()
     ..showSnackBar(

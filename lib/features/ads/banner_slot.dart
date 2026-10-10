@@ -32,14 +32,26 @@ class BannerSlot extends ConsumerWidget {
     if (premium || !consent.canRequestAds || unit == null || !enabled) {
       return const SizedBox.shrink();
     }
-    return _Banner(unit: unit, key: ValueKey('banner-${placement.name}'));
+    // Sized to the space it sits in (the reader pane on a tablet), not the whole screen.
+    return LayoutBuilder(
+      key: ValueKey('banner-${placement.name}'),
+      builder: (context, constraints) {
+        final width = constraints.hasBoundedWidth
+            ? constraints.maxWidth
+            : MediaQuery.sizeOf(context).width;
+        return _Banner(unit: unit, width: width.truncate());
+      },
+    );
   }
 }
 
 class _Banner extends StatefulWidget {
-  const _Banner({required this.unit, super.key});
+  const _Banner({required this.unit, required this.width});
 
   final String unit;
+
+  /// The width available to the banner, in logical pixels.
+  final int width;
 
   @override
   State<_Banner> createState() => _BannerState();
@@ -48,36 +60,43 @@ class _Banner extends StatefulWidget {
 class _BannerState extends State<_Banner> {
   BannerAd? _ad;
   bool _loaded = false;
-  int? _width;
+
+  /// Bumped on every load, so an older load that finishes late is dropped.
+  int _generation = 0;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final width = MediaQuery.sizeOf(context).width.truncate();
-    if (width != _width) {
-      _width = width;
-      _load(width);
-    }
+  void initState() {
+    super.initState();
+    _load(widget.width);
+  }
+
+  @override
+  void didUpdateWidget(_Banner old) {
+    super.didUpdateWidget(old);
+    if (old.width != widget.width || old.unit != widget.unit) _load(widget.width);
   }
 
   Future<void> _load(int width) async {
-    await _ad?.dispose();
+    final generation = ++_generation;
+    final previous = _ad;
     _ad = null;
-    _loaded = false;
+    _loaded = false; // Runs from initState or didUpdateWidget; a build follows.
+    await previous?.dispose();
+    if (width <= 0) return;
     final size = await AdSize.getLargeAnchoredAdaptiveBannerAdSize(width);
-    if (!mounted || size == null) return;
+    if (!mounted || size == null || generation != _generation) return;
     final ad = BannerAd(
       adUnitId: widget.unit,
       size: size,
       request: const AdRequest(),
       listener: BannerAdListener(
-        onAdLoaded: (_) {
-          if (mounted) setState(() => _loaded = true);
+        onAdLoaded: (loaded) {
+          if (mounted && identical(loaded, _ad)) setState(() => _loaded = true);
         },
-        onAdFailedToLoad: (ad, error) {
+        onAdFailedToLoad: (failed, error) {
           Log.w('Banner failed to load: ${error.code}');
-          ad.dispose();
-          if (mounted) setState(() => _ad = null);
+          failed.dispose();
+          if (mounted && identical(failed, _ad)) setState(() => _ad = null);
         },
       ),
     );

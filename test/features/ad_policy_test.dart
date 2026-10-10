@@ -1,4 +1,5 @@
 // AdPolicy (UNIFIED_PRODUCT_SPEC §2.4, A-10) and the coordinator that applies it.
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:twelve_step_guide/app/providers.dart';
@@ -87,7 +88,8 @@ void main() {
       expect(AdPolicy.mayShowAppOpen(facts()), isFalse, reason: 'nothing loaded');
     });
 
-    test('never over onboarding, welcome back, paywall, Premium, the player or a quote', () {
+    test('never over onboarding, welcome back, paywall, Premium, the player, a quote or '
+        'Reminders', () {
       for (final route in [
         Routes.onboarding,
         Routes.welcomeBack,
@@ -95,6 +97,7 @@ void main() {
         Routes.premium,
         Routes.player,
         Routes.quote,
+        Routes.reminders,
       ]) {
         expect(
           AdPolicy.mayShowAppOpen(facts(location: route), loadedAt: loaded),
@@ -211,6 +214,32 @@ void main() {
       await t.container.read(consentProvider.notifier).gather();
       await t.container.read(adCoordinatorProvider).maybeShowAppOpen();
       expect(t.ads.shown, isEmpty);
+    });
+
+    testWidgets('app-open: only after the app really left the screen, not after a system '
+        'dialog such as the notification permission prompt', (tester) async {
+      final t = setUpCoordinator();
+      await t.container.read(consentProvider.notifier).gather();
+      await t.container.read(adCoordinatorProvider).start();
+      final binding = tester.binding;
+
+      // The permission prompt: inactive, then back.
+      binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pump(const Duration(seconds: 1));
+      await tester.pump(const Duration(seconds: 1));
+      expect(t.ads.shown, isEmpty);
+
+      // A real trip away from the app.
+      binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pump(const Duration(seconds: 1));
+      await tester.pump(const Duration(seconds: 1));
+      expect(t.ads.shown, ['appOpen']);
     });
 
     test('app-open: never over the full player', () async {

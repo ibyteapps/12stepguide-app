@@ -161,6 +161,12 @@ def android_aab(path: str, flavor: str) -> int:
     c.eq("debuggable", app.get(ANDROID_NS + "debuggable", "false") if app is not None else None, "false")
     c.eq("icon set", bool(app is not None and app.get(ANDROID_NS + "icon")), True)
     c.eq("round icon set", bool(app is not None and app.get(ANDROID_NS + "roundIcon")), True)
+    c.eq(
+        "backup rules (recordings left out, F-113)",
+        bool(app is not None and app.get(ANDROID_NS + "fullBackupContent")
+             and app.get(ANDROID_NS + "dataExtractionRules")),
+        True,
+    )
     perms = {e.get(ANDROID_NS + "name") for e in root.findall("uses-permission")}
     for perm in REQUIRED_PERMISSIONS:
         c.eq(f"permission {perm.rsplit('.', 1)[-1]}", perm in perms, True)

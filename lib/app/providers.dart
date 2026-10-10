@@ -1,10 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/config/app_config.dart';
 import '../core/links/links.dart';
+import '../core/platform/connectivity.dart';
 import '../core/platform/legacy_bridge.dart';
 import '../core/prefs/key_value_store.dart';
 import '../core/telemetry/telemetry.dart';
+import '../design/components/states.dart';
 import '../features/audio/domain/catalogue.dart';
 import '../features/content/domain/content_index.dart';
 
@@ -32,7 +35,25 @@ final quotesProvider = Provider<List<String>>(
   (ref) => throw UnimplementedError('overridden in bootstrap'),
 );
 
-final linkOpenerProvider = Provider<LinkOpener>((ref) => const UrlLauncherOpener());
+/// The app's snackbar host, for messages from code that has no `BuildContext`.
+final messengerKeyProvider = Provider<GlobalKey<ScaffoldMessengerState>>(
+  (ref) => GlobalKey<ScaffoldMessengerState>(debugLabel: 'messenger'),
+);
+
+/// Opens links on the device. Tests replace it.
+final platformLinkOpenerProvider = Provider<LinkOpener>((ref) => const UrlLauncherOpener());
+
+/// Opens links from every screen; offline, a web page shows "You're offline" instead (F-112).
+final linkOpenerProvider = Provider<LinkOpener>(
+  (ref) => OfflineAwareLinkOpener(
+    inner: ref.watch(platformLinkOpenerProvider),
+    isOffline: () => ref.read(isOfflineProvider),
+    onOffline: () {
+      final messenger = ref.read(messengerKeyProvider).currentState;
+      if (messenger != null) showMessageOn(messenger, OfflineAwareLinkOpener.message);
+    },
+  ),
+);
 
 final legacyBridgeProvider = Provider<LegacyBridge>((ref) => const MethodChannelLegacyBridge());
 

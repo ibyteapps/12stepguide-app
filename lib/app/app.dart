@@ -27,6 +27,7 @@ class TwelveStepGuideApp extends ConsumerWidget {
       darkTheme: AppTheme.dark(),
       themeMode: mode,
       routerConfig: router,
+      scaffoldMessengerKey: ref.watch(messengerKeyProvider),
       builder: (context, child) {
         final media = MediaQuery.of(context);
         Widget app = UnclampedTextScale(

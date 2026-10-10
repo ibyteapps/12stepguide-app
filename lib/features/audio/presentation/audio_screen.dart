@@ -43,6 +43,7 @@ class AudioScreen extends ConsumerWidget {
         placeholderIcon: AppIcons.audio,
         placeholderMessage: 'Choose an album to see its recordings here.',
         detail: (context, id) => AlbumScreen(albumId: int.parse(id), embedded: true),
+        pageRoute: (id) => Routes.album(int.parse(id)),
         list: ContentWidth(
           child: ListView(
             padding: const EdgeInsets.only(bottom: Space.xxl),

@@ -59,6 +59,18 @@ void main() {
       expect(manifest, contains(r'android:value="${admobAppId}"'));
     });
 
+    test('cloud backup keeps the preferences and leaves out recordings (F-113)', () {
+      expect(manifest, contains('android:fullBackupContent="@xml/backup_rules"'));
+      expect(manifest, contains('android:dataExtractionRules="@xml/data_extraction_rules"'));
+      for (final f in ['backup_rules', 'data_extraction_rules']) {
+        expect(
+          _read('android/app/src/main/res/xml/$f.xml'),
+          contains('<exclude domain="file" path="audio/" />'),
+          reason: f,
+        );
+      }
+    });
+
     test('launcher activity keeps the native component name', () {
       // Home-screen icons point at com.ibyteapps.aa12stepguide.First.
       expect(manifest, contains('android:name=".First"'));

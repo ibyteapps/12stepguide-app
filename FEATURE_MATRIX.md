@@ -108,11 +108,11 @@ has the detail.
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
 | F-070 | Premium definition | No ads + downloads | No ads | DIFF | | **Premium** = no ads + audio downloads, on both | A-05 | ◐ |
-| F-071 | Annual subscription `annual` (7-day trial) | Sold | — | iOS | | Sold on iOS, same product id, StoreKit 2 | A-06 | ◐ |
-| F-072 | Donation tiers | Old iOS tiers (`…donatetier5/10/20`): restore only, lifetime | `donatetier1/2/3`: sold, consumed, "remove ads for life" | DIFF | | iOS: legacy tiers keep lifetime Premium. Android: tiers keep being sold as "Support the app" and give lifetime Premium | A-04, A-06 | ◐ |
+| F-071 | Annual subscription `annual` (7-day trial) | Sold | — | iOS | | Sold on iOS, same product id, StoreKit 2. Premium stays on through Apple's billing grace period | A-06 | ◐ |
+| F-072 | Donation tiers | Old iOS tiers (`…donatetier5/10/20`): restore only, lifetime | `donatetier1/2/3`: sold, consumed, "remove ads for life" | DIFF | | iOS: legacy tiers keep lifetime Premium. Android: tiers keep being sold as "Support the app" and give lifetime Premium once paid (a purchase waiting for payment shows as pending, not owned) | A-04, A-06 | ◐ |
 | F-073 | Interstitial pacing | Every 2nd counted tap (also counts non-content taps — BUG-31); AdMob only | Every 3rd open incl. the Daily Reflection link, persisted; AdMob → Meta fallback | DIFF | | Every 3rd content open, persisted, reset after an app-open ad; never before external links; AdMob only (Meta via AdMob mediation if wanted) | A-10 | ◐ |
-| F-074 | App-open ads | ≥ 45 s since last, not on cold start, not over paywall | Every foreground, ≥ 20 s (in memory) | DIFF | | ≥ 45 s since last (persisted); never on first launch, onboarding, paywall, purchase flow or full player | A-10 | ◐ |
-| F-075 | Banner ads | Reader, player, quote screen | Reader | DIFF | | Reader, player, quote screen | A-10 | ◐ |
+| F-074 | App-open ads | ≥ 45 s since last, not on cold start, not over paywall | Every foreground, ≥ 20 s (in memory) | DIFF | | ≥ 45 s since last (persisted); only after the app really left the screen (not after a system dialog such as the notification permission prompt); never on first launch, onboarding, paywall, purchase flow, full player or Reminders | A-10 | ◐ |
+| F-075 | Banner ads | Reader, player, quote screen | Reader | DIFF | | Reader, player, quote screen; adaptive to the pane it sits in (tablet reader pane) | A-10 | ◐ |
 | F-076 | Mute video ads | — | `setAppVolume(0)` | AND | | Kept on both (and never duck playing audio) | — | ◐ |
 | F-077 | Ad consent | None | None (changelog says UMP; code doesn't) | BROKEN | | Google UMP consent at first launch for UK/EEA; "Privacy & ad choices" in the drawer; no ATT on iOS | A-11 | ◐ |
 | F-078 | Paywall | Auto at launch 2, 20, 50; benefits list; price; terms/privacy links | Store list of tiers | DIFF | | One paywall screen per platform's products (§3 of the spec); auto-shown on iOS cadence on both, never on first launch | A-25 | ◐ |
@@ -154,7 +154,7 @@ has the detail.
 | ID | Feature | iOS | Android | Class | Differences | Unified Flutter behaviour | Decision | Status |
 |---|---|---|---|---|---|---|---|---|
 | F-100 | Dark mode | Follows system | Light only | DIFF | | Light / Dark / System (default System) in Appearance | — | ◐ |
-| F-101 | Tablet / iPad layout | Universal, all orientations | Large-screen dimens | BOTH · NATIVE | | Responsive: 2-pane where it helps (lists + reader on wide screens), navigation rail on tablets | — | ◐ |
+| F-101 | Tablet / iPad layout | Universal, all orientations | Large-screen dimens | BOTH · NATIVE | | Responsive: 2-pane where it helps (lists + reader on wide screens), navigation rail on tablets. The list keeps its state across rotation/Split View, and an item open in the pane carries over as a page when the panes collapse | — | ◐ |
 | F-102 | Orientation | All | All | BOTH | | All on tablets; phones portrait + landscape | — | ◐ |
 | F-103 | Screen reader & text scaling | Minimal | Minimal | BROKEN | | Full semantics and Dynamic Type / font scale support (UX spec §9) | — | ◐ |
 | F-104 | Mac (Apple silicon) and visionOS availability | Offered by the store | — | iOS · NATIVE | | Keep "iPad apps on Mac" availability unless the owner opts out; smoke-test once. Nothing to build: it is an App Store Connect setting, on by default (D-008) | D-008 | ☐ |
@@ -165,8 +165,8 @@ has the detail.
 |---|---|---|---|---|---|---|---|---|
 | F-110 | Firebase Analytics | Automatic | Automatic | BOTH | | Same project, same apps → continuity. No new custom events without approval | — | ◐ |
 | F-111 | Crashlytics | ✓ | ✓ (with breadcrumbs) | BOTH | | ✓; breadcrumbs carry no personal data | — | ◐ |
-| F-112 | Network reachability | `Reachability` before streaming | — | iOS | | Connectivity-aware audio and links, with offline banners | — | ◐ |
-| F-113 | Backups | iCloud backs up Documents (downloads too) | `allowBackup=true` | NATIVE | | Downloads excluded from iCloud backup (re-downloadable); preferences backed up on both | — | ◐ |
+| F-112 | Network reachability | `Reachability` before streaming | — | iOS | | Connectivity-aware audio and links, with offline banners; web links say "You're offline" instead of opening; the paywall asks for a connection instead of prices | — | ◐ |
+| F-113 | Backups | iCloud backs up Documents (downloads too) | `allowBackup=true` | NATIVE | | Downloads excluded from iCloud backup (re-downloadable); preferences backed up on both. Android: `backup_rules.xml` / `data_extraction_rules.xml` leave `audio/` out of Google's cloud backup (25 MB cap); device-to-device transfer keeps it | — | ◐ |
 | F-114 | URL schemes (Google, LinkedIn) | Declared, unused | — | BROKEN | | Not carried over | D-006 | ✖ |
 | F-115 | Face ID string, Sign in with Apple entitlement | Declared, unused | — | BROKEN | | Not carried over | D-006 | ✖ |
 | F-116 | Unused HTML pages | 10 files | 5 files | BROKEN | | Converted to Markdown in `content/archive/` for reference, not shipped | D-006 | ✖ |

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../design/components/states.dart';
 import '../../design/theme/app_colors.dart';
@@ -9,10 +10,15 @@ import '../../design/tokens/spacing.dart';
 ///
 /// Below [Breakpoints.expanded] only the list is shown and items open as pages, as on a phone.
 /// The [ListDetailScope] tells list rows (and `ContentOpener`) whether to select in place.
+///
+/// The list keeps its state (scroll position, chosen segment) when the window changes between
+/// the two layouts, and an item open beside the list stays open, as its own page, when the
+/// window becomes too narrow for two panes (a rotation, or Split View on iPad).
 class ListDetail extends StatefulWidget {
   const ListDetail({
     required this.list,
     required this.detail,
+    required this.pageRoute,
     required this.placeholderIcon,
     required this.placeholderMessage,
     super.key,
@@ -20,6 +26,9 @@ class ListDetail extends StatefulWidget {
 
   final Widget list;
   final Widget Function(BuildContext context, String id) detail;
+
+  /// The route that shows an item as its own page, used when the panes collapse.
+  final String Function(String id) pageRoute;
   final IconData placeholderIcon;
   final String placeholderMessage;
 
@@ -32,15 +41,33 @@ class ListDetail extends StatefulWidget {
 
 class _ListDetailState extends State<ListDetail> {
   String? _selected;
+  bool? _wasExpanded;
+
+  /// Moves the list between the two layouts without rebuilding it.
+  final _listKey = GlobalKey(debugLabel: 'ListDetail.list');
 
   void _select(String id) => setState(() => _selected = id);
+
+  /// The panes have just collapsed: carry the open item over as a page.
+  void _collapse() {
+    final id = _selected;
+    if (id == null) return;
+    _selected = null; // Called while building; the list-only layout is what gets built.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) context.push(widget.pageRoute(id));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth < Breakpoints.expanded) return widget.list;
+        final expanded = constraints.maxWidth >= Breakpoints.expanded;
+        if (_wasExpanded == true && !expanded) _collapse();
+        _wasExpanded = expanded;
+        final list = KeyedSubtree(key: _listKey, child: widget.list);
+        if (!expanded) return list;
         final listWidth = ListDetail.listWidth(constraints.maxWidth);
         return ListDetailScope(
           selected: _selected,
@@ -48,7 +75,7 @@ class _ListDetailState extends State<ListDetail> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(width: listWidth, child: widget.list),
+              SizedBox(width: listWidth, child: list),
               VerticalDivider(width: 1, thickness: 1, color: c.divider),
               Expanded(
                 child: _selected == null
